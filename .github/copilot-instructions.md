@@ -42,3 +42,4 @@ You are working in the **skyrim-modding** repository. This is a GitHub Copilot B
 - **AE baseline snapshot**: `ae-baseline.detail.instructions.md`
 - **VR baseline snapshot**: `vr-baseline.detail.instructions.md`
 - **ENB installation & config**: `enb.detail.instructions.md`
+- **PGPatcher / mesh patching**: `tools-pgpatcher.detail.instructions.md`

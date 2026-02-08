@@ -79,6 +79,7 @@ description: "Expanded reference for topic\nKeywords: keyword1, keyword2, keywor
 - `conflict-resolution.detail.instructions.md` — Conflict resolution strategies
 - `local-system.detail.instructions.md` — Local system paths, versions, installed mods
 - `enb.detail.instructions.md` — ENB installation, configuration, and preset management
+- `tools-pgpatcher.detail.instructions.md` — PGPatcher mesh/texture patching workflows
 
 ## Quality Checklist
 

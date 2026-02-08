@@ -216,7 +216,7 @@ _ResourcePack.esl
 |-----|----------|---------|-------|
 | Alternate Perspective | 50307 | 4.1.0 | Alternate start mod |
 | FonixData File (Mantella) | 40971 | 1.0 | Lip-sync data for AI voice |
-| PGPatcher | 120946 | 0.9.9 | Patcher for gameplay/balance adjustments |
+| PGPatcher | 120946 | 0.9.9 | Dynamic mesh/texture patcher — patches NIFs for parallax, CM, and PBR shader flags based on load order textures. Re-run after adding texture/landscape mods. |
 
 ### Staged but NOT Deployed
 | Mod | Nexus ID | Version | Notes |

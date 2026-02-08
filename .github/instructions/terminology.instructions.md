@@ -41,6 +41,10 @@ applyTo: "**"
 | **MCM** | Mod Configuration Menu — in-game settings via SkyUI |
 | **SPID** | Spell Perk Item Distributor — keyword-based distribution framework |
 | **DAR / OAR** | Dynamic Animation Replacer / Open Animation Replacer |
+| **PGPatcher** | Dynamic mesh/texture patcher (Nexus 120946) — patches NIFs for parallax, CM, and PBR |
+| **Parallax** | Shader technique using height maps (`_p.dds`) to add depth to flat surfaces |
+| **CM** / **CPM** | Complex Material / Complex Parallax Material — advanced shader using multi-layer `_m.dds` maps for metallic/roughness effects |
+| **PBR** | Physically Based Rendering — realistic lighting model; requires Community Shaders + PGPatcher |
 | **ITM** | Identical To Master — unintentional duplicate record |
 | **UDR** | Undeleted and Disabled Reference — a cleaning target |
 | **Conflict Resolution Patch** | Plugin that resolves record-level conflicts between mods |
