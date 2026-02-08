@@ -25,7 +25,7 @@ applyTo: "**"
 | Script compilation | Creation Kit, Champollion (decompile) | Caprica (compiler) |
 | LOD generation | xLODGen, DynDOLOD | TexGen |
 | Downgrading AE → SE | Best of Both Worlds, Downgrade Patcher | — |
-| Graphics injection (ENB) | ENBSeries (enbdev.com) | ReShade |
+| Graphics injection | Community Shaders (86492) | ENB (enbdev.com), ReShade |
 
 ## MO2 Essentials
 

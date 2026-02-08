@@ -1,11 +1,71 @@
 ---
 name: "enb-detail"
-description: "ENB installation, configuration, and preset management for Skyrim\nKeywords: ENB, enbseries, enblocal, enbdev, d3d11, graphics, preset, Boris, post-processing, shader, ENB Helper, weather, visual, screenshot"
+description: "ENB installation, configuration, and preset management for Skyrim\nKeywords: ENB, enbseries, enblocal, enbdev, d3d11, graphics, preset, Boris, post-processing, shader, ENB Helper, weather, visual, screenshot, Community Shaders, CS"
 ---
 
-# ENB — Installation & Configuration
+# ENB & Community Shaders — Graphics Post-Processing
 
-## What is ENB?
+## ENB vs Community Shaders
+
+> **Key Decision**: ENB and Community Shaders serve the same purpose (post-processing graphics
+> injection) and are **mutually exclusive** — do NOT install both simultaneously.
+
+| Aspect | ENB (ENBSeries) | Community Shaders |
+|--------|-----------------|-------------------|
+| Author | Boris Vorontsov | Community (Nexus 86492) |
+| Install method | Manual copy to game root | Mod manager (SKSE plugin) |
+| Hook mechanism | `d3d11.dll` replacement | SKSE plugin DLL |
+| Preset system | INI + shader files | JSON configs + modular shader plugins |
+| Open source | No | Yes |
+| SE/AE support | Yes | Yes |
+| VR support | Separate binary (lags behind) | **No** — SE/AE only |
+| Performance | Heavier (full pipeline hook) | Generally lighter |
+| Ecosystem | Mature, huge preset library | Growing, modular features |
+| Feature plugins | All-in-one | Separate Nexus mods (LightLimitFix, etc.) |
+| Update model | Boris releases when ready | Community-driven, frequent updates |
+
+### When to Choose Which
+
+- **Community Shaders** (recommended for SE/AE): Modern, open-source, lighter, integrates with
+  mod manager, actively maintained by community. Best for new setups.
+- **ENB**: Mature ecosystem with massive preset library. Choose if you want a specific ENB preset
+  look that Community Shaders can't replicate yet.
+- **VR**: ENB is the only option (Community Shaders has no VR support).
+
+### Our Setup
+
+- **AE**: Using **Community Shaders v1.4.11** (Nexus 86492). ENB was installed and removed.
+- **VR**: ENB is the only graphics injection option if desired.
+
+---
+
+## Community Shaders (SE/AE)
+
+Community Shaders is an **SKSE plugin** that replaces ENB for SE/AE. It installs through your mod
+manager like any other mod — no manual file copying required.
+
+### Installation
+
+1. Install via Vortex/MO2 from [Nexus 86492](https://www.nexusmods.com/skyrimspecialedition/mods/86492)
+2. Requires: SKSE, Address Library
+3. Optional feature plugins (also installed via mod manager):
+   - **Light Limit Fix** — removes Skyrim's light limit
+   - **Extended Materials** — parallax, complex material support
+   - **Dynamic Cubemaps** — real-time cubemap reflections
+   - **Terrain Shadows** — improved terrain shadow rendering
+   - **Water Effects** — enhanced water shaders
+   - **Inverse Square Lighting** — physically-based light falloff
+
+### Files It Deploys
+
+- `Data\SKSE\Plugins\CommunityShaders.dll` — core SKSE plugin
+- `Data\Shaders\*` — shader override files (Features, Common, etc.)
+
+---
+
+## ENB (ENBSeries)
+
+### What is ENB?
 
 ENB (ENBSeries) is a **third-party graphics injector** by Boris Vorontsov that hooks into the game's
 DirectX pipeline via `d3d11.dll`. It enables advanced post-processing: ambient occlusion, detailed

@@ -139,7 +139,7 @@ VR variants of mods are often several versions behind SE/AE. This is expected be
 |-----|-------|------------|
 | **USSEP (≥4.2.6)** | Requires 5 CC masters not present in VR: `ccbgssse001-fish.esm`, `ccqdrsse001-survivalmode.esl`, `ccbgssse037-curios.esl`, `ccbgssse025-advdsgs.esm`, `_ResourcePack.esl` | Use USSEP **4.2.5b** (last version without CC deps) or skip entirely. **Do NOT copy CC files from AE** — see Install Isolation rule. |
 | RaceMenu | Dual-file install, VR DLL lags behind | See install pattern above |
-| ENB | VR-specific binary required | Use VR ENB build from enbdev.com |
+| ENB | VR-specific binary required; **not needed for SE/AE if using Community Shaders** | Use VR ENB build from enbdev.com. For SE/AE, prefer Community Shaders (86492) instead |
 | .NET Script Framework | No VR build exists | Use CrashLogger VR (59818) instead |
 | SSE Engine Fixes | Separate VR build | Use Engine Fixes VR (62089) |
 | powerofthree's Tweaks | Separate VR DLL in optional files | Check optional files section |

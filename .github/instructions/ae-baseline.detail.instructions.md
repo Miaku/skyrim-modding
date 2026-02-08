@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: ENB installation session)
-> **Status**: Known stable, working AE setup with SMP hair physics + ENB
+> **Captured**: February 8, 2026 (updated: Community Shaders session)
+> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -21,7 +21,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Mod Manager | Vortex 1.15.2 |
 | Vortex Profile | `rkfJlyujJl` |
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
-| ENB | v0.504 (ENBSeries for TES Skyrim SE) — base binaries installed, no preset yet |
+| Graphics | Community Shaders v1.4.11 (Nexus 86492) — ENB removed |
 
 ## Plugin Load Order (81 active plugins)
 
@@ -189,6 +189,11 @@ _ResourcePack.esl
 | SMIM SE | 659 | 2.08 | Static mesh improvement |
 | Faithful Faces - NPC Overhaul | 114342 | 1.3.5 | NPC face texture overhaul |
 
+### Graphics Post-Processing
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Community Shaders | 86492 | 1.4.11 | SKSE-based graphics injection — replaces ENB |
+
 ### NPC / Followers / Dialogue
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
@@ -311,4 +316,4 @@ This is the **known-good AE foundation** with:
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
 - Ultrawide display support (Complete Widescreen Fix)
-- **ENB v0.504** base binaries (no preset configured yet)
+- **Community Shaders v1.4.11** (Nexus 86492) — replaced ENB
