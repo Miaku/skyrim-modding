@@ -145,6 +145,22 @@ Each file entry shows:
 - Premium users get direct download links; free users go through a 5-second countdown page
 - API key authentication available for programmatic access
 
+## Sandboxed Browser Limitation
+
+> **Critical**: The Playwright browser used by Copilot is sandboxed — `nxm://` protocol handlers
+> **cannot** reach Vortex/MO2. Clicking "Mod manager download" fires the protocol link but it
+> never arrives at the mod manager.
+
+### Recommended Download Workflow
+
+1. **Copilot navigates** Nexus Mods to find the correct file for the correct edition (VR/SE/AE)
+2. **Copilot provides** the mod manager download URL: `...mods/{id}?tab=files&file_id={fid}&nmm=1`
+3. **User pastes** the URL into their real (non-sandboxed) browser where Vortex is registered
+4. Vortex receives the `nxm://` link and handles the download + installation
+
+This avoids the sandboxed browser limitation while still letting Copilot do the hard work of
+finding the right file among Main/Optional/Old sections and edition variants.
+
 ## Automation Best Practices
 
 1. Navigate **directly** to mod pages by ID when known (avoid searching)
@@ -153,6 +169,7 @@ Each file entry shows:
 4. The search URL pattern auto-redirects: old format → new `/games/{game}/mods?keyword=` format
 5. Wait for page load before interacting — Nexus uses heavy JS rendering
 6. Ad iframes load asynchronously — they may shift page layout after initial render
+7. **Output the `&nmm=1` URL** to the user rather than trying to trigger the download in-browser
 
 ## Known Mod IDs (Quick Reference)
 
