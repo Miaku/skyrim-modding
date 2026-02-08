@@ -5,6 +5,11 @@ description: "Local system detection paths, Skyrim installs, Vortex configuratio
 
 # Local System Reference
 
+> **Path Volatility Warning**: Drive letters and install paths below were detected as of Feb 2026.
+> They may change if a game is reinstalled to a different drive, Steam libraries are reorganized,
+> or Vortex staging folders are reconfigured. When a hardcoded path fails, use the
+> **Dynamic Path Discovery** section at the bottom to re-detect current locations.
+
 ## Skyrim Installations
 
 ### Skyrim VR
@@ -47,9 +52,12 @@ description: "Local system detection paths, Skyrim installs, Vortex configuratio
 | Per-game profiles | `%APPDATA%\Vortex\{gameId}\profiles\` | INIs, plugins.txt, loadorder.txt |
 | Per-game masterlist | `%APPDATA%\Vortex\{gameId}\masterlist\` | LOOT masterlist |
 | State database | `%APPDATA%\Vortex\state.v2\` | LevelDB — mod metadata, settings |
-| VR mod staging | `D:\Vortex Mods\skyrimvr\` | Staging folder (user-configured) |
+| VR mod staging | `D:\Vortex Mods\skyrimvr\` | Staging folder (user-configured, may move) |
 | SE mod staging | `%APPDATA%\Vortex\skyrimse\mods\` | Staging folder (default location) |
 | Downloads | `%APPDATA%\Vortex\downloads\` | Downloaded archives |
+
+> **Note**: `%APPDATA%\Vortex` paths are stable (tied to Windows user profile). Game install paths
+> and the VR staging folder on `D:` are more likely to change.
 
 ### Deployment Manifests (Best Data Source)
 Vortex writes JSON manifests to each game's install directory listing every deployed file and its source mod. These are the **most reliable** way to determine what's actually active:
@@ -197,3 +205,57 @@ Get-Content "$env:APPDATA\Vortex\skyrimse\profiles\rkfJlyujJl\loadorder.txt"
 |---------|------|-------|
 | Primary | `C:\Program Files (x86)\Steam` | Skyrim SE/AE, many others |
 | Secondary | `D:\SteamLibrary` | Skyrim VR, Blade & Sorcery, BG3, Elden Ring, others |
+
+## Dynamic Path Discovery
+
+If any hardcoded path above is stale, use these commands to re-detect:
+
+### Find All Steam Libraries
+```powershell
+# Parse Steam's libraryfolders.vdf for all library paths
+$vdf = Get-Content "C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf" -Raw
+[regex]::Matches($vdf, '"path"\s+"([^"]+)"') | ForEach-Object { $_.Groups[1].Value -replace '\\\\', '\' }
+```
+
+### Find Skyrim VR Install
+```powershell
+# Search all Steam libraries for SkyrimVR
+$vdf = Get-Content "C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf" -Raw
+$libs = [regex]::Matches($vdf, '"path"\s+"([^"]+)"') | ForEach-Object { $_.Groups[1].Value -replace '\\\\', '\' }
+foreach ($lib in $libs) {
+    $p = Join-Path $lib "steamapps\common\SkyrimVR\SkyrimVR.exe"
+    if (Test-Path $p) { Write-Host "VR: $p — $((Get-Item $p).VersionInfo.FileVersion)"; break }
+}
+```
+
+### Find Skyrim SE Install
+```powershell
+foreach ($lib in $libs) {
+    $p = Join-Path $lib "steamapps\common\Skyrim Special Edition\SkyrimSE.exe"
+    if (Test-Path $p) { Write-Host "SE: $p — $((Get-Item $p).VersionInfo.FileVersion)"; break }
+}
+```
+
+### Find Vortex Staging Folders
+```powershell
+# Staging paths are stored in Vortex's state DB, but can also be found by checking:
+# 1. Default: %APPDATA%\Vortex\{gameId}\mods\
+# 2. Custom: look for vortex.deployment.json in game Data folders — trace source paths
+$games = @('skyrimvr', 'skyrimse')
+foreach ($g in $games) {
+    $default = Join-Path $env:APPDATA "Vortex\$g\mods"
+    if (Test-Path $default) { Write-Host "$g staging (default): $default" }
+}
+# Also check common custom locations
+@('D:\Vortex Mods', 'E:\Vortex Mods') | ForEach-Object {
+    if (Test-Path $_) { Get-ChildItem $_ -Directory | ForEach-Object { Write-Host "Custom staging: $($_.FullName)" } }
+}
+```
+
+### Refresh Mod Lists After Path Change
+```powershell
+# After re-detection, re-read deployment manifests at the new game path:
+# $gamePath = <detected path>
+# $d = Get-Content "$gamePath\Data\vortex.deployment.json" -Raw | ConvertFrom-Json
+# $d.files | ForEach-Object { $_.source.Split('\')[0] } | Sort-Object -Unique
+```
