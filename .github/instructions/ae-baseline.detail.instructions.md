@@ -136,6 +136,7 @@ _ResourcePack.esl
 | JContainers SE | 16495 | 4.2.9 | JSON / data structure storage for Papyrus |
 | PapyrusUtil AE SE | 13048 | 4.6 | Scripting utility functions |
 | powerofthree's Tweaks | 51073 | 1.1.5.1 | Engine-level tweaks and fixes |
+| BEES - Backported Extended ESL Support | 106441 | 1.2 | Extends ESL support for AE |
 | Fuz Ro D'oh | 15109 | 2.5 | Silent dialogue lip-sync |
 
 ### Stability & Crash Fixes
@@ -195,7 +196,6 @@ _ResourcePack.esl
 | DrJacopo's 3D Grass Library | 80687 | 16.53 | 3D grass meshes (companion to Cathedral) |
 | Better Dynamic Snow SE | 9121 | 3.6.0 | Improved snow rendering |
 | Grass Lighting | 86502 | 2.0.0 | Fixes grass lighting to match surroundings |
-| BEES | 106441 | 1.2 | Better-looking bee meshes/textures |
 
 ### Graphics Post-Processing
 | Mod | Nexus ID | Version | Notes |
@@ -244,7 +244,7 @@ _ResourcePack.esl
 | Category | Count | Mods |
 |----------|-------|------|
 | Engine | 2 | SKSE64, Engine Fixes AIO |
-| Frameworks | 7 | Address Library, Base Object Swapper, ConsoleUtil, JContainers, PapyrusUtil, po3 Tweaks, Fuz Ro D'oh |
+| Frameworks | 8 | Address Library, Base Object Swapper, BEES, ConsoleUtil, JContainers, PapyrusUtil, po3 Tweaks, Fuz Ro D'oh |
 | Stability | 5 | CrashLogger, SMP-NPC Fix, SrtCrashFix, Animation Queue Fix, Hostility Fix |
 | Performance | 3 | eFPS, Grass FPS Booster, NVIDIA Reflex |
 | UI | 2 | SkyUI, Complete Widescreen Fix |
@@ -252,7 +252,7 @@ _ResourcePack.esl
 | Body / Character | 4 | CBBE, BodySlide, RaceMenu, XPMSSE |
 | Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
 | Animation | 2 | FNIS, Nemesis |
-| Visuals | 7 | SMIM, Faithful Faces, Cathedral 3D Landscapes, 3D Grass Library, Better Dynamic Snow, Grass Lighting, BEES |
+| Visuals | 6 | SMIM, Faithful Faces, Cathedral 3D Landscapes, 3D Grass Library, Better Dynamic Snow, Grass Lighting |
 | Graphics | 1 | Community Shaders |
 | NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
 | Gameplay / AI | 3 | Alternate Perspective, FonixData, PGPatcher |
@@ -316,7 +316,7 @@ SKSE64 (30379)
 
 This is the **known-good AE foundation** with:
 - Full Creation Club content (74 CC plugins, AE 1.6.1170)
-- Essential frameworks (SKSE, Address Library, PapyrusUtil, JContainers, po3 Tweaks, Base Object Swapper)
+- Essential frameworks (SKSE, Address Library, PapyrusUtil, JContainers, po3 Tweaks, Base Object Swapper, BEES)
 - **Engine Fixes AIO** (root-level engine bug fixes)
 - **Working SMP hair physics** (Faster HDT-SMP + Vanilla Hair Remake + XPMSSE + crash fixes)
 - Body framework (CBBE + BodySlide + RaceMenu + XPMSSE)
