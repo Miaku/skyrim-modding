@@ -147,6 +147,100 @@ VR variants of mods are often several versions behind SE/AE. This is expected be
 | Base Object Swapper | Needs VR-compiled DLL | Check if VR build exists |
 | Keyword Item Distributor | Needs VR-compiled DLL | Check if VR build exists |
 
+## Complex Dependency Chains
+
+> **Purpose**: These chains document which mods require which other mods to function.
+> When installing any mod in a chain, install **all** its ancestors first. When
+> removing a mod, check nothing below it in the chain depends on it.
+
+### SMP Hair / Cloth Physics (SE/AE)
+
+Full chain for getting Skinned Mesh Physics (hair, capes, etc.) working:
+
+```
+SKSE64 (30379)                              ← engine hooks for all SKSE plugins
+└── Address Library (32444)                 ← runtime address mapping for SKSE DLLs
+    └── XP32 Maximum Skeleton - XPMSSE (1988) ← extended skeleton with SMP bone nodes
+        └── Faster HDT-SMP (57339)          ← SMP physics engine (hdtSMP64.dll)
+            ├── SMP-NPC Crash Fix (91616)   ← prevents CTDs when NPCs have SMP
+            ├── SkyUI (12604)               ← required for FSMP MCM settings menu
+            └── [SMP content mods]:
+                ├── Vanilla Hair Remake SMP (63979) ← SMP-rigged vanilla hair replacer
+                ├── HDT-SMP cloaks/capes    ← any SMP-enabled cloak mod
+                └── KS Hairdos SMP, etc.    ← any SMP hair pack
+```
+
+**Why each link is required:**
+| Mod | What breaks without it |
+|-----|----------------------|
+| SKSE64 | No SKSE plugins load at all |
+| Address Library | Faster HDT-SMP DLL can't resolve runtime addresses → crash |
+| XPMSSE | No SMP bone nodes in skeleton → physics has nothing to simulate, hair is static |
+| Faster HDT-SMP | No physics engine → SMP meshes render but don't move |
+| SMP-NPC Crash Fix | NPCs with SMP hair/armor cause CTDs in populated areas |
+| SkyUI | FSMP MCM menu won't load (non-fatal but you lose physics tuning) |
+| SMP content mod | Nothing to simulate — you need at least one SMP-rigged mesh |
+
+**VR Note:** Faster HDT-SMP has no VR build. For VR SMP physics, use the original
+[HDT-SMP for Skyrim VR](https://www.nexusmods.com/skyrimspecialedition/mods/30872)
+or check if a VR-compiled fork exists. The same chain structure applies but with VR equivalents.
+
+### Body / Character Customization (SE/AE)
+
+```
+SKSE64 (30379)
+└── Address Library (32444)
+    ├── RaceMenu (19080)                    ← character creation overhaul
+    │   ├── CBBE (198)                      ← body mesh replacer (optional but standard)
+    │   │   └── BodySlide (201)             ← body/outfit shape editing (optional)
+    │   └── UIExtensions (17561)            ← face part picker UI (optional)
+    └── XP32 Maximum Skeleton (1988)        ← extended skeleton for body physics
+        └── [feeds into SMP chain above]
+```
+
+**Notes:**
+- RaceMenu _works_ without CBBE but many presets assume CBBE body
+- BodySlide needs CBBE installed first to generate body meshes
+- XPMSSE is shared between the body chain and the SMP physics chain
+
+### Stability Stack (SE/AE)
+
+All independent — no dependencies between them, but all require the SKSE + Address Library base:
+
+```
+SKSE64 (30379)
+└── Address Library (32444)
+    ├── CrashLogger (59818)                 ← crash dump analysis
+    ├── SrtCrashFix AE (31146)              ← stack trace crash fix
+    ├── Animation Queue Fix (82395)         ← animation queue overflow fix
+    ├── SMP-NPC Crash Fix (91616)           ← SMP-specific NPC crash fix
+    └── World Encounter Hostility Fix (91403) ← encounter hostility perf fix
+```
+
+### Animation Framework (SE/AE)
+
+```
+SKSE64 (30379)
+├── FNIS Behavior SE (3038)                 ← legacy animation framework
+│   └── [many older animation mods]
+└── Nemesis Unlimited Behavior Engine (60033) ← modern replacement for FNIS
+    └── [most newer animation mods]
+```
+
+**Note:** FNIS and Nemesis serve the same purpose but can coexist. Nemesis includes a
+FNIS compatibility dummy. Most new mods target Nemesis; FNIS is only needed for legacy
+animation mods that haven't been updated.
+
+### Serana Dialogue Add-On (SE/AE/VR)
+
+```
+USSEP (266)                                 ← SDA references USSEP-fixed records
+├── Serana Dialogue Add-On (32161)
+│   └── SDA Patch Hub SE (70782)            ← patches for SDA + other mod conflicts
+│       └── Ashe and Serana Banter Patch (167123) ← if Ashe follower installed
+└── Fuz Ro D'oh (15109)                     ← silent dialogue lip-sync for unvoiced lines
+```
+
 ## Cross-References
 
 - **VR modding guide**: `vr-modding.detail.instructions.md`

@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026
-> **Status**: Known stable, working AE setup
+> **Captured**: February 8, 2026 (updated: hair physics session)
+> **Status**: Known stable, working AE setup with SMP hair physics
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -22,7 +22,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Vortex Profile | `rkfJlyujJl` |
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
 
-## Plugin Load Order (80 active plugins)
+## Plugin Load Order (81 active plugins)
 
 ```
 # Base game masters
@@ -112,12 +112,13 @@ _ResourcePack.esl
 # User mod plugins
 *unofficial skyrim special edition patch.esp
 *SkyUI_SE.esp
-*Mantella.esp           # ⚠ In plugins.txt but NOT deployed — ghost entry
-*UIExtensions.esp       # ⚠ In plugins.txt but NOT deployed — ghost entry
+*FSMPM - The FSMP MCM.esp      # Faster HDT-SMP MCM menu
+*Mantella.esp                   # ⚠ Ghost entry — NOT deployed
+*UIExtensions.esp               # ⚠ Ghost entry — NOT deployed
 *No NPC Greetings.esp
 ```
 
-## Deployed Mods (27 staging folders)
+## Deployed Mods (34 deployed + 2 staged-only)
 
 ### Engine / Root-Level
 | Mod | Nexus ID | Version | Notes |
@@ -132,14 +133,28 @@ _ResourcePack.esl
 | JContainers SE | 16495 | 4.2.9 | JSON / data structure storage for Papyrus |
 | PapyrusUtil AE SE | 13048 | 4.6 | Scripting utility functions |
 | Fuz Ro D'oh | 15109 | 2.5 | Silent dialogue lip-sync |
+
+### Stability & Crash Fixes
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
 | CrashLogger | 59818 | 1.19.1 | Crash dump logger |
 | SMP-NPC Crash Fix | 91616 | 1 | HDT-SMP NPC crash prevention |
+| SrtCrashFix AE | 31146 | 0.4.1 | Stack trace crash fix |
+| Animation Queue Fix | 82395 | 1.0.1 | Prevents animation queue overflow |
 | World Encounter Hostility Fix | 91403 | 0.4 | Performance version |
+
+### Performance
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| eFPS - Exterior FPS Boost | 54907 | 2.4.2 | Occlusion culling for exteriors |
+| Grass FPS Booster | 20082 | 7.9.2 | Grass rendering optimization |
+| NVIDIA Reflex Support | 74498 | 1.1.2 | Reduces input latency on NVIDIA GPUs |
 
 ### UI
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | SkyUI | 12604 | 5.2 SE | MCM framework + UI overhaul |
+| Ultrawide UI Fix (3840x1080) | 15268 | 0.3 | Ultrawide monitor HUD fix |
 
 ### Patches & Bug Fixes
 | Mod | Nexus ID | Version | Notes |
@@ -153,7 +168,13 @@ _ResourcePack.esl
 | CBBE | 198 | 2.0.3 | Body replacer |
 | BodySlide and Outfit Studio | 201 | 5.7.1 | Body/outfit editing tool |
 | RaceMenu (AE) | 19080 | 0.4.19.16 | Anniversary Edition build |
-| XP32 Maximum Skeleton (XPMSSE) | 1988 | 5.06 | Extended skeleton for animations |
+| XP32 Maximum Skeleton (XPMSSE) | 1988 | 5.06 | Extended skeleton — required for SMP physics |
+
+### Physics (Hair / Cloth)
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Faster HDT-SMP | 57339 | 2.5.1 | SMP physics engine (`hdtSMP64.dll`) + MCM |
+| Vanilla Hair Remake SMP | 63979 | 1.0.3 | 568 SMP-enabled hair meshes |
 
 ### Animation
 | Mod | Nexus ID | Version | Notes |
@@ -165,6 +186,7 @@ _ResourcePack.esl
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | SMIM SE | 659 | 2.08 | Static mesh improvement |
+| Faithful Faces - NPC Overhaul | 114342 | 1.3.5 | NPC face texture overhaul |
 
 ### NPC / Followers / Dialogue
 | Mod | Nexus ID | Version | Notes |
@@ -181,6 +203,12 @@ _ResourcePack.esl
 | Alternate Perspective | 50307 | 4.1.0 | Alternate start mod |
 | FonixData File (Mantella) | 40971 | 1.0 | Lip-sync data for AI voice |
 
+### Staged but NOT Deployed
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Actor Limit Fix (AE) | 32349 | 6 | In staging, 0 deployed files |
+| Bug Fixes SSE (AE) | 33261 | 7 | In staging, 0 deployed files |
+
 ### Ghost Entries (plugins.txt only, not deployed)
 
 | Plugin | Notes |
@@ -193,28 +221,78 @@ _ResourcePack.esl
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 535 files |
-| Data folder | 13,909 files |
-| **Total deployed** | **14,444 files** |
+| Data folder | 14,538 files |
+| **Total deployed** | **15,073 files** |
 
 ## Category Breakdown
 
 | Category | Count | Mods |
 |----------|-------|------|
 | Engine | 1 | SKSE64 |
-| Frameworks | 8 | Address Library, ConsoleUtil, JContainers, PapyrusUtil, Fuz Ro D'oh, CrashLogger, SMP Fix, Hostility Fix |
-| UI | 1 | SkyUI |
+| Frameworks | 5 | Address Library, ConsoleUtil, JContainers, PapyrusUtil, Fuz Ro D'oh |
+| Stability | 5 | CrashLogger, SMP-NPC Fix, SrtCrashFix, Animation Queue Fix, Hostility Fix |
+| Performance | 3 | eFPS, Grass FPS Booster, NVIDIA Reflex |
+| UI | 2 | SkyUI, Ultrawide UI Fix |
 | Patches | 2 | USSEP, No NPC Greetings |
 | Body / Character | 4 | CBBE, BodySlide, RaceMenu, XPMSSE |
+| Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
 | Animation | 2 | FNIS, Nemesis |
-| Visuals | 1 | SMIM |
-| NPC / Followers | 4 | Serana Dialogue Add-On, SDA Patch Hub, Ashe, Ashe-Serana Banter |
+| Visuals | 2 | SMIM, Faithful Faces |
+| NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
 | Gameplay / AI | 2 | Alternate Perspective, FonixData |
-| **Total unique mods** | **25** | (+ SKSE = 26 deployed, 27 staging folders incl. old USSEP) |
+| **Total deployed** | **35** | (incl. SKSE; +2 staged-only, +2 ghost plugins) |
+
+## Dependency Chains (Inferred)
+
+### Hair Physics Chain
+The SMP hair physics stack has a deep dependency chain — every link is required:
+
+```
+SKSE64 (30379)
+└── Address Library (32444)
+    └── XP32 Maximum Skeleton - XPMSSE (1988)
+        └── Faster HDT-SMP (57339)            ← physics engine (hdtSMP64.dll)
+            ├── SMP-NPC Crash Fix (91616)      ← prevents NPC SMP crashes
+            ├── SkyUI (12604)                  ← required for FSMP MCM menu
+            └── Vanilla Hair Remake SMP (63979) ← SMP-enabled hair meshes
+```
+
+**Why each link matters:**
+- **SKSE64** → engine hooks required for all SKSE plugins
+- **Address Library** → maps runtime addresses; Faster HDT-SMP's DLL depends on it
+- **XPMSSE** → extended skeleton with SMP bone nodes; without these bones, physics has nothing to simulate
+- **Faster HDT-SMP** → the actual SMP physics engine (`hdtSMP64.dll`); provides Skinned Mesh Physics simulation
+- **SMP-NPC Crash Fix** → without this, SMP physics on NPCs causes CTDs in populated areas
+- **SkyUI** → Faster HDT-SMP bundles an MCM plugin (`FSMPM - The FSMP MCM.esp`) for tuning physics quality
+- **Vanilla Hair Remake SMP** → replaces vanilla hair NIFs with SMP-rigged versions that reference XPMSSE's SMP bones
+
+### Body / Character Chain
+```
+SKSE64 (30379)
+└── Address Library (32444)
+    ├── RaceMenu (19080)
+    │   └── CBBE (198)
+    │       └── BodySlide (201)
+    └── XP32 Maximum Skeleton (1988)
+        └── [feeds into Hair Physics chain above]
+```
+
+### Stability Chain
+```
+SKSE64 (30379)
+└── Address Library (32444)
+    ├── CrashLogger (59818)
+    ├── SrtCrashFix AE (31146)
+    ├── Animation Queue Fix (82395)
+    ├── SMP-NPC Crash Fix (91616)
+    └── World Encounter Hostility Fix (91403)
+```
 
 ## Notes
 
 - **Mantella** and **UIExtensions** are ghost entries in plugins.txt — they appear enabled but have no deployed files. Consider purging them from the load order via Vortex.
 - Two USSEP versions exist in staging (4.3.4a and 4.3.6c); only 4.3.6c is deployed.
+- **Actor Limit Fix** and **Bug Fixes SSE** are staged but have 0 deployed files — Vortex may have disabled them, or they failed to deploy.
 - Both **FNIS** and **Nemesis** are installed — Nemesis supersedes FNIS for most use cases. FNIS may be a leftover.
 - **Alternate Perspective** (Nexus 50307) is the alternate start mod — replaces the vanilla Helgen intro.
 
@@ -223,8 +301,12 @@ _ResourcePack.esl
 This is the **known-good AE foundation** with:
 - Full Creation Club content (74 CC plugins, AE 1.6.1170)
 - Essential frameworks (SKSE, Address Library, PapyrusUtil, JContainers)
+- **Working SMP hair physics** (Faster HDT-SMP + Vanilla Hair Remake + XPMSSE + crash fixes)
 - Body framework (CBBE + BodySlide + RaceMenu + XPMSSE)
 - Animation tooling (FNIS + Nemesis)
-- Bug fixes (USSEP, crash logger, SMP fix)
-- NPC enhancements (Serana Dialogue Add-On, custom followers)
+- Stability stack (CrashLogger, SrtCrashFix, Animation Queue Fix, SMP-NPC Fix)
+- Performance mods (eFPS, Grass FPS Booster, NVIDIA Reflex)
+- Bug fixes (USSEP)
+- NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
+- Ultrawide display support (3840x1080)
