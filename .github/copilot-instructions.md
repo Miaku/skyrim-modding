@@ -35,3 +35,4 @@ You are working in the **skyrim-modding** repository. This is a GitHub Copilot B
 - **Plugin development**: `plugin-development.instructions.md`
 - **Scripting standards**: `scripting.instructions.md`
 - **Brain meta-instructions**: `brain-meta.detail.instructions.md`
+- **Local system paths & mods**: `local-system.detail.instructions.md`

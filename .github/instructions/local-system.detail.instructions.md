@@ -1,0 +1,199 @@
+---
+name: "local-system-detail"
+description: "Local system detection paths, Skyrim installs, Vortex configuration, and installed mods\nKeywords: system, install, path, version, Vortex, mod list, installed, detect, local, staging, deployment, load order, SKSE, profile"
+---
+
+# Local System Reference
+
+## Skyrim Installations
+
+### Skyrim VR
+| Property | Value |
+|----------|-------|
+| Install Path | `D:\SteamLibrary\steamapps\common\SkyrimVR` |
+| Executable | `SkyrimVR.exe` |
+| Runtime Version | **1.4.15.0** |
+| Steam App ID | 611670 |
+| Steam Library | `D:\SteamLibrary` |
+| SKSE | SKSEVR 2.0.12 (`sksevr_1_4_15.dll`) |
+| Data Folder | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data` |
+
+### Skyrim SE (Anniversary Edition)
+| Property | Value |
+|----------|-------|
+| Install Path | `C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition` |
+| Executable | `SkyrimSE.exe` |
+| Runtime Version | **1.6.1170.0** (AE) |
+| Steam App ID | 489830 |
+| Steam Library | `C:\Program Files (x86)\Steam` |
+| SKSE | SKSE64 2.2.6 (`skse64_1_6_1170.dll`) |
+| Data Folder | `C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data` |
+| Creation Club | Yes — full AE content (70+ CC plugins in load order) |
+
+## Vortex Mod Manager
+
+### Application
+| Property | Value |
+|----------|-------|
+| Install Path | `C:\Program Files\Black Tree Gaming Ltd\Vortex` |
+| Version | 1.15.2 |
+| Config / State | `%APPDATA%\Vortex` (Roaming) |
+| Cache / Electron | `%LOCALAPPDATA%\Vortex` (Local) |
+
+### Data Locations
+
+| Data Type | Path | Notes |
+|-----------|------|-------|
+| Per-game profiles | `%APPDATA%\Vortex\{gameId}\profiles\` | INIs, plugins.txt, loadorder.txt |
+| Per-game masterlist | `%APPDATA%\Vortex\{gameId}\masterlist\` | LOOT masterlist |
+| State database | `%APPDATA%\Vortex\state.v2\` | LevelDB — mod metadata, settings |
+| VR mod staging | `D:\Vortex Mods\skyrimvr\` | Staging folder (user-configured) |
+| SE mod staging | `%APPDATA%\Vortex\skyrimse\mods\` | Staging folder (default location) |
+| Downloads | `%APPDATA%\Vortex\downloads\` | Downloaded archives |
+
+### Deployment Manifests (Best Data Source)
+Vortex writes JSON manifests to each game's install directory listing every deployed file and its source mod. These are the **most reliable** way to determine what's actually active:
+
+| Game | Manifest Path | File Count |
+|------|--------------|------------|
+| VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
+| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 4,946 files |
+| SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
+| SE (Data) | `...\Skyrim Special Edition\Data\vortex.deployment.json` | 692 files |
+
+### Detection Strategy (Efficiency Ranking)
+1. **Deployment manifests** (fastest, most accurate) — JSON files in game directory, lists every deployed file + source mod
+2. **Staging folders** — directory names contain mod name + Nexus ID + version + timestamp
+3. **Profile plugins.txt / loadorder.txt** — shows enabled plugins and load order
+4. **State LevelDB** — comprehensive but requires LevelDB parsing; overkill for most queries
+
+### Vortex Profile IDs
+
+| Game | Profile ID | Profile Path |
+|------|-----------|-------------|
+| Skyrim VR | `HJe4qMiHWx` | `%APPDATA%\Vortex\skyrimvr\profiles\HJe4qMiHWx\` |
+| Skyrim SE | `rkfJlyujJl` | `%APPDATA%\Vortex\skyrimse\profiles\rkfJlyujJl\` |
+
+## Installed Mods — Skyrim VR
+
+### Plugin Load Order
+```
+Skyrim.esm
+Update.esm
+Dawnguard.esm
+HearthFires.esm
+Dragonborn.esm
+SkyrimVR.esm
+SkyUI_SE.esp
+SMIM-SE-Merged-All.esp
+SeranaDialogAddon.esp
+Ashe - Fire and Blood.esp
+Dr_Bandolier.esp
+CBBE.esp
+RaceMenuMorphsCBBE.esp
+Ashe and Serana Banter Patch.esp
+Skyrim Flora Overhaul.esp
+vrik.esp
+higgs_vr.esp
+```
+
+### Mod Catalog (24 mods)
+
+| Mod | Nexus ID | Version | Category |
+|-----|----------|---------|----------|
+| SKSEVR | 30457 | 2.0.12 | Framework |
+| Skyrim VR ESL Support | 106712 | 1.2 | Framework |
+| VR Address Library | 58101 | 0.195.0 | Framework |
+| SkyrimVRTools | 27782 | 2.3 BETA | Framework |
+| Engine Fixes VR (Part 1 + 2) | 62089 | 1.26 | Framework |
+| CrashLogger | 59818 | 1.19.1 | Framework |
+| SMP-NPC Crash Fix | 91616 | 1 | Framework |
+| VRIK Player Avatar | 23416 | 0.8.5 | VR Core |
+| HIGGS | 43930 | 1.10.10 | VR Core |
+| PLANCK | 66025 | 0.7.1 | VR Core |
+| SkyUI (VR) | — | 1.2.2 | UI |
+| Unofficial Skyrim SE Patch | 266 | 4.3.6c | Patch |
+| SMIM SE | 659 | 2.08 | Visuals |
+| Skyrim Flora Overhaul | 2154 | 2.74a | Visuals |
+| CBBE | 198 | 2.0.3 | Body |
+| BodySlide and Outfit Studio | 201 | 5.7.1 | Body |
+| Serana Dialogue Add-On | 32161 | 4.3.0 | NPC / Dialogue |
+| SDA Patch Hub SE | 70782 | 2.9.6 | NPC / Dialogue |
+| Ashe - Crystal Heart SE | 135085 | 1.3.0 | NPC / Follower |
+| Ashe and Serana Banter Patch | 167123 | 1.0.4 | NPC / Follower |
+| Fabulous Followers SE | 57284 | 1.05 | NPC / Follower |
+| Bandolier Bags and Pouches | 2417 | 1.2 | Equipment |
+| All in one (Address Library) | 32444 | 2 | Library |
+| RaceMenuMorphsCBBE | — | — | Body |
+
+## Installed Mods — Skyrim SE (AE)
+
+### Plugin Load Order
+```
+Skyrim.esm
+Update.esm
+Dawnguard.esm / HearthFires.esm / Dragonborn.esm
+[70+ Creation Club ESMs/ESLs]
+_ResourcePack.esl
+unofficial skyrim special edition patch.esp
+SkyUI_SE.esp
+Mantella.esp
+UIExtensions.esp
+No NPC Greetings.esp
+```
+
+### Mod Catalog (11 mods)
+
+| Mod | Nexus ID | Version | Category |
+|-----|----------|---------|----------|
+| SKSE64 | 30379 | 2.2.6 | Framework |
+| Address Library (AE) | 32444 | 11 | Framework |
+| PapyrusUtil AE SE | 13048 | 4.6 | Framework |
+| Unofficial Skyrim SE Patch | 266 | 4.3.4a | Patch |
+| SkyUI SE | 12604 | 5.2 SE | UI |
+| UIExtensions | 17561 | 1.2.0 | UI |
+| Mantella | 98631 | 0.13 | AI / NPC |
+| Mantella Expanded Piper Models | 98631 | 1 | AI / NPC |
+| FonixData (Mod Manager Install) | 40971 | 1.0 | AI / NPC |
+| No NPC Greetings | 1044 | 2.0a | NPC |
+| World Encounter Hostility Fix | 91403 | 0.4 | Bugfix |
+
+## Quick Detection Commands
+
+### Get VR Version
+```powershell
+(Get-Item "D:\SteamLibrary\steamapps\common\SkyrimVR\SkyrimVR.exe").VersionInfo.FileVersion
+```
+
+### Get SE Version
+```powershell
+(Get-Item "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\SkyrimSE.exe").VersionInfo.FileVersion
+```
+
+### List VR Deployed Mods
+```powershell
+$d = Get-Content "D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json" -Raw | ConvertFrom-Json
+$d.files | ForEach-Object { $_.source.Split('\')[0] } | Sort-Object -Unique
+```
+
+### List SE Deployed Mods
+```powershell
+$d = Get-Content "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\vortex.deployment.json" -Raw | ConvertFrom-Json
+$d.files | ForEach-Object { $_.source.Split('\')[0] } | Sort-Object -Unique
+```
+
+### Read VR Load Order
+```powershell
+Get-Content "$env:APPDATA\Vortex\skyrimvr\profiles\HJe4qMiHWx\loadorder.txt"
+```
+
+### Read SE Load Order
+```powershell
+Get-Content "$env:APPDATA\Vortex\skyrimse\profiles\rkfJlyujJl\loadorder.txt"
+```
+
+## Steam Library Paths
+| Library | Path | Games |
+|---------|------|-------|
+| Primary | `C:\Program Files (x86)\Steam` | Skyrim SE/AE, many others |
+| Secondary | `D:\SteamLibrary` | Skyrim VR, Blade & Sorcery, BG3, Elden Ring, others |
