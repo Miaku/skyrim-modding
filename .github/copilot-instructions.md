@@ -41,3 +41,4 @@ You are working in the **skyrim-modding** repository. This is a GitHub Copilot B
 - **Mod dependencies & edition variants**: `mod-dependencies.detail.instructions.md`
 - **AE baseline snapshot**: `ae-baseline.detail.instructions.md`
 - **VR baseline snapshot**: `vr-baseline.detail.instructions.md`
+- **ENB installation & config**: `enb.detail.instructions.md`

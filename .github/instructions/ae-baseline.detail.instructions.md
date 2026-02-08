@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: hair physics session)
-> **Status**: Known stable, working AE setup with SMP hair physics
+> **Captured**: February 8, 2026 (updated: ENB installation session)
+> **Status**: Known stable, working AE setup with SMP hair physics + ENB
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -21,6 +21,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Mod Manager | Vortex 1.15.2 |
 | Vortex Profile | `rkfJlyujJl` |
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
+| ENB | v0.504 (ENBSeries for TES Skyrim SE) — base binaries installed, no preset yet |
 
 ## Plugin Load Order (81 active plugins)
 
@@ -310,3 +311,4 @@ This is the **known-good AE foundation** with:
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
 - Ultrawide display support (Complete Widescreen Fix)
+- **ENB v0.504** base binaries (no preset configured yet)

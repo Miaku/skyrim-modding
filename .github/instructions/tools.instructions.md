@@ -25,6 +25,7 @@ applyTo: "**"
 | Script compilation | Creation Kit, Champollion (decompile) | Caprica (compiler) |
 | LOD generation | xLODGen, DynDOLOD | TexGen |
 | Downgrading AE → SE | Best of Both Worlds, Downgrade Patcher | — |
+| Graphics injection (ENB) | ENBSeries (enbdev.com) | ReShade |
 
 ## MO2 Essentials
 
@@ -45,3 +46,4 @@ applyTo: "**"
 - **Detailed MO2 workflows**: `tools-mo2.detail.instructions.md`
 - **xEdit deep reference**: `tools-xedit.detail.instructions.md`
 - **Creation Kit guide**: `tools-ck.detail.instructions.md`
+- **ENB installation & config**: `enb.detail.instructions.md`

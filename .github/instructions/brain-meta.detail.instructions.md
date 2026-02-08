@@ -78,6 +78,7 @@ description: "Expanded reference for topic\nKeywords: keyword1, keyword2, keywor
 - `packaging.detail.instructions.md` — FOMOD/BAIN packaging
 - `conflict-resolution.detail.instructions.md` — Conflict resolution strategies
 - `local-system.detail.instructions.md` — Local system paths, versions, installed mods
+- `enb.detail.instructions.md` — ENB installation, configuration, and preset management
 
 ## Quality Checklist
 
