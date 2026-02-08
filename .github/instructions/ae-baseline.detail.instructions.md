@@ -154,7 +154,7 @@ _ResourcePack.esl
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | SkyUI | 12604 | 5.2 SE | MCM framework + UI overhaul |
-| Ultrawide UI Fix (3840x1080) | 15268 | 0.3 | Ultrawide monitor HUD fix |
+| Complete Widescreen Fix | 1778 | 3.9.1 | Widescreen/ultrawide fix for vanilla + SkyUI 5.2 |
 
 ### Patches & Bug Fixes
 | Mod | Nexus ID | Version | Notes |
@@ -221,8 +221,8 @@ _ResourcePack.esl
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 535 files |
-| Data folder | 14,538 files |
-| **Total deployed** | **15,073 files** |
+| Data folder | 14,533 files |
+| **Total deployed** | **15,068 files** |
 
 ## Category Breakdown
 
@@ -232,7 +232,7 @@ _ResourcePack.esl
 | Frameworks | 5 | Address Library, ConsoleUtil, JContainers, PapyrusUtil, Fuz Ro D'oh |
 | Stability | 5 | CrashLogger, SMP-NPC Fix, SrtCrashFix, Animation Queue Fix, Hostility Fix |
 | Performance | 3 | eFPS, Grass FPS Booster, NVIDIA Reflex |
-| UI | 2 | SkyUI, Ultrawide UI Fix |
+| UI | 2 | SkyUI, Complete Widescreen Fix |
 | Patches | 2 | USSEP, No NPC Greetings |
 | Body / Character | 4 | CBBE, BodySlide, RaceMenu, XPMSSE |
 | Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
@@ -309,4 +309,4 @@ This is the **known-good AE foundation** with:
 - Bug fixes (USSEP)
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
-- Ultrawide display support (3840x1080)
+- Ultrawide display support (Complete Widescreen Fix)
