@@ -68,6 +68,8 @@ description: "Expanded reference for topic\nKeywords: keyword1, keyword2, keywor
 ### Detail Files
 - `brain-meta.detail.instructions.md` — This file (brain maintenance)
 - `vr-modding.detail.instructions.md` — VR-specific modding guide
+- `vr-baseline.detail.instructions.md` — VR preferred baseline snapshot (Feb 2026)
+- `nexus-mods.detail.instructions.md` — Nexus Mods navigation, ad avoidance, automation
 - `skse-development.detail.instructions.md` — SKSE C++ plugin development
 - `papyrus.detail.instructions.md` — Papyrus scripting patterns
 - `tools-xedit.detail.instructions.md` — xEdit deep reference

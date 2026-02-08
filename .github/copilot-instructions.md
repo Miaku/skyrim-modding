@@ -36,3 +36,5 @@ You are working in the **skyrim-modding** repository. This is a GitHub Copilot B
 - **Scripting standards**: `scripting.instructions.md`
 - **Brain meta-instructions**: `brain-meta.detail.instructions.md`
 - **Local system paths & mods**: `local-system.detail.instructions.md`
+- **Nexus Mods navigation**: `nexus-mods.detail.instructions.md`
+- **VR baseline snapshot**: `vr-baseline.detail.instructions.md`

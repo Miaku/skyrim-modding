@@ -271,3 +271,37 @@ foreach ($g in $games) {
 # $d = Get-Content "$gamePath\Data\vortex.deployment.json" -Raw | ConvertFrom-Json
 # $d.files | ForEach-Object { $_.source.Split('\')[0] } | Sort-Object -Unique
 ```
+
+## Pending Mod Installs — Dependency Analysis
+
+### RaceMenu for VR (Nexus ID 19080)
+
+**Install procedure**: Two-file install from the same mod page.
+1. Install **Main file**: "RaceMenu Anniversary Edition v0-4-19-16" (8.2MB, file_id=465102)
+   - This contains the ESP, scripts, and assets
+2. Install **Optional file**: "RaceMenu VR 0.4.14" (571KB, file_id=154909)
+   - This contains `skee64.dll` compiled for SKSEVR (VR runtime 1.4.15)
+   - After installing, **delete** `skee64.dll` and `skee64.ini` from the main file (the VR file replaces them)
+
+**Nexus-listed dependencies**: None ("no known dependencies other than the base game")
+
+**Actual runtime dependencies**:
+| Dependency | Required | Status in VR Baseline |
+|-----------|----------|----------------------|
+| SKSEVR 2.0.12+ | **Yes** (hard req) | Installed (2.0.12) |
+| SkyUI VR | Recommended (MCM) | Installed (1.2.2) |
+| CBBE (for body morphs) | Optional | Installed (2.0.3) |
+| BodySlide (for body morphs) | Optional | Installed (5.7.1) |
+| UIExtensions | Optional (face part selection UI) | **NOT installed** |
+| VR Address Library | Recommended | Installed (0.195.0) |
+
+**Dependency gap**: `UIExtensions` (Nexus 17561) is NOT in the VR baseline.
+- UIExtensions provides enhanced face-part selection UI in RaceMenu
+- Not a hard requirement — RaceMenu works without it, just fewer UI features
+- Note: UIExtensions has a known VR compatibility issue — verify VR-specific version exists
+
+**VR-specific notes**:
+- The VR optional file (0.4.14) is older than the AE main file (0.4.19.16) — this is expected
+- VR DLL version lags behind because SKSEVR runtime is frozen at 1.4.15
+- The main file's scripts/ESP are forward-compatible; only the DLL needs to be VR-specific
+- Some RaceMenu features are non-functional in VR (marked in mod description)
