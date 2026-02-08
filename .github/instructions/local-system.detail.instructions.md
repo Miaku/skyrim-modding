@@ -166,6 +166,18 @@ No NPC Greetings.esp
 | No NPC Greetings | 1044 | 2.0a | NPC |
 | World Encounter Hostility Fix | 91403 | 0.4 | Bugfix |
 
+## VS Code MCP Configuration
+
+| Property | Value |
+|----------|-------|
+| Config Path | `C:\Users\admin\AppData\Roaming\Code\User\mcp.json` |
+| Playwright MCP | `@playwright/mcp@latest` via npx |
+| Browser | Firefox (no user-data-dir needed) |
+
+> **Note**: Previously used Chrome with `--user-data-dir` pointing to the user's Chrome profile
+> for login persistence. Switched to Firefox due to Chrome hanging on Playwright startup.
+> If Firefox has issues, can switch back to `"--browser", "chrome"` with the user-data-dir arg.
+
 ## Quick Detection Commands
 
 ### Get VR Version
