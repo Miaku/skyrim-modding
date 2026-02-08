@@ -114,6 +114,10 @@ Plugin files (ESP/ESM/ESL) work across all editions **unless** they:
 - Require a master that doesn't exist in VR (e.g., Creation Club content)
 - Use Papyrus functions that only exist in a specific SKSE version's extensions
 
+> **⚠ Install Isolation**: When a mod's ESP requires AE-only masters (CC content),
+> the fix for VR is to **downgrade or skip the mod** — NEVER copy CC files from the AE install
+> into VR. The AE and VR installs must stay completely separate to avoid cross-contamination.
+
 ### Rule 3: Check Optional Files for VR
 On Nexus Mods, VR-specific files are almost always in the **Optional files** section.
 The Main file is typically for the latest SE/AE version. VR users need both.
@@ -133,6 +137,7 @@ VR variants of mods are often several versions behind SE/AE. This is expected be
 
 | Mod | Issue | Workaround |
 |-----|-------|------------|
+| **USSEP (≥4.2.6)** | Requires 5 CC masters not present in VR: `ccbgssse001-fish.esm`, `ccqdrsse001-survivalmode.esl`, `ccbgssse037-curios.esl`, `ccbgssse025-advdsgs.esm`, `_ResourcePack.esl` | Use USSEP **4.2.5b** (last version without CC deps) or skip entirely. **Do NOT copy CC files from AE** — see Install Isolation rule. |
 | RaceMenu | Dual-file install, VR DLL lags behind | See install pattern above |
 | ENB | VR-specific binary required | Use VR ENB build from enbdev.com |
 | .NET Script Framework | No VR build exists | Use CrashLogger VR (59818) instead |

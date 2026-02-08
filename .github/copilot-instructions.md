@@ -18,9 +18,10 @@ You are working in the **skyrim-modding** repository. This is a GitHub Copilot B
 ## Essential Protocols
 
 1. **Edition Awareness**: When answering, note when behavior differs between VR, AE, and SE
-2. **Brain Updates**: When you learn something new about modding workflows, suggest updates to the appropriate instruction file
-3. **Two-Tier Strategy**: Follow the always-on + lazy-load pattern for instruction files
-4. **Context Efficiency**: Keep always-on files small (~80-120 lines), put details in `.detail.instructions.md` files
+2. **Install Isolation**: **NEVER copy files between AE and VR installs.** These are separate ecosystems — cross-pollinating CC content, DLLs, or other files between them is risky and unsupported. If a mod needs AE-only masters (e.g., Creation Club ESMs), the correct answer for VR is to use an older compatible version or skip the mod — not to transplant AE files into the VR directory.
+3. **Brain Updates**: When you learn something new about modding workflows, suggest updates to the appropriate instruction file
+4. **Two-Tier Strategy**: Follow the always-on + lazy-load pattern for instruction files
+5. **Context Efficiency**: Keep always-on files small (~80-120 lines), put details in `.detail.instructions.md` files
 
 ## File Organization
 

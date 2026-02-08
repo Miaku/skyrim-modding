@@ -44,6 +44,8 @@ Skyrim VR is based on **SE runtime 1.4.15** — an older SE build. This means:
 ### ESP/ESM Plugins
 - Generally work directly if they don't require SKSE plugins
 - Check for Creation Club master dependencies (not available in VR)
+- **USSEP ≥ 4.2.6 is NOT VR-compatible** — it requires 5 CC masters that don't exist in VR.
+  Use version **4.2.5b** or skip it. Do NOT copy CC files from AE to "fix" this.
 
 ### SKSE Plugins (DLLs)
 1. Source code must be recompiled against CommonLibVR

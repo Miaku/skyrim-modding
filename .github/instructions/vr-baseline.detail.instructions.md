@@ -21,7 +21,7 @@ Dragonborn.esm
 SkyrimVR.esm
 
 # Mod plugins (Vortex-managed)
-*unofficial skyrim special edition patch.esp
+# *unofficial skyrim special edition patch.esp  ← NOT LOADED: v4.3.6c requires CC masters missing in VR
 *SkyUI_SE.esp
 *SMIM-SE-Merged-All.esp
 *SeranaDialogAddon.esp
@@ -51,7 +51,7 @@ SkyrimVR.esm
 | HIGGS | 43930 | 1.10.10 | VR Core |
 | PLANCK | 66025 | 0.7.1 | VR Core |
 | SkyUI VR | — | 1.2.2 | UI |
-| Unofficial Skyrim SE Patch | 266 | 4.3.6c | Patch |
+| Unofficial Skyrim SE Patch | 266 | 4.3.6c | Patch | **⚠ NOT LOADED** — requires CC masters (fish, survival, curios, saints & seducers, resource pack) absent in VR. Needs downgrade to 4.2.5b or removal. |
 | VR Address Library | 58101 | 0.195.0 | Framework |
 | SkyrimVRTools | 27782 | 2.3 BETA | Framework |
 | Engine Fixes VR (Part 1) | 62089 | 1.26 | Framework |
