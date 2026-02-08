@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: Community Shaders session)
-> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders
+> **Captured**: February 8, 2026 (updated: Cathedral + grass libraries session)
+> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders + landscape overhaul
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -23,7 +23,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
 | Graphics | Community Shaders v1.4.11 (Nexus 86492) — ENB removed |
 
-## Plugin Load Order (81 active plugins)
+## Plugin Load Order (85 active plugins)
 
 ```
 # Base game masters
@@ -119,20 +119,23 @@ _ResourcePack.esl
 *No NPC Greetings.esp
 ```
 
-## Deployed Mods (34 deployed + 2 staged-only)
+## Deployed Mods (43 data + 2 root = 45 deployed)
 
 ### Engine / Root-Level
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
-| SKSE64 | 30379 | 2.2.6 | 535 root-level files |
+| SKSE64 | 30379 | 2.2.6 | 542 root-level files |
+| Engine Fixes (All-In-One) | 17230 | 7.0.19 | AE 1.6.1170+ engine bug fixes (root-level) |
 
 ### Frameworks & Libraries
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | Address Library for SKSE (AE) | 32444 | 11 | All-in-one AE address database |
+| Base Object Swapper | 60805 | 3.4.1 | Runtime base object replacement framework |
 | ConsoleUtilSSE NG | 76649 | 1.5.1 | Console command utility for SKSE |
 | JContainers SE | 16495 | 4.2.9 | JSON / data structure storage for Papyrus |
 | PapyrusUtil AE SE | 13048 | 4.6 | Scripting utility functions |
+| powerofthree's Tweaks | 51073 | 1.1.5.1 | Engine-level tweaks and fixes |
 | Fuz Ro D'oh | 15109 | 2.5 | Silent dialogue lip-sync |
 
 ### Stability & Crash Fixes
@@ -188,6 +191,11 @@ _ResourcePack.esl
 |-----|----------|---------|-------|
 | SMIM SE | 659 | 2.08 | Static mesh improvement |
 | Faithful Faces - NPC Overhaul | 114342 | 1.3.5 | NPC face texture overhaul |
+| Cathedral - 3D Landscapes | 80687 | 16.41 | Landscape texture + mesh overhaul |
+| DrJacopo's 3D Grass Library | 80687 | 16.53 | 3D grass meshes (companion to Cathedral) |
+| Better Dynamic Snow SE | 9121 | 3.6.0 | Improved snow rendering |
+| Grass Lighting | 86502 | 2.0.0 | Fixes grass lighting to match surroundings |
+| BEES | 106441 | 1.2 | Better-looking bee meshes/textures |
 
 ### Graphics Post-Processing
 | Mod | Nexus ID | Version | Notes |
@@ -208,6 +216,7 @@ _ResourcePack.esl
 |-----|----------|---------|-------|
 | Alternate Perspective | 50307 | 4.1.0 | Alternate start mod |
 | FonixData File (Mantella) | 40971 | 1.0 | Lip-sync data for AI voice |
+| PGPatcher | 120946 | 0.9.9 | Patcher for gameplay/balance adjustments |
 
 ### Staged but NOT Deployed
 | Mod | Nexus ID | Version | Notes |
@@ -226,16 +235,16 @@ _ResourcePack.esl
 
 | Target | File Count |
 |--------|-----------|
-| Root (SKSE DLLs, etc.) | 535 files |
-| Data folder | 14,533 files |
-| **Total deployed** | **15,068 files** |
+| Root (SKSE DLLs, etc.) | 542 files |
+| Data folder | 15,503 files |
+| **Total deployed** | **16,045 files** |
 
 ## Category Breakdown
 
 | Category | Count | Mods |
 |----------|-------|------|
-| Engine | 1 | SKSE64 |
-| Frameworks | 5 | Address Library, ConsoleUtil, JContainers, PapyrusUtil, Fuz Ro D'oh |
+| Engine | 2 | SKSE64, Engine Fixes AIO |
+| Frameworks | 7 | Address Library, Base Object Swapper, ConsoleUtil, JContainers, PapyrusUtil, po3 Tweaks, Fuz Ro D'oh |
 | Stability | 5 | CrashLogger, SMP-NPC Fix, SrtCrashFix, Animation Queue Fix, Hostility Fix |
 | Performance | 3 | eFPS, Grass FPS Booster, NVIDIA Reflex |
 | UI | 2 | SkyUI, Complete Widescreen Fix |
@@ -243,10 +252,11 @@ _ResourcePack.esl
 | Body / Character | 4 | CBBE, BodySlide, RaceMenu, XPMSSE |
 | Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
 | Animation | 2 | FNIS, Nemesis |
-| Visuals | 2 | SMIM, Faithful Faces |
+| Visuals | 7 | SMIM, Faithful Faces, Cathedral 3D Landscapes, 3D Grass Library, Better Dynamic Snow, Grass Lighting, BEES |
+| Graphics | 1 | Community Shaders |
 | NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
-| Gameplay / AI | 2 | Alternate Perspective, FonixData |
-| **Total deployed** | **35** | (incl. SKSE; +2 staged-only, +2 ghost plugins) |
+| Gameplay / AI | 3 | Alternate Perspective, FonixData, PGPatcher |
+| **Total deployed** | **45** | (incl. root-level; +2 ghost plugins) |
 
 ## Dependency Chains (Inferred)
 
@@ -306,13 +316,15 @@ SKSE64 (30379)
 
 This is the **known-good AE foundation** with:
 - Full Creation Club content (74 CC plugins, AE 1.6.1170)
-- Essential frameworks (SKSE, Address Library, PapyrusUtil, JContainers)
+- Essential frameworks (SKSE, Address Library, PapyrusUtil, JContainers, po3 Tweaks, Base Object Swapper)
+- **Engine Fixes AIO** (root-level engine bug fixes)
 - **Working SMP hair physics** (Faster HDT-SMP + Vanilla Hair Remake + XPMSSE + crash fixes)
 - Body framework (CBBE + BodySlide + RaceMenu + XPMSSE)
 - Animation tooling (FNIS + Nemesis)
 - Stability stack (CrashLogger, SrtCrashFix, Animation Queue Fix, SMP-NPC Fix)
 - Performance mods (eFPS, Grass FPS Booster, NVIDIA Reflex)
 - Bug fixes (USSEP)
+- **Landscape overhaul** (Cathedral 3D Landscapes + 3D Grass Library + Better Dynamic Snow + Grass Lighting + BEES)
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
 - Ultrawide display support (Complete Widescreen Fix)
