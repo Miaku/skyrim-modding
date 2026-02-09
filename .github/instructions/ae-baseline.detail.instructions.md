@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: Vanaheimr Landscapes + Freak's Floral Fields session)
-> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders + CPM landscape overhaul + grass flora
+> **Captured**: February 8, 2026 (updated: Community Shaders full shader stack session)
+> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders + 12 CS shader add-ons + CPM landscape overhaul + grass flora
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -21,7 +21,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Mod Manager | Vortex 1.15.2 |
 | Vortex Profile | `rkfJlyujJl` |
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
-| Graphics | Community Shaders v1.4.11 (Nexus 86492) — ENB removed |
+| Graphics | Community Shaders v1.4.11 (Nexus 86492) + 12 shader add-ons — ENB removed |
 
 ## Plugin Load Order (85 in loadorder.txt + deployed ESPs)
 
@@ -41,10 +41,10 @@ _ResourcePack.esl
 *unofficial skyrim special edition patch.esp
 *SkyUI_SE.esp
 *FSMPM - The FSMP MCM.esp      # Faster HDT-SMP MCM menu
-*Mantella.esp                   # ⚠ Ghost entry — NOT deployed
-*UIExtensions.esp               # ⚠ Ghost entry — NOT deployed
 *No NPC Greetings.esp
 ```
+
+> **Note**: Ghost entries for `Mantella.esp` and `UIExtensions.esp` have been cleaned up since the previous snapshot.
 
 ### Deployed Plugin Files (37 ESPs/ESMs/ESLs from mods)
 
@@ -101,7 +101,7 @@ No NPC Greetings.esp
 AlternatePerspective.esp
 ```
 
-## Deployed Mods (50 data + 2 root = 52 deployed)
+## Deployed Mods (62 data + 2 root = 64 deployed)
 
 ### Engine / Root-Level
 | Mod | Nexus ID | Version | Notes |
@@ -186,10 +186,22 @@ AlternatePerspective.esp
 | Terrain Helper | 143149 | 1.0.0 | Terrain blending helper for landscape mods (CS/ENB) |
 | Falskaar - Landscape Texture Fix | 139242 | 1.0 | Fixes Falskaar landscape to use correct textures |
 
-### Graphics Post-Processing
+### Graphics — Community Shaders + Shader Add-Ons
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
-| Community Shaders | 86492 | 1.4.11 | SKSE-based graphics injection — replaces ENB |
+| Community Shaders | 86492 | 1.4.11 | SKSE-based graphics injection — replaces ENB; base framework for all CS shaders below |
+| Cloud Shadows | 139185 | 1.2.0 | CS add-on — dynamic cloud shadow projection on terrain |
+| Grass Collision | 87816 | 3.0.2 | CS add-on — grass reacts to player/NPC movement |
+| Hair Specular | 149011 | 1.0.3 | CS add-on — improved hair specular highlights |
+| Screen Space GI | 130375 | 4.0.1 | CS add-on — screen-space global illumination (indirect lighting) |
+| Sky Sync | 153543 | 1.0.0 | CS add-on — synchronizes sky/weather shading |
+| Skylighting | 139352 | 1.2.3 | CS add-on — ambient sky occlusion and directional skylighting |
+| Subsurface Scattering | 114114 | 3.0.1 | CS add-on — SSS for skin/foliage/wax |
+| Terrain Blending | 157076 | 1.0.1 | CS add-on — smooth blending between terrain and placed objects |
+| Terrain Variation | 148123 | 1.0.1 | CS add-on — breaks up terrain tiling with variation noise |
+| Upscaling | 156952 | 1.1.2 | CS add-on — temporal upscaling (FSR/DLSS-like) |
+| Vanilla Hair Flow Maps | 149011 | 1.0 | CS add-on — flow maps for vanilla hair anisotropic rendering |
+| Wetness Effects | 112739 | 3.0.0 | CS add-on — rain/water wetness on surfaces |
 
 ### NPC / Followers / Dialogue
 | Mod | Nexus ID | Version | Notes |
@@ -225,8 +237,8 @@ AlternatePerspective.esp
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 542 files |
-| Data folder | 16,597 files |
-| **Total deployed** | **17,139 files** |
+| Data folder | 16,690 files |
+| **Total deployed** | **17,232 files** |
 
 ## Category Breakdown
 
@@ -242,10 +254,10 @@ AlternatePerspective.esp
 | Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
 | Animation | 2 | FNIS, Nemesis |
 | Visuals / Landscape | 13 | SMIM, Faithful Faces, Cathedral 3D, 3D Grass Library, Vanaheimr Landscapes CPM, Freak's Floral Fields, ERM, Better Dynamic Snow, Grass Lighting, Icy Mesh Remaster (x2), Terrain Helper, Falskaar Texture Fix |
-| Graphics | 1 | Community Shaders |
+| Graphics / CS Shaders | 13 | Community Shaders, Cloud Shadows, Grass Collision, Hair Specular, Screen Space GI, Sky Sync, Skylighting, Subsurface Scattering, Terrain Blending, Terrain Variation, Upscaling, Vanilla Hair Flow Maps, Wetness Effects |
 | NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
 | Gameplay / Tools | 3 | Alternate Perspective, FonixData, PGPatcher |
-| **Total deployed** | **52** | (50 data + 2 root; +2 ghost plugins) |
+| **Total deployed** | **64** | (62 data + 2 root) |
 
 ## Dependency Chains (Inferred)
 
@@ -293,6 +305,26 @@ SKSE64 (30379)
     └── World Encounter Hostility Fix (91403)
 ```
 
+### Community Shaders Stack
+All CS shader add-ons require Community Shaders as their base. They are SKSE DLL plugins — no ESPs:
+
+```
+Community Shaders (86492)              ← base renderer framework — replaces ENB
+├── Cloud Shadows (139185)             ← cloud shadow projection
+├── Grass Collision (87816)            ← grass reacts to movement
+├── Grass Lighting (86502)             ← grass matches surrounding light
+├── Hair Specular (149011)             ← improved hair specular highlights
+├── Screen Space GI (130375)           ← indirect lighting / global illumination
+├── Sky Sync (153543)                  ← sky/weather shading sync
+├── Skylighting (139352)               ← ambient sky occlusion
+├── Subsurface Scattering (114114)     ← SSS for skin, foliage, wax
+├── Terrain Blending (157076)          ← smooth terrain-object blending
+├── Terrain Variation (148123)         ← breaks terrain tiling repetition
+├── Upscaling (156952)                 ← temporal upscaling (FSR/DLSS-like)
+├── Vanilla Hair Flow Maps (149011)    ← anisotropic hair flow maps
+└── Wetness Effects (112739)           ← rain/water surface wetness
+```
+
 ### Landscape / CPM Chain
 The landscape visual stack layers textures + meshes + shaders:
 
@@ -300,6 +332,8 @@ The landscape visual stack layers textures + meshes + shaders:
 Community Shaders (86492)              ← renderer that supports parallax/CM effects
 ├── Grass Lighting (86502)             ← CS grass shader plugin
 ├── Terrain Helper (143149)            ← terrain blending for CS
+├── Terrain Blending (157076)          ← CS add-on — smooth object-terrain transitions
+├── Terrain Variation (148123)         ← CS add-on — breaks terrain tiling
 └── PGPatcher (120946)                 ← patches mesh shader flags for CM/parallax
     ├── Cathedral - 3D Landscapes (80687/16.41)   ← base landscape meshes
     │   └── DrJacopo's 3D Grass Library (80687/16.53) ← 3D grass meshes
@@ -342,7 +376,7 @@ Community Shaders (86492)
 
 ## Notes
 
-- **Mantella** and **UIExtensions** are ghost entries in plugins.txt — they appear enabled but have no deployed files. Consider purging them from the load order via Vortex.
+- ~~**Mantella** and **UIExtensions** ghost entries~~ — cleaned up; no longer in plugins.txt.
 - Two USSEP versions exist in staging (4.3.4a and 4.3.6c); only 4.3.6c is deployed.
 - **Actor Limit Fix** and **Bug Fixes SSE** are staged but have 0 deployed files — Vortex may have disabled them, or they failed to deploy.
 - Both **FNIS** and **Nemesis** are installed — Nemesis supersedes FNIS for most use cases. FNIS may be a leftover.
@@ -362,7 +396,7 @@ This is the **known-good AE foundation** with:
 - Bug fixes (USSEP)
 - **Full CPM landscape overhaul** (Vanaheimr Landscapes 4K CPM → Cathedral 3D Landscapes → ERM → Better Dynamic Snow → Terrain Helper → Icy Mesh Remaster → PGPatcher)
 - **Grass/flora overhaul** (Freak's Floral Fields + Cathedral 3D Grass + DrJacopo's 3D Grass Library + Grass Lighting + Grass FPS Booster)
+- **Community Shaders v1.4.11 + full shader stack** (13 mods total) — replaced ENB; provides CM/parallax/grass rendering + SSGI, skylighting, SSS, cloud shadows, terrain blending/variation, wetness, upscaling, grass collision, hair specular/flow maps
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
 - Ultrawide display support (Complete Widescreen Fix)
-- **Community Shaders v1.4.11** (Nexus 86492) — replaced ENB; provides CM/parallax/grass shader rendering

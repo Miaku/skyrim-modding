@@ -67,7 +67,7 @@ Vortex writes JSON manifests to each game's install directory listing every depl
 | VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
 | VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 4,946 files |
 | SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
-| SE (Data) | `...\Skyrim Special Edition\Data\vortex.deployment.json` | 692 files |
+| SE (Data) | `...\\Skyrim Special Edition\\Data\\vortex.deployment.json` | 16,690 files |
 
 ### Detection Strategy (Efficiency Ranking)
 1. **Deployment manifests** (fastest, most accurate) — JSON files in game directory, lists every deployed file + source mod
@@ -145,26 +145,23 @@ Dawnguard.esm / HearthFires.esm / Dragonborn.esm
 _ResourcePack.esl
 unofficial skyrim special edition patch.esp
 SkyUI_SE.esp
-Mantella.esp
-UIExtensions.esp
 No NPC Greetings.esp
 ```
 
-### Mod Catalog (11 mods)
+### Mod Catalog (64 mods — see ae-baseline.detail.instructions.md for full list)
 
-| Mod | Nexus ID | Version | Category |
-|-----|----------|---------|----------|
-| SKSE64 | 30379 | 2.2.6 | Framework |
-| Address Library (AE) | 32444 | 11 | Framework |
-| PapyrusUtil AE SE | 13048 | 4.6 | Framework |
-| Unofficial Skyrim SE Patch | 266 | 4.3.4a | Patch |
-| SkyUI SE | 12604 | 5.2 SE | UI |
-| UIExtensions | 17561 | 1.2.0 | UI |
-| Mantella | 98631 | 0.13 | AI / NPC |
-| Mantella Expanded Piper Models | 98631 | 1 | AI / NPC |
-| FonixData (Mod Manager Install) | 40971 | 1.0 | AI / NPC |
-| No NPC Greetings | 1044 | 2.0a | NPC |
-| World Encounter Hostility Fix | 91403 | 0.4 | Bugfix |
+> The AE mod catalog has grown significantly. Refer to `ae-baseline.detail.instructions.md` for the
+> authoritative, categorized list of all 64 deployed mods (62 data + 2 root).
+
+**Key categories**:
+- Engine/Frameworks: SKSE64, Engine Fixes AIO, Address Library, po3 Tweaks, Base Object Swapper, BEES, + more
+- Stability: CrashLogger, SrtCrashFix, SMP-NPC Fix, Animation Queue Fix, Hostility Fix
+- Performance: eFPS, Grass FPS Booster, NVIDIA Reflex
+- Body/Physics: CBBE, BodySlide, RaceMenu, XPMSSE, Faster HDT-SMP, Vanilla Hair Remake SMP
+- Landscape/Flora: Cathedral 3D, Vanaheimr Landscapes CPM, Freak's Floral Fields, ERM, Better Dynamic Snow, + more
+- **Graphics (13 mods)**: Community Shaders + 12 shader add-ons (SSGI, Skylighting, SSS, Cloud Shadows, Terrain Blending, Terrain Variation, Wetness Effects, Upscaling, Grass Collision, Hair Specular, Vanilla Hair Flow Maps, Sky Sync)
+- NPC/Followers: SDA, Ashe, Faithful Faces, Fabulous Followers
+- Gameplay: Alternate Perspective, PGPatcher
 
 ## VS Code MCP Configuration
 
