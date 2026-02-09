@@ -5,8 +5,8 @@ description: "Preferred VR mod baseline snapshot — known stable configuration\
 
 # Skyrim VR — Preferred Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: full Community Shaders stack — 12 shader add-ons confirmed in VR)
-> **Status**: Known stable VR setup with Community Shaders + 12 CS shader add-ons, SMP hair physics, PGPatcher mesh patching, expanded frameworks
+> **Captured**: February 8, 2026 (updated: landscape/flora parity push — full AE visual stack now in VR)
+> **Status**: Known stable VR setup with Community Shaders + 12 CS shader add-ons, full landscape/flora overhaul (Cathedral + Vanaheimr CPM + Freak's Floral Fields), SMP hair physics, PGPatcher mesh patching
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Plugin Load Order (12 active plugins)
@@ -38,7 +38,7 @@ SkyrimVR.esm
 > **Note**: USSEP has been **removed** (v4.3.6c required CC masters not available in VR).
 > Address Library SE (32444) dead weight has been cleaned up.
 
-## Deployed Mods (59 total — 57 data + 2 root)
+## Deployed Mods (65 total — 63 data + 2 root)
 
 ### Root-Level Mods (SKSE / Engine)
 | Mod | Nexus ID | Version | Notes |
@@ -114,6 +114,16 @@ SkyrimVR.esm
 | Icy Mesh Remaster (IcyFixes) | 73381 | 3.35 | Object swapper config ESP — requires Base Object Swapper |
 | Terrain Helper | 143149 | 1.0.0 | Terrain blending helper for landscape mods (CS/ENB) |
 
+### Visuals — Landscape & Flora
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Cathedral - 3D Landscapes | 80687 | 16.41 | Landscape texture + mesh overhaul (base layer) |
+| DrJacopo's 3D Grass Library | 80687 | 16.53 | 3D grass meshes (companion to Cathedral) |
+| Vanaheimr Landscapes - AIO - CPM | 145439 | 5.5 | 4K landscape textures with Complex Parallax Material — overlays Cathedral |
+| Freak's Floral Fields | 125349 | 3.1 | Grass/flora overhaul — region-specific grass |
+| ERM - Enhanced Rocks and Mountains | 121336 | 1.1.1 | Rock and mountain texture overhaul |
+| Falskaar - Landscape Texture Fix | 139242 | 1.0 | Fixes Falskaar landscape to use correct textures |
+
 ### Mesh Patching
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
@@ -159,8 +169,8 @@ SkyrimVR.esm
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 571 files |
-| Data folder | 16,192 files |
-| **Total deployed** | **16,763 files** |
+| Data folder | 17,637 files |
+| **Total deployed** | **18,208 files** |
 
 ## Category Breakdown
 
@@ -175,12 +185,13 @@ SkyrimVR.esm
 | Animation | 2 | FNIS, Nemesis |
 | Performance | 2 | eFPS, Grass FPS Booster |
 | Visuals | 7 | SMIM, Flora Overhaul, Better Dynamic Snow, Faithful Faces, Icy Mesh Remaster (Meshes), Icy Mesh Remaster (IcyFixes), Terrain Helper |
+| Landscape & Flora | 6 | Cathedral 3D Landscapes, DrJacopo's 3D Grass, Vanaheimr Landscapes CPM, Freak's Floral Fields, ERM, Falskaar Landscape Fix |
 | Mesh Patching | 1 | PGPatcher |
 | Graphics / CS | 13 | Community Shaders, Cloud Shadows, Grass Collision, Grass Lighting, Hair Specular, Sky Sync, Skylighting, Subsurface Scattering, Terrain Blending, Terrain Variation, Upscaling, Vanilla Hair Flow Maps, Wetness Effects |
 | NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
 | Gameplay | 1 | Alternate Perspective |
 | Equipment | 1 | Bandolier |
-| **Total** | **59** | (57 data + 2 root) |
+| **Total** | **65** | (63 data + 2 root) |
 
 ## VR-Specific Version Requirements (Tribal Knowledge)
 
@@ -213,6 +224,7 @@ This is the **known-good VR foundation** with:
 - **Expanded framework layer** (JContainers VR, PapyrusUtil VR, po3 Tweaks, ConsoleUtilSSE NG, Base Object Swapper, Animation Queue Fix, Fuz Ro D'oh)
 - **Community Shaders** (v1.4.11 — same AE DLL confirmed working in VR with updated Address Library)
 - **12 CS shader add-ons confirmed** (Cloud Shadows, Grass Collision, Grass Lighting, Hair Specular, Sky Sync, Skylighting, SSS, Terrain Blending, Terrain Variation, Upscaling, Vanilla Hair Flow Maps, Wetness Effects)
+- **Full landscape/flora overhaul** (Cathedral 3D Landscapes + DrJacopo's 3D Grass + Vanaheimr CPM 4K + Freak's Floral Fields + ERM rocks/mountains + Falskaar fix)
 - **PGPatcher** (v0.9.9 — offline mesh patching for parallax/CM/PBR)
 - **Character creation** (RaceMenu VR 0.4.14 dual-file install + XPMSSE skeleton)
 - **SMP hair physics** (Faster HDT-SMP + Vanilla hair remake SMP + NPC patches — full chain working)
@@ -223,6 +235,7 @@ This is the **known-good VR foundation** with:
 - NPC companions (Serana enhanced, Ashe follower — both updated to latest)
 - Alternate start (Alternate Perspective)
 - **USSEP removed** (v4.3.6c incompatible; no 4.2.5b installed yet)
+- **~91% parity with AE baseline** — essentially feature-complete for VR
 
 ## AE Parity Gap Analysis
 
@@ -231,11 +244,11 @@ This is the **known-good VR foundation** with:
 
 ### Current Parity Score
 
-- **52 of 64** AE mods are now matched in VR (**81%**, up from 67%)
+- **58 of 64** AE mods are now matched in VR (**~91%**, up from 81%)
 - AE baseline has 64 mods with 12 CS shader add-ons
-- Community Shaders confirmed working in VR (same AE DLL, needs VR Address Library 0.199.0+)
-- **12 of 12** CS shader add-ons confirmed working in VR (full parity with AE CS stack, minus Screen Space GI which was removed from both)
-- **~6** additional AE mods are directly portable (ESP/mesh/texture only)
+- **12 of 12** CS shader add-ons confirmed working in VR (full CS parity)
+- **Full landscape/flora stack** now matches AE (Cathedral + Vanaheimr CPM + Freak's Floral Fields + ERM + Falskaar fix)
+- **6 remaining gaps**: USSEP (CC dep issue), No NPC Greetings (minor QoL), SMP-NPC Crash Fix (optional), World Encounter Hostility Fix, FSMPM MCM, FonixData lip-sync
 - **3** are not applicable to VR (widescreen fix, NVIDIA Reflex, SrtCrashFix AE)
 
 ### Resolved Since Last Snapshot
@@ -272,11 +285,17 @@ This is the **known-good VR foundation** with:
 | ~~Screen Space GI installed~~ | **Removed** — dropped from the shader stack |
 | ~~PGPatcher not installed~~ | **Installed**: v0.9.9 — offline mesh patcher |
 | ~~Terrain Helper not installed~~ | **Installed**: v1.0.0 |
+| ~~Cathedral 3D Landscapes not installed~~ | **Installed**: v16.41 — base landscape layer |
+| ~~DrJacopo's 3D Grass not installed~~ | **Installed**: v16.53 — companion to Cathedral |
+| ~~Vanaheimr Landscapes CPM not installed~~ | **Installed**: v5.5 — 4K CPM textures over Cathedral |
+| ~~Freak's Floral Fields not installed~~ | **Installed**: v3.1 — region grass/flora |
+| ~~ERM not installed~~ | **Installed**: v1.1.1 — rock/mountain textures |
+| ~~Falskaar Landscape Fix not installed~~ | **Installed**: v1.0 |
 ### Known Issues in Current VR Baseline
 
 1. **No USSEP** — removed, but no replacement (4.2.5b) installed yet. Bug fixes are absent.
 2. **SMP-NPC Crash Fix (91616) not deployed** — SMP hair physics are working without it currently. Monitor for NPC SMP-related crashes; re-add if instability appears.
-3. **Skyrim Flora Overhaul** may conflict with Cathedral 3D Landscapes if the latter is added later — plan to disable SFO when moving to the Cathedral landscape stack.
+3. **Skyrim Flora Overhaul + Cathedral coexistence** — SFO and Cathedral 3D Landscapes are both deployed. SFO handles flora/trees; Cathedral handles terrain meshes/textures. Monitor for any grass or groundcover conflicts.
 4. **Screen Space GI removed** — dropped from the shader stack (was v4.0.1). If indirect lighting is missed, can try re-adding.
 5. **Upscaling in VR** — v1.1.2 stable so far, but monitor for potential conflicts with SteamVR/OpenComposite reprojection.
 
@@ -289,13 +308,9 @@ ESP/texture/mesh only — install directly into VR:
 |-----|----------|--------|-------|
 | USSEP 4.2.5b | 266 | Bug fixes | Last version without CC deps — find in old files |
 | No NPC Greetings | 1044 | QoL | ESP only |
-| Cathedral 3D Landscapes | 80687 | Landscape | Base mesh/texture layer (replace SFO's landscape role) |
-| DrJacopo's 3D Grass | 80687 | Grass | Companion to Cathedral |
-| Vanaheimr Landscapes CPM | 145439 | Landscape 4K | CPM landscape textures (CS now working) |
-| Freak's Floral Fields | 125349 | Grass/flora | Region grass (CS grass shader now working) |
-| ERM | 121336 | Rock textures | Direct install |
-| PGPatcher | 120946 | Mesh patching | Offline tool — run after texture mods |
 | FonixData | 40971 | Lip-sync | Lip-sync data files |
+
+> **Note**: Cathedral 3D Landscapes, DrJacopo's 3D Grass, Vanaheimr Landscapes CPM, Freak's Floral Fields, ERM, Falskaar Landscape Fix, PGPatcher, and Terrain Helper have all been installed and moved out of Tier 1.
 
 #### Tier 2 — Known VR Builds
 | Mod | Nexus ID | Impact | Notes |
@@ -332,8 +347,8 @@ All 12 CS shader add-ons are now confirmed working in VR. No remaining untested 
 
 | Scenario | Parity with AE | Mods |
 |----------|---------------|------|
-| **Current VR baseline** | **~81%** | 59 mods |
-| + Tier 1 (landscape/flora/fixes) | ~92% | ~65 mods |
+| **Current VR baseline** | **~91%** | 65 mods |
+| + Tier 1 (USSEP 4.2.5b, No NPC Greetings, FonixData) | ~95% | ~68 mods |
 
 ### VR SMP Hair Physics Chain (Confirmed Working)
 
@@ -353,24 +368,25 @@ SKSEVR (30457)                                   ✅
 
 ### Target State (After Remaining Tiers)
 
-With Tier 1 installed (landscape/flora overhaul), VR would reach:
-- **~92% parity** with AE baseline (up from 81%)
-- **~65 mods** total
-- Full CPM landscape overhaul (Vanaheimr + Cathedral 3D + PGPatcher + CS)
-- Full grass/flora overhaul (Freak's Floral Fields — Grass Lighting already installed)
-- SMP hair physics already working ✅
-- Community Shaders already working ✅
+With remaining Tier 1 items installed (USSEP 4.2.5b, No NPC Greetings, FonixData), VR would reach:
+- **~95% parity** with AE baseline (up from 91%)
+- **~68 mods** total
+- Full CPM landscape overhaul ✅ (Vanaheimr + Cathedral 3D + PGPatcher + CS)
+- Full grass/flora overhaul ✅ (Freak's Floral Fields + Grass Lighting)
+- SMP hair physics ✅
+- Community Shaders ✅
 - **All 12 CS shader add-ons confirmed** ✅
-- PGPatcher mesh patching already working ✅
+- PGPatcher mesh patching ✅
+- Remaining ~5% gap is intentional (CC content, AE-specific DLLs, optional stability mods)
 
 ## Restoration Instructions
 
 If the setup needs to be restored to this baseline:
 1. Disable all mods in Vortex for Skyrim VR profile
-2. Re-enable only the 59 mods listed above (57 data + 2 root)
+2. Re-enable only the 65 mods listed above (63 data + 2 root)
 3. Verify load order matches the 12-plugin list above
 4. Ensure VR Address Library is **0.199.0+** (required for Community Shaders)
-5. Deploy via Vortex and verify file counts: root=571, data=16,192, total=16,763
+5. Deploy via Vortex and verify file counts: root=571, data=17,637, total=18,208
 
 ## Cross-References
 
