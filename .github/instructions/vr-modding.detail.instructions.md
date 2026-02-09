@@ -118,3 +118,10 @@ fDirectMovementMaxMovementSpeedThreshold=0.25
 | Menus not visible | UI mod not VR-aware | Use VR-specific UI mods (SkyUI VR) |
 | Low FPS | Double-render overhead | Follow performance optimization section |
 | Hands clip through objects | Missing HIGGS or collision patch | Install HIGGS + collision mods |
+
+## Cross-References
+
+- **AE↔VR mod mapping**: `mod-dependencies.detail.instructions.md` → "AE ↔ VR Cross-Compatibility Mapping"
+- **VR baseline + parity gap**: `vr-baseline.detail.instructions.md` → "AE Parity Gap Analysis"
+- **AE baseline snapshot**: `ae-baseline.detail.instructions.md`
+- **Local system paths**: `local-system.detail.instructions.md`

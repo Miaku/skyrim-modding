@@ -67,8 +67,10 @@ description: "Expanded reference for topic\nKeywords: keyword1, keyword2, keywor
 
 ### Detail Files
 - `brain-meta.detail.instructions.md` — This file (brain maintenance)
+- `ae-baseline.detail.instructions.md` — AE baseline snapshot (Feb 2026)
 - `vr-modding.detail.instructions.md` — VR-specific modding guide
-- `vr-baseline.detail.instructions.md` — VR preferred baseline snapshot (Feb 2026)
+- `vr-baseline.detail.instructions.md` — VR preferred baseline snapshot + AE parity gap analysis (Feb 2026)
+- `mod-dependencies.detail.instructions.md` — Mod deps, edition variants, **AE↔VR cross-compatibility mapping**
 - `nexus-mods.detail.instructions.md` — Nexus Mods navigation, ad avoidance, automation
 - `skse-development.detail.instructions.md` — SKSE C++ plugin development
 - `papyrus.detail.instructions.md` — Papyrus scripting patterns
