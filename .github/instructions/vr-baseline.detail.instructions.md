@@ -112,8 +112,9 @@ This is the **known-good VR foundation** with:
 - **14 additional** are directly portable (ESP/mesh/texture only)
 - **3 more** have known VR builds available
 - **7** need VR build verification on Nexus
-- **7** cannot be ported (Community Shaders ecosystem + AE-specific DLLs)
+- **3** cannot be ported (CS-exclusive: CM/CPM, grass shaders, PBR)
 - **3** are not applicable to VR
+- **With ENB VR**: 3 additional mods become functional (PGPatcher parallax, Terrain Helper, partial Vanaheimr), recovering **~10% additional parity**
 
 ### Known Issues in Current VR Baseline
 
@@ -160,19 +161,38 @@ These mods are ESP/texture/mesh only and can be installed directly into VR:
 
 ### Permanent AE/VR Divergence
 
-These AE features **cannot** be replicated in VR and represent accepted divergence:
+These AE features **cannot** be replicated in VR even with ENB VR installed:
 
 | AE Feature | Why | VR Alternative |
 |-----------|-----|----------------|
-| Community Shaders (CPM, parallax, grass shaders) | No VR SKSE port; complex rendering hooks | ENB VR (partial, but VR perf cost) or accept vanilla rendering |
-| Freak's Floral Fields | Hard requires CS grass shader | Keep Skyrim Flora Overhaul (current VR grass) |
-| Vanaheimr CPM effects | CPM depth/parallax needs CS | Install textures for flat color upgrade, accept no depth effects |
-| PGPatcher mesh patching | CS-dependent shader flag patching | Skip — VR meshes use vanilla flags |
-| Grass Lighting + Terrain Helper | CS sub-plugins | Skip — VR grass/terrain uses vanilla lighting |
+| Complex Material / CPM rendering (`_m.dds`) | CS-exclusive shader format; ENB doesn't speak it | Accept flat textures — Vanaheimr still provides color/normal upgrade, just no metallic/roughness depth |
+| CS Grass Shader (Freak's Floral Fields) | CS-exclusive rendering plugin | Keep Skyrim Flora Overhaul (current VR grass) |
+| PBR rendering | CS-exclusive shader pipeline | No alternative — affects future PBR texture mods |
+| Grass Lighting plugin | CS sub-plugin | ENB AO provides partial indirect lighting (not grass-specific) |
 | NVIDIA Reflex | AE-specific DLL | Not applicable to VR render pipeline |
 | Creation Club content (74 plugins) | VR has no CC support | Skip — do NOT copy from AE install |
 
-### SMP Physics Chain (VR Version)
+### Features Recoverable With ENB VR
+
+Installing ENB VR (from `enbdev.com/download_mod_tesskyrimvr.htm`) enables:
+
+| Feature | Impact | Notes |
+|---------|--------|-------|
+| Post-processing (AO, DOF, bloom, color) | **Major visual upgrade** | Use lightweight VR preset; disable DOF (VR sickness) |
+| Parallax rendering (`_p.dds`) | **Surface depth on landscapes/rocks** | Enable `FixParallaxBugs=true` in `enblocal.ini` |
+| PGPatcher parallax patching | **Enables parallax for all texture mods** | Run PGPatcher offline, copy output to VR Data folder |
+| Terrain Helper blending | **Better terrain transitions** | ENB uses terrain blending data from Terrain Helper |
+| Vanaheimr parallax textures | **Landscape depth** | Parallax works; CM effects remain flat |
+
+**ENB VR Performance Warning**: VR double-renders both eyes — expect 15-25% GPU overhead. Target 90 FPS. Prefer lightweight presets (Pi-CHO, Cabbage-style). Disable depth of field, reduce AO quality first if below target.
+
+### Target State Comparison
+
+| Scenario | Parity with AE | Mods |
+|----------|---------------|------|
+| Current VR baseline | ~35% | 24 mods |
+| + Tier 1 & 2 additions (no ENB) | ~68% | ~38 mods |
+| + Tier 1 & 2 + ENB VR + PGPatcher | **~78%** | ~40 mods (ENB + PGPatcher + Terrain Helper) |
 
 The VR equivalent of the AE SMP hair physics chain:
 

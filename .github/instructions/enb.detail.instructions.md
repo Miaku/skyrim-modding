@@ -168,6 +168,24 @@ that configures the shaders for a specific look.
 - Disable or reduce depth of field (causes discomfort in VR)
 - Ambient occlusion is the biggest VR performance hit
 
+### VR Parity Recovery via ENB
+
+ENB VR is the **only way to recover** several AE landscape features blocked by the lack of Community Shaders in VR:
+
+| Recovered Feature | ENB Setting | Impact |
+|-------------------|-------------|--------|
+| Parallax rendering | `FixParallaxBugs=true` | Landscape/rock depth from `_p.dds` textures |
+| PGPatcher parallax output | N/A (mesh flags) | PGPatcher-patched NIFs render parallax under ENB |
+| Terrain Helper blending | ENB terrain fixes | Better biome transitions |
+| Post-processing stack | Preset-dependent | AO, bloom, color, weather-based effects |
+
+**Still NOT recovered** (CS-exclusive, no ENB equivalent):
+- Complex Material / CPM (`_m.dds`) — metallic, roughness, subsurface
+- CS Grass Shader — blocks Freak's Floral Fields
+- PBR rendering pipeline
+
+See `mod-dependencies.detail.instructions.md` → "ENB VR Parity Recovery" for the full mapping.
+
 ## ENB Helper SE
 
 Many multi-weather presets require **ENB Helper** to detect the current weather and swap shader
