@@ -65,7 +65,7 @@ Vortex writes JSON manifests to each game's install directory listing every depl
 | Game | Manifest Path | File Count |
 |------|--------------|------------|
 | VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
-| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 16,052 files |
+| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 16,192 files |
 | SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
 | SE (Data) | `...\\Skyrim Special Edition\\Data\\vortex.deployment.json` | 16,690 files |
 
@@ -106,10 +106,10 @@ higgs_vr.esp
 FabulousFollowersAIO.esp
 ```
 
-### Mod Catalog (50 mods — see vr-baseline.detail.instructions.md for full list)
+### Mod Catalog (59 mods — see vr-baseline.detail.instructions.md for full list)
 
 > The VR mod catalog has grown significantly. Refer to `vr-baseline.detail.instructions.md` for the
-> authoritative, categorized list of all 50 deployed mods (48 data + 2 root).
+> authoritative, categorized list of all 59 deployed mods (57 data + 2 root).
 
 **Key categories**:
 - Engine/Root: SKSEVR, VR ESL Support
@@ -119,12 +119,13 @@ FabulousFollowersAIO.esp
 - Physics/SMP: Faster HDT-SMP, XML VR, Vanilla hair remake SMP + NPCs
 - Animation: FNIS, Nemesis
 - Performance: eFPS, Grass FPS Booster
-- Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow, Faithful Faces, Icy Mesh Remaster
-- Graphics/CS (6): Community Shaders 1.4.11, Screen Space GI, Grass Lighting, Grass Collision, Subsurface Scattering, Wetness Effects
+- Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow, Faithful Faces, Icy Mesh Remaster, Terrain Helper
+- Mesh Patching: PGPatcher 0.9.9
+- Graphics/CS (13): Community Shaders 1.4.11 + 12 shader add-ons (Cloud Shadows, Grass Collision, Grass Lighting, Hair Specular, Sky Sync, Skylighting, SSS, Terrain Blending, Terrain Variation, Upscaling, Vanilla Hair Flow Maps, Wetness Effects)
 - NPC/Followers: SDA, Ashe 1.3.3, Fabulous Followers
 - Gameplay: Alternate Perspective, Bandolier
 
-**Added since previous snapshot**: Community Shaders (86492), VR Address Library upgraded to 0.199.0, Base Object Swapper, Animation Queue Fix, Faithful Faces, Icy Mesh Remaster, Grass Lighting, Grass Collision, Subsurface Scattering, Wetness Effects, XML VR
+**Added since previous snapshot**: Cloud Shadows, Hair Specular, Sky Sync, Skylighting, Terrain Blending, Terrain Variation, Upscaling, Vanilla Hair Flow Maps, Terrain Helper, PGPatcher. Screen Space GI removed.
 
 ## Installed Mods — Skyrim SE (AE)
 
