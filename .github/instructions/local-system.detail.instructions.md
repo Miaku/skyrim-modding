@@ -65,7 +65,7 @@ Vortex writes JSON manifests to each game's install directory listing every depl
 | Game | Manifest Path | File Count |
 |------|--------------|------------|
 | VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
-| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 15,523 files |
+| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 16,052 files |
 | SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
 | SE (Data) | `...\\Skyrim Special Edition\\Data\\vortex.deployment.json` | 16,690 files |
 
@@ -106,25 +106,25 @@ higgs_vr.esp
 FabulousFollowersAIO.esp
 ```
 
-### Mod Catalog (39 mods — see vr-baseline.detail.instructions.md for full list)
+### Mod Catalog (50 mods — see vr-baseline.detail.instructions.md for full list)
 
 > The VR mod catalog has grown significantly. Refer to `vr-baseline.detail.instructions.md` for the
-> authoritative, categorized list of all 39 deployed mods (37 data + 2 root).
+> authoritative, categorized list of all 50 deployed mods (48 data + 2 root).
 
 **Key categories**:
 - Engine/Root: SKSEVR, VR ESL Support
-- Frameworks (10): VR Address Library, VRTools, Engine Fixes VR, CrashLogger + PDB, ConsoleUtilSSE NG, JContainers VR 4.2.11, PapyrusUtil VR 3.6b, po3 Tweaks, Fuz Ro D'oh 1.7
+- Frameworks (12): VR Address Library 0.199.0, VRTools, Engine Fixes VR, CrashLogger + PDB, ConsoleUtilSSE NG, Base Object Swapper, Animation Queue Fix, JContainers VR 4.2.11, PapyrusUtil VR 3.6b, po3 Tweaks, Fuz Ro D'oh 1.7
 - VR Core: VRIK, HIGGS, PLANCK
 - Body/Character: CBBE, BodySlide, RaceMenu VR 0.4.14, XPMSSE
-- Physics/SMP: Faster HDT-SMP, Vanilla hair remake SMP, Vanilla hair remake SMP - NPCs
+- Physics/SMP: Faster HDT-SMP, XML VR, Vanilla hair remake SMP + NPCs
 - Animation: FNIS, Nemesis
 - Performance: eFPS, Grass FPS Booster
-- Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow
-- Graphics: Screen Space GI (first CS shader add-on in VR)
+- Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow, Faithful Faces, Icy Mesh Remaster
+- Graphics/CS (6): Community Shaders 1.4.11, Screen Space GI, Grass Lighting, Grass Collision, Subsurface Scattering, Wetness Effects
 - NPC/Followers: SDA, Ashe 1.3.3, Fabulous Followers
 - Gameplay: Alternate Perspective, Bandolier
 
-**Added since previous snapshot**: ConsoleUtilSSE NG (76649), Faster HDT-SMP (57339), Vanilla hair remake SMP (63979) + NPCs — SMP hair physics now working
+**Added since previous snapshot**: Community Shaders (86492), VR Address Library upgraded to 0.199.0, Base Object Swapper, Animation Queue Fix, Faithful Faces, Icy Mesh Remaster, Grass Lighting, Grass Collision, Subsurface Scattering, Wetness Effects, XML VR
 
 ## Installed Mods — Skyrim SE (AE)
 

@@ -162,7 +162,7 @@ Some utility libraries have completely separate VR builds with different version
 | SSE Engine Fixes | Separate VR build | Use Engine Fixes VR (62089) |
 | powerofthree's Tweaks | Separate VR DLL in optional files | Install main + VR optional DLL — **confirmed working** |
 | Scrambled Bugs | SE/AE only, no VR port | No workaround — skip for VR |
-| Base Object Swapper | Needs VR-compiled DLL | Check if VR build exists |
+| Base Object Swapper | ~~Needs VR-compiled DLL~~ | **Confirmed working in VR** — same build (v3.4.1) |
 | Keyword Item Distributor | Needs VR-compiled DLL | Check if VR build exists |
 
 ## Complex Dependency Chains
@@ -289,9 +289,9 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Address Library v11 | 32444 | VR Address Library 0.195.0 | 58101 | **MATCHED** | Mutually exclusive by edition; VR version is alpha with ~3,884 mappings |
-| Base Object Swapper 3.4.1 | 60805 | Base Object Swapper VR | 60805 | **VR BUILD UNKNOWN** | Check optional files for VR DLL; needed by Icy Mesh Remaster |
-| ConsoleUtilSSE NG 1.5.1 | 76649 | ConsoleUtilSSE VR | 76649 | **VR BUILD UNKNOWN** | Check optional files; many mods soft-depend on this |
+| Address Library v11 | 32444 | VR Address Library 0.199.0 | 58101 | **MATCHED** | Mutually exclusive by edition; VR version is alpha. **Must be 0.199.0+** for Community Shaders (address 12785 missing in older versions). |
+| Base Object Swapper 3.4.1 | 60805 | Base Object Swapper 3.4.1 | 60805 | **MATCHED** | Same build works in VR — confirmed Feb 2026. Required by Icy Mesh Remaster IcyFixes.esp. |
+| ConsoleUtilSSE NG 1.5.1 | 76649 | ConsoleUtilSSE NG 1.5.1 | 76649 | **MATCHED** | Same build works in VR — confirmed Feb 2026 |
 | JContainers SE 4.2.9 | 16495 | JContainers VR **4.2.11** | 16495 | **MATCHED** | VR build confirmed — v4.2.11 from VR files section. Independently maintained, slightly newer than SE build. |
 | PapyrusUtil AE 4.6 | 13048 | PapyrusUtil VR **3.6b** | 13048 | **MATCHED** | VR build confirmed — **must use v3.6b** (VR files section). v4.x is AE-only. |
 | powerofthree's Tweaks 1.1.5.1 | 51073 | po3 Tweaks VR | 51073 | **MATCHED** | VR DLL in optional files — confirmed working |
@@ -305,7 +305,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | CrashLogger 1.19.1 | 59818 | CrashLogger VR | 59818 | **MATCHED** | Same Nexus page, VR build exists |
 | SMP-NPC Crash Fix 1 | 91616 | SMP-NPC Crash Fix 1 | 91616 | **MATCHED** | ESP-only, works across editions |
 | SrtCrashFix AE 0.4.1 | 31146 | — | — | **NO VR PORT** | AE-specific stack trace fix; VR has different crash patterns |
-| Animation Queue Fix 1.0.1 | 82395 | Animation Queue Fix VR | 82395 | **VR BUILD UNKNOWN** | Check optional files; SKSE DLL needed |
+| Animation Queue Fix 1.0.1 | 82395 | Animation Queue Fix 1.0.1 | 82395 | **MATCHED** | Same build works in VR — confirmed Feb 2026 |
 | World Encounter Hostility Fix 0.4 | 91403 | World Encounter Hostility Fix | 91403 | **VR BUILD UNKNOWN** | Performance version; check if DLL or ESP-only |
 
 ### Performance
@@ -358,15 +358,15 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
 | SMIM SE 2.08 | 659 | SMIM SE 2.08 | 659 | **MATCHED** | Meshes/textures, cross-edition |
-| Faithful Faces 1.3.5 | 114342 | Faithful Faces | 114342 | **PORTABLE** | ESP + NPC face textures; no DLL |
+| Faithful Faces 1.3.5 | 114342 | Faithful Faces 1.3.5 | 114342 | **MATCHED** | Installed in VR — ESP + NPC face textures; no DLL |
 | Cathedral 3D Landscapes 16.41 | 80687 | Cathedral 3D Landscapes | 80687 | **PORTABLE** | Meshes + textures; base landscape layer works without CS |
 | DrJacopo's 3D Grass Library 16.53 | 80687 | DrJacopo's 3D Grass Library | 80687 | **PORTABLE** | 3D grass mesh library; companion to Cathedral |
 | Vanaheimr Landscapes CPM 5.5 | 145439 | Vanaheimr Landscapes CPM | 145439 | **PORTABLE** | Textures + ESP, no DLL. **With Community Shaders in VR**: full CPM/parallax effects render correctly — same as AE. Run PGPatcher to set shader flags on meshes. Requires CS + Terrain Helper. |
 | Freak's Floral Fields 3.1 | 125349 | Freak's Floral Fields | 125349 | **PORTABLE** | Requires Community Shaders grass shader — **which now works in VR**. Install directly; same region ESPs as AE. Requires Cathedral 3D Landscapes + DrJacopo's 3D Grass Library. |
 | ERM 1.1.1 | 121336 | ERM | 121336 | **PORTABLE** | Rock/mountain textures; no DLL, no CS dependency. If ERM ships `_p.dds` parallax textures, CS + PGPatcher enables parallax rendering in VR. |
 | Better Dynamic Snow SE 3.6.0 | 9121 | Better Dynamic Snow SE 3.6.0 | 9121 | **MATCHED** | ESP + snow meshes; installed in VR |
-| Grass Lighting 2.0.0 | 86502 | Grass Lighting | 86502 | **PORTABLE** | Community Shaders plugin — **works in VR with CS**. Install directly via mod manager. |
-| Icy Mesh Remaster 3.35 | 73381 | Icy Mesh Remaster | 73381 | **PORTABLE** (partial) | Mesh fixes work directly; `IcyFixes.esp` (Base Object Swapper config) needs BOS VR DLL. Install meshes only if BOS unavailable. |
+| Grass Lighting 2.0.0 | 86502 | Grass Lighting 2.0.0 | 86502 | **MATCHED** | CS shader add-on — **confirmed working in VR** with CS 1.4.11. |
+| Icy Mesh Remaster 3.35 | 73381 | Icy Mesh Remaster 3.35 | 73381 | **MATCHED** | Full install in VR: meshes + IcyFixes.esp (with BOS now confirmed working). |
 | Terrain Helper 1.0.0 | 143149 | Terrain Helper | 143149 | **PORTABLE** | Terrain blending helper for CS. **Works in VR with Community Shaders**. Install directly. |
 | Falskaar Landscape Fix 1.0 | 139242 | Falskaar Landscape Fix | 139242 | **PORTABLE** | ESL plugin; cross-edition (only relevant if Falskaar is installed) |
 
@@ -374,7 +374,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Community Shaders 1.4.11 | 86492 | Community Shaders (VR build) | 86492 | **VR BUILD EXISTS** | Same Nexus page — VR build available in files tab. **Screen Space GI (130375) confirmed working in VR as CS add-on.** Not yet installed as base framework in VR — SSGI may bundle a VR CS build, or work standalone. Needs further verification. |
+| Community Shaders 1.4.11 | 86492 | Community Shaders 1.4.11 | 86492 | **MATCHED** | **Same AE DLL works in VR** — not a separate VR build. Requires VR Address Library **0.199.0+** (address 12785). CS + 5 shader add-ons (SSGI, Grass Lighting, Grass Collision, SSS, Wetness) all confirmed working in VR. |
 
 ### NPC / Followers / Dialogue
 
@@ -408,28 +408,27 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| **MATCHED** | 32 | 50% |
-| **PORTABLE** (install directly) | 12 | 19% |
-| **VR BUILD EXISTS** (known) | 2 | 3% |
-| **VR BUILD UNKNOWN** (needs check) | 2 | 3% |
+| **MATCHED** | 43 | 67% |
+| **PORTABLE** (install directly) | 6 | 9% |
+| **VR BUILD UNKNOWN** (needs check) | 1 | 2% |
 | **REMOVED** (needs replacement) | 1 | 2% |
 | **N/A IN VR** | 3 | 5% |
-| **NO VR PORT** | 0 | 0% |
-| **CS shader add-ons** (untested in VR) | 11 | 17% |
-| **Total AE mods** | **64** | 100% (rounding) |
+| **NO VR PORT** | 2 | 3% |
+| **CS shader add-ons** (untested in VR) | 8 | 12% |
+| **Total AE mods** | **64** | 100% |
 
-> **Key insight**: With SMP hair physics working, 32 of 64 AE mods are now confirmed in VR (50%, up from 28/64).
-> Faster HDT-SMP, Vanilla Hair Remake SMP (+ NPCs), and ConsoleUtilSSE NG are all confirmed working.
-> Screen Space GI remains the only CS shader add-on confirmed in VR.
-> 11 CS shader add-ons remain untested.
+> **Key insight**: Community Shaders confirmed working in VR (same AE DLL, needs VR Address Library 0.199.0+).
+> 43 of 64 AE mods now confirmed in VR (67%, up from 50%). 5 of 12 CS shader add-ons confirmed.
+> Base Object Swapper, Animation Queue Fix, ConsoleUtilSSE NG all confirmed working.
+> 8 CS shader add-ons remain untested.
 
 ### Critical Parity Blockers (Remaining)
 
 1. **No USSEP in VR** — v4.3.6c was removed (CC deps). Need to find and install **4.2.5b** from old files.
-2. ~~**SMP physics engine**~~ — **RESOLVED**: Faster HDT-SMP (57339) works directly in VR. HDT-SMP VR (30872) is no longer needed.
-3. **Community Shaders base** — Screen Space GI is working, but CS itself may not be explicitly installed. Need to verify.
-4. **11 CS shader add-ons** — Need VR build testing (Skylighting, SSS, Wetness, Cloud Shadows, Terrain Blending/Variation, Grass Collision, Hair Specular, Hair Flow Maps, Sky Sync, Upscaling).
-5. **2 mods need VR build verification** — Base Object Swapper, Animation Queue Fix.
+2. ~~**SMP physics engine**~~ — **RESOLVED**: Faster HDT-SMP (57339) works directly in VR.
+3. ~~**Community Shaders**~~ — **RESOLVED**: Same AE DLL (v1.4.11) works in VR with VR Address Library 0.199.0+.
+4. **8 CS shader add-ons** — Need VR testing (Skylighting, Cloud Shadows, Terrain Blending/Variation, Hair Specular, Hair Flow Maps, Sky Sync, Upscaling).
+5. **1 mod needs VR build verification** — World Encounter Hostility Fix.
 
 ### Recommended VR Additions (Priority Order)
 
@@ -439,26 +438,26 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
 | USSEP 4.2.5b | 266 | **Replace** current 4.3.6c with 4.2.5b (or remove entirely) |
-| XPMSSE | 1988 | Install directly — skeleton meshes, no DLL |
+| ~~XPMSSE~~ | ~~1988~~ | **INSTALLED** |
 | No NPC Greetings | 1044 | Install directly — ESP only |
-| Faithful Faces | 114342 | Install directly — ESP + textures |
+| ~~Faithful Faces~~ | ~~114342~~ | **INSTALLED** — v1.3.5 |
 | Cathedral 3D Landscapes | 80687 | Install directly — meshes + textures |
 | DrJacopo's 3D Grass Library | 80687 | Install directly — companion to Cathedral |
-| Vanaheimr Landscapes CPM | 145439 | Install directly — 4K CPM landscape textures (requires CS) |
-| Freak's Floral Fields | 125349 | Install directly — region grass ESPs (requires CS grass shader) |
+| Vanaheimr Landscapes CPM | 145439 | Install directly — 4K CPM landscape textures (CS now working) |
+| Freak's Floral Fields | 125349 | Install directly — region grass ESPs (CS grass shader now working) |
 | ERM | 121336 | Install directly — rock/mountain textures |
-| Better Dynamic Snow SE | 9121 | Install directly — ESP + meshes |
-| Grass Lighting | 86502 | Install directly — CS grass shader plugin |
+| ~~Better Dynamic Snow SE~~ | ~~9121~~ | **INSTALLED** |
+| ~~Grass Lighting~~ | ~~86502~~ | **INSTALLED** — v2.0.0 confirmed in VR |
 | Terrain Helper | 143149 | Install directly — CS terrain blending |
-| eFPS | 54907 | Install directly — occlusion ESP + meshes |
-| Grass FPS Booster | 20082 | Install directly — ESP + grass config |
+| ~~eFPS~~ | ~~54907~~ | **INSTALLED** |
+| ~~Grass FPS Booster~~ | ~~20082~~ | **INSTALLED** |
 | PGPatcher | 120946 | Run offline — patch mesh shader flags for CS |
 | FonixData | 40971 | Install directly — lip-sync data |
 
 #### Tier 2 — Known VR Builds, Moderate Complexity
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
-| Community Shaders (VR) | 86492 | Install VR build from Nexus files tab — **high priority**, enables Tier 1 landscape/grass mods |
+| ~~Community Shaders (VR)~~ | ~~86492~~ | **INSTALLED** — same AE DLL works in VR with VR Address Library 0.199.0+ |
 | ~~RaceMenu (VR)~~ | ~~19080~~ | **INSTALLED** — dual-file install complete |
 | ~~po3 Tweaks (VR)~~ | ~~51073~~ | **INSTALLED** |
 | ~~Faster HDT-SMP~~ | ~~57339~~ | **INSTALLED** — works in VR directly (no need for HDT-SMP VR 30872) |
@@ -467,12 +466,12 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 #### Tier 3 — Needs VR Build Verification
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
-| Base Object Swapper | 60805 | Check Nexus optional files for VR DLL |
+| ~~Base Object Swapper~~ | ~~60805~~ | **INSTALLED** — v3.4.1 confirmed working in VR |
 | ~~ConsoleUtilSSE NG~~ | ~~76649~~ | **INSTALLED** — v1.5.1 confirmed working in VR |
 | JContainers SE | 16495 | Check Nexus optional files for VR DLL |
 | PapyrusUtil | 13048 | Check Nexus optional files for VR DLL |
 | Fuz Ro D'oh | 15109 | Check Nexus optional files for VR DLL |
-| Animation Queue Fix | 82395 | Check Nexus optional files for VR DLL |
+| ~~Animation Queue Fix~~ | ~~82395~~ | **INSTALLED** — v1.0.1 confirmed working in VR |
 | Alternate Perspective | 50307 | Check Nexus optional files for VR DLL |
 
 #### Tier 4 — Cannot Port (Accept Divergence)
