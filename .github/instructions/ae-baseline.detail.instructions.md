@@ -5,8 +5,8 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 
 # Skyrim AE — Baseline Snapshot
 
-> **Captured**: February 8, 2026 (updated: Cathedral + grass libraries session)
-> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders + landscape overhaul
+> **Captured**: February 8, 2026 (updated: Vanaheimr Landscapes + Freak's Floral Fields session)
+> **Status**: Known stable, working AE setup with SMP hair physics + Community Shaders + CPM landscape overhaul + grass flora
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
 ## Runtime & Install
@@ -23,7 +23,7 @@ description: "Skyrim AE mod baseline snapshot — known stable configuration\nKe
 | Staging Path | `%APPDATA%\Vortex\skyrimse\mods\` |
 | Graphics | Community Shaders v1.4.11 (Nexus 86492) — ENB removed |
 
-## Plugin Load Order (85 active plugins)
+## Plugin Load Order (85 in loadorder.txt + deployed ESPs)
 
 ```
 # Base game masters
@@ -34,83 +34,10 @@ HearthFires.esm
 Dragonborn.esm
 
 # Creation Club content (74 plugins — all AE bundled)
-ccasvsse001-almsivi.esm
-ccbgssse001-fish.esm
-ccbgssse002-exoticarrows.esl
-ccbgssse003-zombies.esl
-ccbgssse004-ruinsedge.esl
-ccbgssse005-goldbrand.esl
-ccbgssse006-stendarshammer.esl
-ccbgssse007-chrysamere.esl
-ccbgssse010-petdwarvenarmoredmudcrab.esl
-ccbgssse011-hrsarmrelvn.esl
-ccbgssse012-hrsarmrstl.esl
-ccbgssse014-spellpack01.esl
-ccbgssse019-staffofsheogorath.esl
-ccbgssse020-graycowl.esl
-ccbgssse021-lordsmail.esl
-ccmtysse001-knightsofthenine.esl
-ccqdrsse001-survivalmode.esl
-cctwbsse001-puzzledungeon.esm
-cceejsse001-hstead.esm
-ccqdrsse002-firewood.esl
-ccbgssse018-shadowrend.esl
-ccbgssse035-petnhound.esl
-ccfsvsse001-backpacks.esl
-cceejsse002-tower.esl
-ccedhsse001-norjewel.esl
-ccvsvsse002-pets.esl
-ccbgssse037-curios.esl
-ccbgssse034-mntuni.esl
-ccbgssse045-hasedoki.esl
-ccbgssse008-wraithguard.esl
-ccbgssse036-petbwolf.esl
-ccffbsse001-imperialdragon.esl
-ccmtysse002-ve.esl
-ccbgssse043-crosselv.esl
-ccvsvsse001-winter.esl
-cceejsse003-hollow.esl
-ccbgssse016-umbra.esm
-ccbgssse031-advcyrus.esm
-ccbgssse038-bowofshadows.esl
-ccbgssse040-advobgobs.esl
-ccbgssse050-ba_daedric.esl
-ccbgssse052-ba_iron.esl
-ccbgssse054-ba_orcish.esl
-ccbgssse058-ba_steel.esl
-ccbgssse059-ba_dragonplate.esl
-ccbgssse061-ba_dwarven.esl
-ccpewsse002-armsofchaos.esl
-ccbgssse041-netchleather.esl
-ccedhsse002-splkntset.esl
-ccbgssse064-ba_elven.esl
-ccbgssse063-ba_ebony.esl
-ccbgssse062-ba_dwarvenmail.esl
-ccbgssse060-ba_dragonscale.esl
-ccbgssse056-ba_silver.esl
-ccbgssse055-ba_orcishscaled.esl
-ccbgssse053-ba_leather.esl
-ccbgssse051-ba_daedricmail.esl
-ccbgssse057-ba_stalhrim.esl
-ccbgssse066-staves.esl
-ccbgssse067-daedinv.esm
-ccbgssse068-bloodfall.esl
-ccbgssse069-contest.esl
-ccvsvsse003-necroarts.esl
-ccvsvsse004-beafarmer.esl
-ccbgssse025-advdsgs.esm
-ccffbsse002-crossbowpack.esl
-ccbgssse013-dawnfang.esl
-ccrmssse001-necrohouse.esl
-ccedhsse003-redguard.esl
-cceejsse004-hall.esl
-cceejsse005-cave.esm
-cckrtsse001_altar.esl
-cccbhsse001-gaunt.esl
-ccafdsse001-dwesanctuary.esm
+ccasvsse001-almsivi.esm ... ccafdsse001-dwesanctuary.esm
 _ResourcePack.esl
 
-# User mod plugins
+# User mod plugins (from plugins.txt — Vortex-managed)
 *unofficial skyrim special edition patch.esp
 *SkyUI_SE.esp
 *FSMPM - The FSMP MCM.esp      # Faster HDT-SMP MCM menu
@@ -119,7 +46,62 @@ _ResourcePack.esl
 *No NPC Greetings.esp
 ```
 
-## Deployed Mods (43 data + 2 root = 45 deployed)
+### Deployed Plugin Files (37 ESPs/ESMs/ESLs from mods)
+
+```
+# Patches & Fixes
+unofficial skyrim special edition patch.esp
+Better Dynamic Snow SE - DisableRefs.esm
+Better Dynamic Snow SE.esp
+IcyFixes.esp
+Falskaar - Landscape Texture Revert.esl
+
+# UI & Frameworks
+SkyUI_SE.esp
+FSMPM - The FSMP MCM.esp
+
+# Body & Character
+CBBE.esp
+RaceMenu.esp
+RaceMenuPlugin.esp
+RaceMenuMorphsCBBE.esp
+XPMSE.esp
+
+# NPC / Followers
+Faithful Faces.esp
+Faithful Faces0.esp
+SeranaDialogAddon.esp
+SDA CC Umbra Patch.esp
+Ashe - Fire and Blood.esp
+Ashe - SMP_Hair.esp
+Ashe and Serana Banter Patch.esp
+FabulousFollowersAIO.esp
+
+# Animation
+FNIS.esp
+
+# Landscape & Visuals
+SMIM-SE-Merged-All.esp
+Cathedral - 3D FallForest Grass.esp
+Cathedral - 3D Pine & Reach Grass.esp
+Cathedral - 3D Tundra Grass.esp
+Grass FPS Booster.esp
+TerrainHelper.esp
+Vanaheimr Landscapes.esp
+Freak's Floral Fields.esp
+Freak's Floral Fields-  Realistic Pine.esp
+Freak's Floral Fields- Realistic Tundra.esp
+Freak's Floral Fields- Realistic Rift.esp
+Freak's Floral Fields- Mixed Reach.esp
+Freak's Floral Fields- Volcanic Wasteland.esp
+
+# Gameplay
+Occ_Skyrim_Tamriel.esp          # eFPS occlusion
+No NPC Greetings.esp
+AlternatePerspective.esp
+```
+
+## Deployed Mods (50 data + 2 root = 52 deployed)
 
 ### Engine / Root-Level
 | Mod | Nexus ID | Version | Notes |
@@ -187,15 +169,22 @@ _ResourcePack.esl
 | FNIS Behavior SE | 3038 | 7.6 | Animation framework (legacy) |
 | Nemesis Unlimited Behavior Engine | 60033 | 0.84 beta | Animation framework (modern) |
 
-### Visuals
+### Visuals — Landscape & Flora
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | SMIM SE | 659 | 2.08 | Static mesh improvement |
 | Faithful Faces - NPC Overhaul | 114342 | 1.3.5 | NPC face texture overhaul |
-| Cathedral - 3D Landscapes | 80687 | 16.41 | Landscape texture + mesh overhaul |
+| Cathedral - 3D Landscapes | 80687 | 16.41 | Landscape texture + mesh overhaul (base layer) |
 | DrJacopo's 3D Grass Library | 80687 | 16.53 | 3D grass meshes (companion to Cathedral) |
+| Vanaheimr Landscapes - AIO - CPM | 145439 | 5.5 | 4K landscape textures with Complex Parallax Material — overlays Cathedral |
+| Freak's Floral Fields | 125349 | 3.1 | Grass/flora overhaul — region-specific grass plugins |
+| ERM - Enhanced Rocks and Mountains | 121336 | 1.1.1 | Rock and mountain texture overhaul |
 | Better Dynamic Snow SE | 9121 | 3.6.0 | Improved snow rendering |
-| Grass Lighting | 86502 | 2.0.0 | Fixes grass lighting to match surroundings |
+| Grass Lighting | 86502 | 2.0.0 | CS grass shader — fixes grass lighting to match surroundings |
+| Icy Mesh Remaster - IcyFixes | 73381 | 3.35 | Mesh fixes via Base Object Swapper |
+| Icy Mesh Remaster - Meshes | 73381 | 3.35 | Corrected NIF meshes for icy objects |
+| Terrain Helper | 143149 | 1.0.0 | Terrain blending helper for landscape mods (CS/ENB) |
+| Falskaar - Landscape Texture Fix | 139242 | 1.0 | Fixes Falskaar landscape to use correct textures |
 
 ### Graphics Post-Processing
 | Mod | Nexus ID | Version | Notes |
@@ -211,12 +200,12 @@ _ResourcePack.esl
 | Ashe and Serana Banter Patch | 167123 | 1.0.6 | Banter between Ashe & Serana |
 | Fabulous Followers SE | 57284 | 1.05 | Follower management |
 
-### Gameplay / AI
+### Gameplay / Tools
 | Mod | Nexus ID | Version | Notes |
 |-----|----------|---------|-------|
 | Alternate Perspective | 50307 | 4.1.0 | Alternate start mod |
 | FonixData File (Mantella) | 40971 | 1.0 | Lip-sync data for AI voice |
-| PGPatcher | 120946 | 0.9.9 | Dynamic mesh/texture patcher — patches NIFs for parallax, CM, and PBR shader flags based on load order textures. Re-run after adding texture/landscape mods. |
+| PGPatcher | 120946 | 0.9.9 | Dynamic mesh/texture patcher — patches NIFs for parallax, CM, and PBR shader flags. Re-run after adding texture/landscape mods. |
 
 ### Staged but NOT Deployed
 | Mod | Nexus ID | Version | Notes |
@@ -236,8 +225,8 @@ _ResourcePack.esl
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 542 files |
-| Data folder | 15,503 files |
-| **Total deployed** | **16,045 files** |
+| Data folder | 16,597 files |
+| **Total deployed** | **17,139 files** |
 
 ## Category Breakdown
 
@@ -252,11 +241,11 @@ _ResourcePack.esl
 | Body / Character | 4 | CBBE, BodySlide, RaceMenu, XPMSSE |
 | Physics | 2 | Faster HDT-SMP, Vanilla Hair Remake SMP |
 | Animation | 2 | FNIS, Nemesis |
-| Visuals | 6 | SMIM, Faithful Faces, Cathedral 3D Landscapes, 3D Grass Library, Better Dynamic Snow, Grass Lighting |
+| Visuals / Landscape | 13 | SMIM, Faithful Faces, Cathedral 3D, 3D Grass Library, Vanaheimr Landscapes CPM, Freak's Floral Fields, ERM, Better Dynamic Snow, Grass Lighting, Icy Mesh Remaster (x2), Terrain Helper, Falskaar Texture Fix |
 | Graphics | 1 | Community Shaders |
 | NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
-| Gameplay / AI | 3 | Alternate Perspective, FonixData, PGPatcher |
-| **Total deployed** | **45** | (incl. root-level; +2 ghost plugins) |
+| Gameplay / Tools | 3 | Alternate Perspective, FonixData, PGPatcher |
+| **Total deployed** | **52** | (50 data + 2 root; +2 ghost plugins) |
 
 ## Dependency Chains (Inferred)
 
@@ -304,6 +293,53 @@ SKSE64 (30379)
     └── World Encounter Hostility Fix (91403)
 ```
 
+### Landscape / CPM Chain
+The landscape visual stack layers textures + meshes + shaders:
+
+```
+Community Shaders (86492)              ← renderer that supports parallax/CM effects
+├── Grass Lighting (86502)             ← CS grass shader plugin
+├── Terrain Helper (143149)            ← terrain blending for CS
+└── PGPatcher (120946)                 ← patches mesh shader flags for CM/parallax
+    ├── Cathedral - 3D Landscapes (80687/16.41)   ← base landscape meshes
+    │   └── DrJacopo's 3D Grass Library (80687/16.53) ← 3D grass meshes
+    ├── Vanaheimr Landscapes (145439)  ← 4K CPM landscape textures (overlays Cathedral)
+    │   └── requires: Community Shaders OR ENB (for CM rendering)
+    │   └── requires: Terrain Helper (terrain blending)
+    │   └── recommended: PGPatcher (dynamic CM flag patching)
+    ├── ERM - Enhanced Rocks and Mountains (121336)
+    ├── Better Dynamic Snow SE (9121)
+    └── Icy Mesh Remaster (73381)
+        └── requires: Base Object Swapper (60805)
+```
+
+**Vanaheimr Landscapes (145439) — Dependencies:**
+- **Community Shaders** (86492) OR ENB — required to render Complex Parallax Material effects
+- **Terrain Helper** (143149) — required for correct terrain blending
+- **PGPatcher** (120946) — recommended for dynamic CM shader flag patching; Vanaheimr ships CPM textures (`_m.dds`)
+- **Cathedral 3D Landscapes** (80687) — Vanaheimr overlays Cathedral's base meshes with its own 4K CPM textures
+- **BEES** (106441) — recommended for extended ESL support
+- Ships `Vanaheimr Landscapes.esp` + `Vanaheimr_SWAP.ini` (Base Object Swapper config)
+
+### Grass / Flora Chain
+```
+Community Shaders (86492)
+├── Grass Lighting (86502)             ← makes grass match surrounding light
+└── Freak's Floral Fields (125349)     ← region-specific grass replacer
+    ├── requires: Cathedral - 3D Landscapes (80687) ← base grass meshes
+    │   └── DrJacopo's 3D Grass Library (80687)     ← 3D grass mesh library
+    ├── requires: Community Shaders Grass Shader     ← CS sub-feature for grass rendering
+    └── Grass FPS Booster (20082)      ← recommended for performance
+```
+
+**Freak's Floral Fields (125349) — Dependencies:**
+- **Cathedral - 3D Landscapes** (80687) — hard requirement; provides the base 3D grass meshes FFF references
+- **DrJacopo's 3D Grass Library** (80687) — companion to Cathedral; FFF uses these grass mesh assets
+- **Community Shaders** (86492) with **Grass Shader** — required; FFF is designed for CS grass rendering
+- **Grass Lighting** (86502) — recommended CS plugin for correct grass illumination
+- Ships 6 ESPs: main + 5 region plugins (Realistic Pine, Realistic Tundra, Realistic Rift, Mixed Reach, Volcanic Wasteland)
+- Ships `Freak's Floral Fields.ini` for configuration
+
 ## Notes
 
 - **Mantella** and **UIExtensions** are ghost entries in plugins.txt — they appear enabled but have no deployed files. Consider purging them from the load order via Vortex.
@@ -324,8 +360,9 @@ This is the **known-good AE foundation** with:
 - Stability stack (CrashLogger, SrtCrashFix, Animation Queue Fix, SMP-NPC Fix)
 - Performance mods (eFPS, Grass FPS Booster, NVIDIA Reflex)
 - Bug fixes (USSEP)
-- **Landscape overhaul** (Cathedral 3D Landscapes + 3D Grass Library + Better Dynamic Snow + Grass Lighting + BEES)
+- **Full CPM landscape overhaul** (Vanaheimr Landscapes 4K CPM → Cathedral 3D Landscapes → ERM → Better Dynamic Snow → Terrain Helper → Icy Mesh Remaster → PGPatcher)
+- **Grass/flora overhaul** (Freak's Floral Fields + Cathedral 3D Grass + DrJacopo's 3D Grass Library + Grass Lighting + Grass FPS Booster)
 - NPC enhancements (Serana Dialogue Add-On, Faithful Faces, custom followers)
 - Alternate start (Alternate Perspective)
 - Ultrawide display support (Complete Widescreen Fix)
-- **Community Shaders v1.4.11** (Nexus 86492) — replaced ENB
+- **Community Shaders v1.4.11** (Nexus 86492) — replaced ENB; provides CM/parallax/grass shader rendering
