@@ -51,7 +51,7 @@ SkyrimVR.esm
 |-----|----------|---------|-------|
 | VR Address Library | 58101 | 0.195.0 | VR-specific address mappings (alpha, ~3,884 verified) |
 | SkyrimVRTools | 27782 | 2.3 BETA | VR controller API framework |
-| Engine Fixes VR | 62089 | 1.26 | VR engine bug fixes |
+| Engine Fixes VR | 62089 | 1.26 | VR engine bug fixes. **⚠ 2-PART INSTALL**: Part 1 installs normally via Vortex (DLL to Data/SKSE/Plugins). Part 2 must be **manually unzipped to the Skyrim VR root folder** (`SkyrimVR/` not `SkyrimVR/Data/`) — it contains `EngineFixes.toml` and root-level files that Vortex won't place correctly. |
 | CrashLogger | 59818 | 1.19.1 | Crash dump analysis |
 | SkyrimVR PDB | 59818 | 2024-07-21 | Debug symbols for CrashLogger VR analysis |
 | ConsoleUtilSSE NG | 76649 | 1.5.1 | Console utility SKSE plugin — confirmed working in VR |

@@ -283,7 +283,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
 | SKSE64 2.2.6 | 30379 | SKSEVR 2.0.12 | 30457 | **MATCHED** | Different Nexus pages, different DLLs |
-| Engine Fixes AIO 7.0.19 | 17230 | Engine Fixes VR 1.26 | 62089 | **MATCHED** | Separate VR build (2-part install) |
+| Engine Fixes AIO 7.0.19 | 17230 | Engine Fixes VR 1.26 | 62089 | **MATCHED** | Separate VR build. **⚠ 2-PART INSTALL**: Part 1 = SKSE plugin DLL (install via Vortex). Part 2 = root-level config files — must be **manually unzipped to the Skyrim VR root folder** (not Data/). |
 
 ### Frameworks & Libraries
 
