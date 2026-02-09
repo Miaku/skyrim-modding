@@ -5,11 +5,11 @@ description: "Preferred VR mod baseline snapshot — known stable configuration\
 
 # Skyrim VR — Preferred Baseline Snapshot
 
-> **Captured**: February 8, 2026
-> **Status**: Known stable, fully working VR setup
+> **Captured**: February 8, 2026 (updated: parity push — RaceMenu VR, frameworks, SSGI, performance)
+> **Status**: Known stable VR setup with expanded frameworks, XPMSSE skeleton, Screen Space GI, performance mods
 > **Source**: Vortex deployment manifests + profile plugins.txt
 
-## Plugin Load Order (13 active plugins)
+## Plugin Load Order (12 active plugins)
 
 ```
 # Base game masters (always loaded)
@@ -21,7 +21,6 @@ Dragonborn.esm
 SkyrimVR.esm
 
 # Mod plugins (Vortex-managed)
-# *unofficial skyrim special edition patch.esp  ← NOT LOADED: v4.3.6c requires CC masters missing in VR
 *SkyUI_SE.esp
 *SMIM-SE-Merged-All.esp
 *SeranaDialogAddon.esp
@@ -36,190 +35,295 @@ SkyrimVR.esm
 *FabulousFollowersAIO.esp
 ```
 
-## Deployed Mods (24 total)
+> **Note**: USSEP has been **removed** (v4.3.6c required CC masters not available in VR).
+> Address Library SE (32444) dead weight has been cleaned up.
+
+## Deployed Mods (33 total — 31 data + 2 root)
 
 ### Root-Level Mods (SKSE / Engine)
-| Mod | Staging Folder | Version |
-|-----|----------------|---------|
-| SKSEVR | `Skyrim Script Extender for VR (SKSEVR)-30457-2-0-12-...` | 2.0.12 |
-| Skyrim VR ESL Support | `Skyrim VR ESL-106712-1-2-...` | 1.2 |
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| SKSEVR | 30457 | 2.0.12 | VR script extender |
+| Skyrim VR ESL Support | 106712 | 1.2 | ESL flag support in VR |
 
-### Data-Level Mods (20 unique staging folders)
-| Mod | Nexus ID | Version | Category |
-|-----|----------|---------|----------|
-| VRIK Player Avatar | 23416 | 0.8.5 | VR Core |
-| HIGGS | 43930 | 1.10.10 | VR Core |
-| PLANCK | 66025 | 0.7.1 | VR Core |
-| SkyUI VR | — | 1.2.2 | UI |
-| Unofficial Skyrim SE Patch | 266 | 4.3.6c | Patch | **⚠ NOT LOADED** — requires CC masters (fish, survival, curios, saints & seducers, resource pack) absent in VR. Needs downgrade to 4.2.5b or removal. |
-| VR Address Library | 58101 | 0.195.0 | Framework |
-| SkyrimVRTools | 27782 | 2.3 BETA | Framework |
-| Engine Fixes VR (Part 1) | 62089 | 1.26 | Framework |
-| Engine Fixes VR (Part 2) | 62089 | 1.26 | Framework |
-| CrashLogger | 59818 | 1.19.1 | Framework |
-| SMP-NPC Crash Fix | 91616 | 1 | Framework |
-| SMIM SE | 659 | 2.08 | Visuals |
-| Skyrim Flora Overhaul | 2154 | 2.74a | Visuals |
-| CBBE | 198 | 2.0.3 | Body |
-| BodySlide and Outfit Studio | 201 | 5.7.1 | Body |
-| RaceMenuMorphsCBBE | — | — | Body |
-| Serana Dialogue Add-On | 32161 | 4.3.0 | NPC / Dialogue |
-| SDA Patch Hub SE | 70782 | 2.9.6 | NPC / Dialogue |
-| Ashe - Crystal Heart SE | 135085 | 1.3.0 | NPC / Follower |
-| Ashe and Serana Banter Patch | 167123 | 1.0.4 | NPC / Follower |
-| Fabulous Followers SE | 57284 | 1.05 | NPC / Follower |
-| Bandolier Bags and Pouches | 2417 | 1.2 | Equipment |
+### Frameworks & Libraries
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| VR Address Library | 58101 | 0.195.0 | VR-specific address mappings (alpha, ~3,884 verified) |
+| SkyrimVRTools | 27782 | 2.3 BETA | VR controller API framework |
+| Engine Fixes VR | 62089 | 1.26 | VR engine bug fixes |
+| CrashLogger | 59818 | 1.19.1 | Crash dump analysis |
+| SkyrimVR PDB | 59818 | 2024-07-21 | Debug symbols for CrashLogger VR analysis |
+| JContainers VR | 16495 | **4.2.11** | VR build — JSON/data structures for Papyrus. **Note**: AE uses 4.2.9 from main page; VR uses 4.2.11 from VR-specific files section. |
+| PapyrusUtil VR | 13048 | **3.6b** | VR build — scripting utilities. **Note**: AE uses v4.6; VR must use **3.6b** (last VR-compatible build). Newer versions target AE runtime only. |
+| powerofthree's Tweaks | 51073 | 1.1.5.1 | Engine tweaks — VR DLL from optional files |
+| Fuz Ro D'oh | 15109 | **1.7** | Silent dialogue lip-sync. **⚠ VERSION CRITICAL**: AE uses v2.5; VR must use **v1.7** (last VR-compatible build). v2.x targets AE SKSE runtime and will crash in VR. |
+
+### VR Core
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| VRIK Player Avatar | 23416 | 0.8.5 | Visible VR body, gestures, holsters |
+| HIGGS | 43930 | 1.10.10 | Hand interaction, gravity gloves |
+| PLANCK | 66025 | 0.7.1 | Physics-based melee combat |
+
+### UI
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| SkyUI VR | — | 1.2.2 | GitHub fork (Odie/skyui-vr), not Nexus |
+
+### Body & Character
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| CBBE | 198 | 2.0.3 | Body replacer — cross-edition |
+| BodySlide and Outfit Studio | 201 | 5.7.1 | Body/outfit editor — cross-edition |
+| RaceMenu SE | 19080 | **0.4.14** | Main file (ESP + scripts + assets). **⚠ VERSION CRITICAL**: Must use v0.4.14 main file, NOT the latest AE release (0.4.19.16). The v0.4.14 main file is the last version whose scripts/ESP are compatible with SKSEVR. |
+| RaceMenu VR | 19080 | **0.4.14** | VR DLL overlay (`skee64.dll` compiled for SKSEVR 1.4.15). Install on top of the v0.4.14 main file to replace the SE DLL. |
+| XP32 Maximum Skeleton (XPMSSE) | 1988 | 5.06 | Extended skeleton with SMP bone nodes — cross-edition |
+
+### Animation
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| FNIS Behavior SE | 3038 | 7.6 | Legacy animation framework — cross-edition |
+| Nemesis | 60033 | 0.84 beta | Modern animation framework — cross-edition |
+
+### Performance
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| eFPS | 54907 | 2.4.2 | Occlusion culling — ESP + meshes, no DLL |
+| Grass FPS Booster | 20082 | 7.9.2 | Grass rendering optimization — cross-edition |
+
+### Visuals
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| SMIM SE | 659 | 2.08 | Static mesh improvement — cross-edition |
+| Skyrim Flora Overhaul | 2154 | 2.74a | Flora/grass overhaul |
+| Better Dynamic Snow SE | 9121 | 3.6.0 | Improved snow — ESP + meshes, cross-edition |
+
+### Graphics / CS Shaders
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Screen Space GI | 130375 | 4.0.1 | CS add-on — indirect lighting / global illumination. First CS shader add-on confirmed working in VR. |
+
+### NPC / Followers / Dialogue
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Serana Dialogue Add-On | 32161 | 4.3.0 | Expanded Serana dialogue — cross-edition |
+| SDA Patch Hub SE | 70782 | 2.9.6 | SDA compatibility patches — cross-edition |
+| Ashe - Crystal Heart SE | 135085 | 1.3.3 | Custom follower (updated from 1.3.0) |
+| Ashe and Serana Banter Patch | 167123 | 1.0.6 | Banter patch (updated from 1.0.4) |
+| Fabulous Followers SE | 57284 | 1.05 | Follower management — cross-edition |
+
+### Gameplay
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Alternate Perspective | 50307 | 4.1.0 | Alternate start — check if VR DLL portion works or just ESP/scripts |
+
+### Equipment
+| Mod | Nexus ID | Version | Notes |
+|-----|----------|---------|-------|
+| Bandolier Bags and Pouches | 2417 | 1.2 | Extra carry capacity — cross-edition |
 
 ### File Deployment Summary
 | Target | File Count |
 |--------|-----------|
 | Root (SKSE DLLs, etc.) | 571 files |
-| Data folder | 4,946 files |
-| **Total deployed** | **5,517 files** |
+| Data folder | 14,929 files |
+| **Total deployed** | **15,500 files** |
 
 ## Category Breakdown
 
 | Category | Count | Mods |
 |----------|-------|------|
+| Engine / Root | 2 | SKSEVR, VR ESL Support |
+| Frameworks | 9 | VR Address Library, VRTools, Engine Fixes VR, CrashLogger, SkyrimVR PDB, JContainers VR, PapyrusUtil VR, po3 Tweaks, Fuz Ro D'oh |
 | VR Core | 3 | VRIK, HIGGS, PLANCK |
-| Framework | 7 | SKSEVR, ESL Support, VR Address Library, VRTools, Engine Fixes (2), CrashLogger, SMP Fix |
 | UI | 1 | SkyUI VR |
-| Patch | 1 | USSEP |
-| Visuals | 2 | SMIM, Flora Overhaul |
-| Body | 3 | CBBE, BodySlide, RaceMenuMorphsCBBE |
-| NPC / Dialogue | 2 | Serana Dialogue Add-On, SDA Patch Hub |
-| NPC / Follower | 3 | Ashe, Ashe-Serana Banter Patch, Fabulous Followers |
+| Body / Character | 5 | CBBE, BodySlide, RaceMenu SE, RaceMenu VR, XPMSSE |
+| Animation | 2 | FNIS, Nemesis |
+| Performance | 2 | eFPS, Grass FPS Booster |
+| Visuals | 3 | SMIM, Flora Overhaul, Better Dynamic Snow |
+| Graphics / CS Shaders | 1 | Screen Space GI |
+| NPC / Followers | 5 | SDA, SDA Patch Hub, Ashe, Ashe-Serana Banter, Fabulous Followers |
+| Gameplay | 1 | Alternate Perspective |
 | Equipment | 1 | Bandolier |
+| **Total** | **33** | (31 data + 2 root) |
+
+## VR-Specific Version Requirements (Tribal Knowledge)
+
+> **Critical**: Many SKSE-dependent mods have older VR-compatible versions that differ from
+> the latest AE release. The VR versions are pinned to SKSEVR runtime 1.4.15 and will NOT
+> receive updates since the VR runtime is frozen. Always use the versions listed below.
+
+| Mod | AE Version | VR Version | Why |
+|-----|-----------|------------|-----|
+| **RaceMenu** | 0.4.19.16 (main file) | **0.4.14** (main file AND VR DLL) | Both the main file AND the VR DLL must be v0.4.14. The latest AE main file (0.4.19.16) is NOT compatible — its scripts/ESP target newer SKSE APIs. Use the **v0.4.14 main file** from older files on the mod page, then overlay the **VR 0.4.14 DLL** on top. |
+| **Fuz Ro D'oh** | 2.5 | **1.7** | v2.x is AE-only (compiled against AE SKSE runtime). VR must use **v1.7** — the last version compiled for the older runtime. v2.x will crash SKSEVR at load. |
+| **PapyrusUtil** | 4.6 (AE SE) | **3.6b** (VR) | PapyrusUtil VR is a separate download on the same mod page (13048). v4.x targets AE; v3.6b is the last VR-compatible build. |
+| **JContainers** | 4.2.9 (SE) | **4.2.11** (VR) | JContainers VR is a separate mod page build (16495). The VR version is actually slightly newer (4.2.11 vs 4.2.9) — maintained independently. |
+| **SKSE** | 2.2.6 (AE) | **2.0.12** (SKSEVR) | Completely separate builds — different Nexus pages (30379 vs 30457). |
+| **Address Library** | v11 (32444) | **0.195.0** (58101) | Completely separate mods — SE/AE IDs don't map to VR addresses. |
+| **Engine Fixes** | 7.0.19 AIO (17230) | **1.26** (62089) | Separate VR mod page with VR-specific fixes. |
+| **SkyUI** | 5.2 SE (12604) | **1.2.2** (GitHub) | VR fork from GitHub — not on Nexus. |
 
 ## What This Baseline Represents
 
 This is the **known-good VR foundation** with:
 - Full VR interaction stack (VRIK body + HIGGS hands + PLANCK combat)
-- Essential frameworks (SKSE, Address Library, Engine Fixes, Crash Logger)
-- Visual improvements (SMIM meshes, Flora Overhaul)
-- Body framework (CBBE + BodySlide)
-- NPC companions (Serana enhanced, Ashe follower)
-- Stability patches (USSEP, SMP crash fix, Engine Fixes)
+- Essential frameworks (SKSEVR, VR Address Library, Engine Fixes VR, CrashLogger + PDB)
+- **Expanded framework layer** (JContainers VR, PapyrusUtil VR, po3 Tweaks, Fuz Ro D'oh)
+- **Character creation** (RaceMenu VR 0.4.14 dual-file install + XPMSSE skeleton)
+- Visual improvements (SMIM, Flora Overhaul, Better Dynamic Snow)
+- **Screen Space GI** (first CS shader add-on confirmed in VR)
+- Performance mods (eFPS occlusion + Grass FPS Booster)
+- Animation frameworks (FNIS + Nemesis)
+- Body framework (CBBE + BodySlide + RaceMenu + XPMSSE)
+- NPC companions (Serana enhanced, Ashe follower — both updated to latest)
+- Alternate start (Alternate Perspective)
+- **USSEP removed** (v4.3.6c incompatible; no 4.2.5b installed yet)
 
 ## AE Parity Gap Analysis
 
 > **Reference**: See `mod-dependencies.detail.instructions.md` → "AE ↔ VR Cross-Compatibility Mapping" for the complete mapping table.
-> **Updated**: February 8, 2026
+> **Updated**: February 8, 2026 (post parity push)
 
 ### Current Parity Score
 
-- **18 of 52** AE mods are already matched in VR (35%)
-- **14 additional** are directly portable (ESP/mesh/texture only)
-- **3 more** have known VR builds available
-- **7** need VR build verification on Nexus
-- **0** cannot be ported — **Community Shaders supports VR**, eliminating all previous CS-exclusive blockers
+- **28 of 64** AE mods are now matched in VR (**44%**, up from 35%)
+- AE baseline has grown to 64 mods (was 52) with 12 new CS shader add-ons
+- **~16** additional AE mods are directly portable (ESP/mesh/texture only)
+- **1** CS shader add-on (Screen Space GI) already confirmed working in VR
+- **11** remaining CS shader add-ons need VR testing
 - **3** are not applicable to VR (widescreen fix, NVIDIA Reflex, SrtCrashFix AE)
+
+### Resolved Since Last Snapshot
+
+| Item | Resolution |
+|------|-----------|
+| ~~USSEP 4.3.6c not loaded~~ | **Removed entirely** — CC masters not available in VR |
+| ~~Address Library SE (32444) dead weight~~ | **Cleaned up** — removed |
+| ~~Ashe 1.3.0 / Banter 1.0.4 outdated~~ | **Updated** to 1.3.3 / 1.0.6 |
+| ~~JContainers VR build unknown~~ | **Confirmed**: v4.2.11 from VR files section |
+| ~~PapyrusUtil VR build unknown~~ | **Confirmed**: v3.6b (VR-specific, older than AE's 4.6) |
+| ~~Fuz Ro D'oh VR build unknown~~ | **Confirmed**: v1.7 (VR-specific, NOT v2.5) |
+| ~~RaceMenu VR install unclear~~ | **Confirmed**: Use v0.4.14 main + v0.4.14 VR DLL (NOT latest AE main) |
+| ~~po3 Tweaks VR build unknown~~ | **Confirmed**: VR DLL in optional files, same version |
+| ~~Alternate Perspective VR unknown~~ | **Installed**: v4.1.0 — needs further testing |
 
 ### Known Issues in Current VR Baseline
 
-1. **USSEP 4.3.6c is staged but NOT LOADED** — requires CC masters (`ccbgssse001-fish.esm`, `ccqdrsse001-survivalmode.esl`, `ccbgssse037-curios.esl`, `ccbgssse025-advdsgs.esm`, `_ResourcePack.esl`) that don't exist in VR. **Action**: Replace with USSEP **4.2.5b** or remove entirely.
-2. **Address Library for SKSE (32444) v2 is deployed** alongside VR Address Library (58101). The SE/AE version is dead weight in VR — harmless but should be cleaned up.
-3. **Ashe follower (1.3.0) and Banter Patch (1.0.4)** are behind AE versions (1.3.3 / 1.0.6). Safe to update — ESP + assets only.
+1. **No USSEP** — removed, but no replacement (4.2.5b) installed yet. Bug fixes are absent.
+2. **SMP-NPC Crash Fix (91616) appears removed** — was in previous baseline but not in current deployment. If SMP physics are added later, this needs to be reinstalled.
+3. **Skyrim Flora Overhaul** may conflict with Cathedral 3D Landscapes if the latter is added later — plan to disable SFO when moving to the Cathedral landscape stack.
+4. **Community Shaders VR** not yet installed — Screen Space GI is deployed (suggests it may not require CS base? or CS is bundled). Verify.
 
-### Planned Parity Additions (Tiered)
+### Remaining Parity Additions (Tiered)
 
 #### Tier 1 — Safe, Direct Install (No DLL)
-These mods are ESP/texture/mesh only and can be installed directly into VR:
+ESP/texture/mesh only — install directly into VR:
 
 | Mod | Nexus ID | Impact | Notes |
 |-----|----------|--------|-------|
-| USSEP 4.2.5b | 266 | Bug fixes | Downgrade from 4.3.6c |
-| XPMSSE | 1988 | Skeleton | Required for SMP physics; enables hair/cloth physics chain |
+| USSEP 4.2.5b | 266 | Bug fixes | Last version without CC deps — find in old files |
 | No NPC Greetings | 1044 | QoL | ESP only |
 | Faithful Faces | 114342 | NPC visuals | Face texture overhaul |
-| Cathedral 3D Landscapes | 80687 | Landscape | Base landscape mesh/texture layer (replaces Skyrim Flora Overhaul's landscape role) |
+| Cathedral 3D Landscapes | 80687 | Landscape | Base mesh/texture layer (replace SFO's landscape role) |
 | DrJacopo's 3D Grass | 80687 | Grass | Companion to Cathedral |
-| Vanaheimr Landscapes CPM | 145439 | Landscape 4K | Full CPM landscape textures — works with CS in VR |
-| Freak's Floral Fields | 125349 | Grass/flora | Region-specific grass — works with CS grass shader in VR |
+| Vanaheimr Landscapes CPM | 145439 | Landscape 4K | CPM landscape textures (requires CS) |
+| Freak's Floral Fields | 125349 | Grass/flora | Region grass (requires CS grass shader) |
 | ERM | 121336 | Rock textures | Direct install |
-| Better Dynamic Snow SE | 9121 | Snow visuals | ESP + meshes |
-| Grass Lighting | 86502 | Grass lighting | CS plugin — works in VR with CS |
-| Terrain Helper | 143149 | Terrain blending | CS terrain blending — works in VR with CS |
-| eFPS | 54907 | Performance | Occlusion culling — significant FPS boost in VR |
-| Grass FPS Booster | 20082 | Performance | Grass optimization — critical for VR perf |
-| PGPatcher | 120946 | Mesh patching | Run offline to patch mesh shader flags for CS |
+| Grass Lighting | 86502 | Grass lighting | CS plugin |
+| Terrain Helper | 143149 | Terrain blending | CS terrain blending |
+| Icy Mesh Remaster | 73381 | Mesh fixes | Meshes cross-edition; IcyFixes.esp needs BOS |
 | FonixData | 40971 | Lip-sync | Lip-sync data files |
+| PGPatcher | 120946 | Mesh patching | Offline tool — run after texture mods |
 
 #### Tier 2 — Known VR Builds
 | Mod | Nexus ID | Impact | Notes |
 |-----|----------|--------|-------|
-| Community Shaders (VR) | 86492 | **Graphics engine** | VR build on same Nexus page — enables CPM, parallax, grass shaders, PBR. **High priority — unlocks Tier 1 landscape/grass mods.** |
-| RaceMenu VR | 19080 | Character creation | Main file + VR DLL (file_id=154909) |
-| po3 Tweaks VR | 51073 | Engine tweaks | Main file + VR optional DLL |
-| HDT-SMP VR | 30872 | Hair/cloth physics | VR SMP engine (different mod from Faster HDT-SMP) |
+| Community Shaders (VR) | 86492 | **Graphics engine** | VR build — unlocks CPM, parallax, grass shaders |
+| HDT-SMP VR | 30872 | Hair/cloth physics | VR SMP engine (different from AE's Faster HDT-SMP) |
 | Vanilla Hair Remake SMP | 63979 | SMP hair meshes | Requires HDT-SMP VR + XPMSSE |
+| SMP-NPC Crash Fix | 91616 | Stability | Re-install alongside HDT-SMP VR |
 
-#### Tier 3 — Needs Verification
+#### Tier 3 — CS Shader Add-ons (Need VR Testing)
+Screen Space GI (130375) is confirmed working. These remain to test:
+
+| Mod | Nexus ID | VR Status |
+|-----|----------|-----------|
+| Skylighting | 139352 | Untested |
+| Subsurface Scattering | 114114 | Untested |
+| Wetness Effects | 112739 | Untested |
+| Cloud Shadows | 139185 | Untested |
+| Terrain Blending | 157076 | Untested |
+| Terrain Variation | 148123 | Untested |
+| Grass Collision | 87816 | Untested |
+| Vanilla Hair Flow Maps | 149011 | Untested |
+| Hair Specular | 149011 | Untested |
+| Sky Sync | 153543 | Untested |
+| Upscaling | 156952 | Untested — **high risk** in VR (may conflict with VR reprojection) |
+
+#### Tier 4 — Still Needs Verification
 | Mod | Nexus ID | What to Check |
 |-----|----------|---------------|
-| Base Object Swapper | 60805 | Nexus optional files for VR DLL |
-| ConsoleUtilSSE NG | 76649 | Nexus optional files for VR DLL |
-| JContainers SE | 16495 | Nexus optional files for VR DLL |
-| PapyrusUtil | 13048 | Nexus optional files for VR DLL |
-| Fuz Ro D'oh | 15109 | Nexus optional files for VR DLL |
-| Animation Queue Fix | 82395 | Nexus optional files for VR DLL |
-| Alternate Perspective | 50307 | Nexus optional files for VR DLL |
+| Base Object Swapper | 60805 | VR DLL? (needed for Icy Mesh Remaster IcyFixes.esp) |
+| ConsoleUtilSSE NG | 76649 | VR DLL? |
+| Animation Queue Fix | 82395 | VR DLL? |
 
 ### Permanent AE/VR Divergence
 
-These AE features **cannot** be replicated in VR:
-
 | AE Feature | Why | VR Alternative |
 |-----------|-----|----------------|
-| SrtCrashFix AE | AE-specific stack trace fix | No VR equivalent needed (different crash patterns) |
+| SrtCrashFix AE | AE-specific stack trace fix | No VR equivalent needed |
 | NVIDIA Reflex | AE-specific DLL | Not applicable to VR render pipeline |
-| Complete Widescreen Fix | Flat-screen UI | Not applicable to VR headset display |
-| Creation Club content (74 plugins) | VR has no CC support | Skip — do NOT copy from AE install |
-
-> **Note**: Community Shaders **supports VR**. All CS-dependent features (CPM, parallax, grass
-> shaders, PBR, terrain blending) work in VR via the CS VR build on Nexus 86492.
+| Complete Widescreen Fix | Flat-screen UI | Not applicable to VR headset |
+| Creation Club (74 plugins) | No CC in VR | **Never** copy from AE install |
+| Faster HDT-SMP | No VR port | Use HDT-SMP VR (30872) instead |
+| BEES | AE-specific ESL extension | Use VR ESL Support (106712) instead |
 
 ### Target State Comparison
 
 | Scenario | Parity with AE | Mods |
 |----------|---------------|------|
-| Current VR baseline | ~35% | 24 mods |
-| + Tier 1 & 2 additions + Community Shaders | **~81%** | ~42 mods |
-| + Tier 3 verified | **~94%** | ~49 mods |
+| **Current VR baseline** | **~44%** | 33 mods |
+| + Tier 1 (landscape/flora/fixes) | ~63% | ~44 mods |
+| + Tier 2 (CS + SMP) | ~70% | ~48 mods |
+| + Tier 3 (CS shader add-ons) | ~87% | ~59 mods |
+| + Tier 4 verified | ~92% | ~62 mods |
 
-The VR equivalent of the AE SMP hair physics chain:
+### VR SMP Hair Physics Chain (Updated)
 
 ```
 SKSEVR (30457)
 └── VR Address Library (58101)
-    └── XP32 Maximum Skeleton - XPMSSE (1988)  ← TO ADD
+    └── XP32 Maximum Skeleton - XPMSSE (1988)  ✅ INSTALLED
         └── HDT-SMP for Skyrim VR (30872)      ← TO ADD (VR SMP engine)
-            ├── SMP-NPC Crash Fix (91616)       ← already installed
-            ├── SkyUI VR                        ← already installed
+            ├── SMP-NPC Crash Fix (91616)       ← TO RE-ADD (was removed)
+            ├── SkyUI VR                        ✅ INSTALLED
             └── Vanilla Hair Remake SMP (63979)  ← TO ADD
 ```
 
-### Target State (After Tier 1 + Tier 2 Additions)
+### Target State (After Remaining Tiers)
 
-If all Tier 1 and Tier 2 mods are installed (including Community Shaders VR), VR baseline would grow from **24 → ~42 mods** with:
-- **~81% parity** with AE baseline (up from 35%)
-- **Full CPM landscape overhaul** (Vanaheimr + Cathedral 3D + PGPatcher + Community Shaders)
-- **Full grass/flora overhaul** (Freak's Floral Fields + Grass Lighting via CS)
-- Working SMP hair physics (VR equivalent chain)
-- Character creation overhaul (RaceMenu VR)
-- Significant VR performance improvements (eFPS + Grass FPS Booster)
-- Proper bug fixes (USSEP 4.2.5b loading correctly)
+With Tier 1 + 2 + 3 installed (Community Shaders VR + landscape/flora overhaul + SMP physics + all CS shaders), VR would reach:
+- **~87% parity** with AE baseline (up from 44%)
+- **~59 mods** total
+- Full CPM landscape overhaul (Vanaheimr + Cathedral 3D + PGPatcher + CS)
+- Full grass/flora overhaul (Freak's Floral Fields + Grass Lighting)
+- Working SMP hair physics (VR chain)
+- All Community Shaders effects matching AE
 
 ## Restoration Instructions
 
 If the setup needs to be restored to this baseline:
 1. Disable all mods in Vortex for Skyrim VR profile
-2. Re-enable only the 24 mods listed above
-3. Verify load order matches the plugin list above
-4. Deploy via Vortex and verify file counts match
+2. Re-enable only the 33 mods listed above (31 data + 2 root)
+3. Verify load order matches the 12-plugin list above
+4. Deploy via Vortex and verify file counts: root=571, data=14,929, total=15,500
 
 ## Cross-References
 
+- **AE baseline snapshot**: `ae-baseline.detail.instructions.md`
+- **Mod dependencies & VR version mapping**: `mod-dependencies.detail.instructions.md`
 - **Local system paths**: `local-system.detail.instructions.md`
 - **VR modding guide**: `vr-modding.detail.instructions.md`
 - **Nexus navigation**: `nexus-mods.detail.instructions.md`

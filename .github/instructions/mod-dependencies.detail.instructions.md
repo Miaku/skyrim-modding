@@ -72,17 +72,21 @@ Some mods ship a single main file for SE/AE plus a separate VR overlay. The patt
 | File | Section | Size | Purpose |
 |------|---------|------|---------|
 | RaceMenu Anniversary Edition v0-4-19-16 | Main files | 8.2MB | ESP + scripts + assets + AE DLL |
+| RaceMenu v0-4-14 | Old files / Main files | ~8MB | **VR-compatible** main file (ESP + scripts + assets) |
 | RaceMenu VR 0.4.14 | Optional files | 571KB | VR-compiled `skee64.dll` |
 
 **Install for VR:**
-1. Install main file (file_id=465102)
-2. Install VR overlay (file_id=154909) — overwrites `skee64.dll`
-3. Delete `skee64.dll` and `skee64.ini` from the main file if mod manager warns about conflicts
+1. Install **v0.4.14 main file** (NOT the latest AE v0.4.19.16 — the newer scripts/ESP target AE SKSE APIs)
+2. Install VR overlay (file_id=154909) — overwrites `skee64.dll` with VR-compiled version
+3. Both files must be v0.4.14 — the main file and VR DLL are version-matched
 
-**Why the version mismatch?** VR DLL (0.4.14) lags behind AE (0.4.19.16) because:
-- SKSEVR runtime (1.4.15) is frozen — no new updates
-- The DLL must be compiled against SKSEVR, which requires separate maintenance
-- The ESP/scripts are forward-compatible; only the native DLL is edition-locked
+**⚠ VERSION CRITICAL**: The AE main file (v0.4.19.16) is NOT compatible with VR. Its scripts
+and ESP reference SKSE APIs that only exist in AE's SKSE64 2.2.x. You must use the **v0.4.14
+main file** from the mod page's older files, then layer the VR DLL on top.
+
+**Why the version match?** Unlike most dual-file mods where only the DLL is edition-locked,
+RaceMenu's ESP and Papyrus scripts also evolved alongside the AE SKSE API. The v0.4.14
+main file is the last version where scripts + ESP + VR DLL all align.
 
 **Mod manager download URLs:**
 - Main: `https://www.nexusmods.com/skyrimspecialedition/mods/19080?tab=files&file_id=465102&nmm=1`
@@ -127,22 +131,36 @@ The Main file is typically for the latest SE/AE version. VR users need both.
 - For VR mods: Install VR Address Library for SKSEVR (58101)
 - These are **never both needed** for the same edition
 
-### Rule 5: Version Lag is Normal for VR
+### Rule 5: Version Lag is Normal for VR — But Sometimes Both Files Must Match
 VR variants of mods are often several versions behind SE/AE. This is expected because:
 - VR runtime is frozen at 1.4.15 (no Bethesda updates)
 - VR mod ports require manual address mapping (crowdsourced, incomplete)
 - Fewer VR mod authors = slower update cycle
+
+**⚠ Important exception**: Some mods require BOTH the main file AND the VR DLL to be the
+same older version. The typical pattern is "latest main file + older VR DLL" but this does NOT
+work for mods where the ESP/scripts also changed alongside SKSE API updates. Known cases:
+- **RaceMenu**: Must use v0.4.14 main + v0.4.14 VR DLL (NOT latest AE main)
+- **Fuz Ro D'oh**: Must use v1.7 entirely (v2.x is AE-only, no dual-file pattern)
+
+### Rule 6: VR Has Its Own Mod Page Versions for Some Libraries
+Some utility libraries have completely separate VR builds with different version numbers:
+- **PapyrusUtil**: AE v4.6 → VR **v3.6b** (same Nexus page 13048, different file)
+- **JContainers**: SE v4.2.9 → VR **v4.2.11** (same Nexus page 16495, VR section)
 
 ## Mods with Known VR Complications
 
 | Mod | Issue | Workaround |
 |-----|-------|------------|
 | **USSEP (≥4.2.6)** | Requires 5 CC masters not present in VR: `ccbgssse001-fish.esm`, `ccqdrsse001-survivalmode.esl`, `ccbgssse037-curios.esl`, `ccbgssse025-advdsgs.esm`, `_ResourcePack.esl` | Use USSEP **4.2.5b** (last version without CC deps) or skip entirely. **Do NOT copy CC files from AE** — see Install Isolation rule. |
-| RaceMenu | Dual-file install, VR DLL lags behind | See install pattern above |
+| **RaceMenu** | Both main file AND VR DLL must be v0.4.14 | Do NOT use latest AE main file (0.4.19.16) — its scripts target AE SKSE APIs. Use v0.4.14 main + v0.4.14 VR DLL. See install pattern above. |
+| **Fuz Ro D'oh** | v2.x is AE-only (SKSE AE runtime) | Use v**1.7** — the last VR-compatible version. v2.x will crash SKSEVR at load. No dual-file pattern; the entire mod must be the older version. |
+| **PapyrusUtil** | v4.x is AE-only | Use **PapyrusUtil VR v3.6b** from the VR files section on Nexus 13048. |
+| **JContainers** | SE/AE version differs from VR | Use **JContainers VR v4.2.11** from VR files section on Nexus 16495. |
 | ENB | VR-specific binary required; ENB and Community Shaders are **mutually exclusive** | Community Shaders (86492) is preferred for both SE/AE and VR. ENB only if you want a specific preset look. |
 | .NET Script Framework | No VR build exists | Use CrashLogger VR (59818) instead |
 | SSE Engine Fixes | Separate VR build | Use Engine Fixes VR (62089) |
-| powerofthree's Tweaks | Separate VR DLL in optional files | Check optional files section |
+| powerofthree's Tweaks | Separate VR DLL in optional files | Install main + VR optional DLL — **confirmed working** |
 | Scrambled Bugs | SE/AE only, no VR port | No workaround — skip for VR |
 | Base Object Swapper | Needs VR-compiled DLL | Check if VR build exists |
 | Keyword Item Distributor | Needs VR-compiled DLL | Check if VR build exists |
@@ -273,11 +291,11 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | Address Library v11 | 32444 | VR Address Library 0.195.0 | 58101 | **MATCHED** | Mutually exclusive by edition; VR version is alpha with ~3,884 mappings |
 | Base Object Swapper 3.4.1 | 60805 | Base Object Swapper VR | 60805 | **VR BUILD UNKNOWN** | Check optional files for VR DLL; needed by Icy Mesh Remaster |
 | ConsoleUtilSSE NG 1.5.1 | 76649 | ConsoleUtilSSE VR | 76649 | **VR BUILD UNKNOWN** | Check optional files; many mods soft-depend on this |
-| JContainers SE 4.2.9 | 16495 | JContainers VR | 16495 | **VR BUILD UNKNOWN** | Check optional files; needed by some follower/quest mods |
-| PapyrusUtil AE 4.6 | 13048 | PapyrusUtil VR | 13048 | **VR BUILD UNKNOWN** | Check optional files; widely used scripting utility |
-| powerofthree's Tweaks 1.1.5.1 | 51073 | po3 Tweaks VR | 51073 | **VR BUILD EXISTS** | VR DLL in optional files (documented in mod-dependencies) |
+| JContainers SE 4.2.9 | 16495 | JContainers VR **4.2.11** | 16495 | **MATCHED** | VR build confirmed — v4.2.11 from VR files section. Independently maintained, slightly newer than SE build. |
+| PapyrusUtil AE 4.6 | 13048 | PapyrusUtil VR **3.6b** | 13048 | **MATCHED** | VR build confirmed — **must use v3.6b** (VR files section). v4.x is AE-only. |
+| powerofthree's Tweaks 1.1.5.1 | 51073 | po3 Tweaks VR | 51073 | **MATCHED** | VR DLL in optional files — confirmed working |
 | BEES 1.2 | 106441 | Skyrim VR ESL Support 1.2 | 106712 | **MATCHED** | Different mods solving same problem (ESL support) for different editions |
-| Fuz Ro D'oh 2.5 | 15109 | Fuz Ro D'oh VR | 15109 | **VR BUILD UNKNOWN** | Check optional files; needed for silent dialogue lip-sync (Serana DA uses it) |
+| Fuz Ro D'oh 2.5 | 15109 | Fuz Ro D'oh **1.7** | 15109 | **MATCHED** | **⚠ VERSION CRITICAL**: VR must use **v1.7** (NOT v2.5). v2.x targets AE SKSE runtime, will crash SKSEVR. Old files section on Nexus. |
 
 ### Stability & Crash Fixes
 
@@ -293,8 +311,8 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| eFPS 2.4.2 | 54907 | eFPS | 54907 | **PORTABLE** | ESP + occlusion meshes only, no DLL; should work directly in VR |
-| Grass FPS Booster 7.9.2 | 20082 | Grass FPS Booster | 20082 | **PORTABLE** | ESP + grass config; texture/mesh mod, no DLL |
+| eFPS 2.4.2 | 54907 | eFPS 2.4.2 | 54907 | **MATCHED** | ESP + occlusion meshes only, no DLL; installed in VR |
+| Grass FPS Booster 7.9.2 | 20082 | Grass FPS Booster 7.9.2 | 20082 | **MATCHED** | ESP + grass config; installed in VR |
 | NVIDIA Reflex 1.1.2 | 74498 | — | — | **NO VR PORT** | AE-specific SKSE DLL for NVIDIA Reflex; not applicable to VR rendering pipeline |
 
 ### UI
@@ -308,7 +326,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| USSEP 4.3.6c | 266 | USSEP **4.2.5b** | 266 | **PORTABLE** (downgrade required) | VR has 4.3.6c staged but **NOT LOADED** — requires CC masters. Must downgrade to **4.2.5b** (last version without CC deps). Do NOT copy CC files from AE. |
+| USSEP 4.3.6c | 266 | ~~USSEP~~ **removed** | 266 | **REMOVED** | v4.3.6c requires CC masters; removed from VR baseline. Re-add as v4.2.5b when found. |
 | No NPC Greetings 2.0a | 1044 | No NPC Greetings | 1044 | **PORTABLE** | ESP-only, no DLL; install directly |
 
 ### Body & Character
@@ -317,8 +335,8 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 |--------|----------|-----------|-------------|--------|-------|
 | CBBE 2.0.3 | 198 | CBBE 2.0.3 | 198 | **MATCHED** | Meshes/textures, cross-edition |
 | BodySlide 5.7.1 | 201 | BodySlide 5.7.1 | 201 | **MATCHED** | Tool + meshes, cross-edition |
-| RaceMenu AE 0.4.19.16 | 19080 | RaceMenu VR 0.4.14 | 19080 | **VR BUILD EXISTS** | Dual-file install: main file (ESP/scripts) + VR optional DLL (file_id=154909). VR DLL lags behind AE — expected. See mod-dependencies install pattern. |
-| XPMSSE 5.06 | 1988 | XPMSSE | 1988 | **PORTABLE** | ESP + skeleton meshes, no DLL; install directly. Required for SMP physics bone nodes. |
+| RaceMenu AE 0.4.19.16 | 19080 | RaceMenu VR **0.4.14** | 19080 | **MATCHED** | **⚠ VERSION CRITICAL**: Both main file AND VR DLL must be v0.4.14. Do NOT use AE main file (0.4.19.16) — its scripts target AE SKSE APIs. Install v0.4.14 main + v0.4.14 VR DLL. |
+| XPMSSE 5.06 | 1988 | XPMSSE 5.06 | 1988 | **MATCHED** | ESP + skeleton meshes, no DLL; installed in VR. Required for SMP physics bone nodes. |
 
 ### Physics (Hair / Cloth)
 
@@ -331,8 +349,8 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| FNIS 7.6 | 3038 | FNIS | 3038 | **PORTABLE** | ESP + animation files; FNIS output is cross-edition. Run FNIS from a flat-screen context, copy output to VR. |
-| Nemesis 0.84 beta | 60033 | Nemesis | 60033 | **PORTABLE** | Same as FNIS — animation engine output is cross-edition. Nemesis itself is a tool, not a runtime DLL. |
+| FNIS 7.6 | 3038 | FNIS 7.6 | 3038 | **MATCHED** | ESP + animation files; installed in VR |
+| Nemesis 0.84 beta | 60033 | Nemesis 0.84 beta | 60033 | **MATCHED** | Animation framework; installed in VR |
 
 ### Visuals — Landscape & Flora
 
@@ -345,7 +363,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | Vanaheimr Landscapes CPM 5.5 | 145439 | Vanaheimr Landscapes CPM | 145439 | **PORTABLE** | Textures + ESP, no DLL. **With Community Shaders in VR**: full CPM/parallax effects render correctly — same as AE. Run PGPatcher to set shader flags on meshes. Requires CS + Terrain Helper. |
 | Freak's Floral Fields 3.1 | 125349 | Freak's Floral Fields | 125349 | **PORTABLE** | Requires Community Shaders grass shader — **which now works in VR**. Install directly; same region ESPs as AE. Requires Cathedral 3D Landscapes + DrJacopo's 3D Grass Library. |
 | ERM 1.1.1 | 121336 | ERM | 121336 | **PORTABLE** | Rock/mountain textures; no DLL, no CS dependency. If ERM ships `_p.dds` parallax textures, CS + PGPatcher enables parallax rendering in VR. |
-| Better Dynamic Snow SE 3.6.0 | 9121 | Better Dynamic Snow SE | 9121 | **PORTABLE** | ESP + snow meshes; cross-edition |
+| Better Dynamic Snow SE 3.6.0 | 9121 | Better Dynamic Snow SE 3.6.0 | 9121 | **MATCHED** | ESP + snow meshes; installed in VR |
 | Grass Lighting 2.0.0 | 86502 | Grass Lighting | 86502 | **PORTABLE** | Community Shaders plugin — **works in VR with CS**. Install directly via mod manager. |
 | Icy Mesh Remaster 3.35 | 73381 | Icy Mesh Remaster | 73381 | **PORTABLE** (partial) | Mesh fixes work directly; `IcyFixes.esp` (Base Object Swapper config) needs BOS VR DLL. Install meshes only if BOS unavailable. |
 | Terrain Helper 1.0.0 | 143149 | Terrain Helper | 143149 | **PORTABLE** | Terrain blending helper for CS. **Works in VR with Community Shaders**. Install directly. |
@@ -355,7 +373,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Community Shaders 1.4.11 | 86492 | Community Shaders (VR build) | 86492 | **PORTABLE** | Same Nexus page — VR build available in files tab. Install via mod manager. Provides same CPM, parallax, grass shader, and post-processing features as AE. Check VR build version may lag slightly behind AE build. |
+| Community Shaders 1.4.11 | 86492 | Community Shaders (VR build) | 86492 | **VR BUILD EXISTS** | Same Nexus page — VR build available in files tab. **Screen Space GI (130375) confirmed working in VR as CS add-on.** Not yet installed as base framework in VR — SSGI may bundle a VR CS build, or work standalone. Needs further verification. |
 
 ### NPC / Followers / Dialogue
 
@@ -363,15 +381,15 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 |--------|----------|-----------|-------------|--------|-------|
 | Serana Dialogue Add-On 4.3.0 | 32161 | Serana DA 4.3.0 | 32161 | **MATCHED** | ESP + voice files; cross-edition |
 | SDA Patch Hub 2.9.6 | 70782 | SDA Patch Hub 2.9.6 | 70782 | **MATCHED** | ESP patches; cross-edition |
-| Ashe 1.3.3 | 135085 | Ashe 1.3.0 | 135085 | **MATCHED** (update available) | VR is v1.3.0 → update to 1.3.3 (ESP + assets, no DLL) |
-| Ashe-Serana Banter 1.0.6 | 167123 | Ashe-Serana Banter 1.0.4 | 167123 | **MATCHED** (update available) | VR is v1.0.4 → update to 1.0.6 (ESP only) |
+| Ashe 1.3.3 | 135085 | Ashe 1.3.3 | 135085 | **MATCHED** | Updated to 1.3.3 in VR |
+| Ashe-Serana Banter 1.0.6 | 167123 | Ashe-Serana Banter 1.0.6 | 167123 | **MATCHED** | Updated to 1.0.6 in VR |
 | Fabulous Followers 1.05 | 57284 | Fabulous Followers 1.05 | 57284 | **MATCHED** | ESP; cross-edition |
 
 ### Gameplay / Tools
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Alternate Perspective 4.1.0 | 50307 | Alternate Perspective | 50307 | **VR BUILD UNKNOWN** | Has SKSE DLL component; check if VR build exists in optional files. ESP/scripts may work alone. |
+| Alternate Perspective 4.1.0 | 50307 | Alternate Perspective 4.1.0 | 50307 | **MATCHED** (testing) | Installed in VR — appears to work. May be ESP/scripts only or may have VR-compatible DLL. Further testing needed. |
 | FonixData (Mantella) 1.0 | 40971 | FonixData | 40971 | **PORTABLE** | Lip-sync data files; no DLL |
 | PGPatcher 0.9.9 | 120946 | PGPatcher | 120946 | **PORTABLE** | PGPatcher is an **offline tool** (not an SKSE plugin) — it patches NIF mesh shader flags at rest. Runs outside the game; output works in any edition. **With Community Shaders in VR**: all PGPatcher output is fully functional — parallax, CM/CPM, and PBR flags are all rendered by CS. Run PGPatcher after installing texture mods, copy output to VR Data folder. |
 
@@ -389,23 +407,28 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| **MATCHED** | 18 | 35% |
-| **PORTABLE** (install directly) | 21 | 40% |
-| **VR BUILD EXISTS** (known) | 3 | 6% |
-| **VR BUILD UNKNOWN** (needs check) | 7 | 13% |
-| **N/A IN VR** | 3 | 6% |
-| **Total AE mods** | **52** | 100% |
+| **MATCHED** | 28 | 44% |
+| **PORTABLE** (install directly) | 14 | 22% |
+| **VR BUILD EXISTS** (known) | 3 | 5% |
+| **VR BUILD UNKNOWN** (needs check) | 3 | 5% |
+| **REMOVED** (needs replacement) | 1 | 2% |
+| **N/A IN VR** | 3 | 5% |
+| **NO VR PORT** | 1 | 2% |
+| **CS shader add-ons** (untested in VR) | 11 | 17% |
+| **Total AE mods** | **64** | 100% |
 
-> **Key insight**: With Community Shaders supporting VR, there are **zero "NO VR PORT" mods** in the
-> AE baseline. Every AE mod either works directly, has a known VR build, or is N/A in VR.
-> The previous blockers (CS-dependent mods like Freak's Floral Fields, Grass Lighting, Terrain
-> Helper, PGPatcher, Vanaheimr CPM) are all now **PORTABLE** since CS works in VR.
+> **Key insight**: With the parity push, 28 of 64 AE mods are now confirmed in VR (up from 18/52).
+> JContainers VR, PapyrusUtil VR, Fuz Ro D'oh, RaceMenu VR, po3 Tweaks, and Alternate Perspective
+> are all now confirmed working. Screen Space GI is the first CS shader add-on confirmed in VR.
+> 11 CS shader add-ons remain untested.
 
 ### Critical Parity Blockers (Remaining)
 
-1. **USSEP version mismatch** — VR needs downgrade from 4.3.6c to 4.2.5b (CC master dependency).
-2. **SMP physics engine** — Faster HDT-SMP has no VR build; must use older HDT-SMP VR (30872).
-3. **7 mods need VR build verification** — SKSE DLL mods where VR optional files haven't been confirmed yet.
+1. **No USSEP in VR** — v4.3.6c was removed (CC deps). Need to find and install **4.2.5b** from old files.
+2. **SMP physics engine** — Faster HDT-SMP has no VR port; must use older HDT-SMP VR (30872).
+3. **Community Shaders base** — Screen Space GI is working, but CS itself may not be explicitly installed. Need to verify.
+4. **11 CS shader add-ons** — Need VR build testing (Skylighting, SSS, Wetness, Cloud Shadows, Terrain Blending/Variation, Grass Collision, Hair Specular, Hair Flow Maps, Sky Sync, Upscaling).
+5. **3 mods need VR build verification** — Base Object Swapper, ConsoleUtilSSE NG, Animation Queue Fix.
 
 ### Recommended VR Additions (Priority Order)
 
@@ -460,12 +483,13 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 
 ### Version Update Opportunities
 
-Mods already in VR baseline that can be updated to match AE versions:
+All VR mods are now at latest compatible versions. No pending updates.
 
-| Mod | VR Version | AE Version | Action |
-|-----|-----------|------------|--------|
-| Ashe - Crystal Heart | 1.3.0 | 1.3.3 | Update — ESP + assets, no DLL |
-| Ashe-Serana Banter | 1.0.4 | 1.0.6 | Update — ESP only |
+> **Version pinning reminder**: VR versions of SKSE-dependent mods are permanently pinned.
+> RaceMenu (0.4.14), Fuz Ro D'oh (1.7), PapyrusUtil VR (3.6b) will NOT receive updates
+> unless SKSEVR runtime itself is updated (extremely unlikely).
+> See `vr-baseline.detail.instructions.md` → "VR-Specific Version Requirements" for the
+> complete version mapping table.
 
 ## Cross-References
 

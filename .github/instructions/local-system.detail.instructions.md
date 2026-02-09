@@ -65,7 +65,7 @@ Vortex writes JSON manifests to each game's install directory listing every depl
 | Game | Manifest Path | File Count |
 |------|--------------|------------|
 | VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
-| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 4,946 files |
+| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 14,929 files |
 | SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
 | SE (Data) | `...\\Skyrim Special Edition\\Data\\vortex.deployment.json` | 16,690 files |
 
@@ -103,36 +103,27 @@ Ashe and Serana Banter Patch.esp
 Skyrim Flora Overhaul.esp
 vrik.esp
 higgs_vr.esp
+FabulousFollowersAIO.esp
 ```
 
-### Mod Catalog (24 mods)
+### Mod Catalog (33 mods — see vr-baseline.detail.instructions.md for full list)
 
-| Mod | Nexus ID | Version | Category |
-|-----|----------|---------|----------|
-| SKSEVR | 30457 | 2.0.12 | Framework |
-| Skyrim VR ESL Support | 106712 | 1.2 | Framework |
-| VR Address Library | 58101 | 0.195.0 | Framework |
-| SkyrimVRTools | 27782 | 2.3 BETA | Framework |
-| Engine Fixes VR (Part 1 + 2) | 62089 | 1.26 | Framework |
-| CrashLogger | 59818 | 1.19.1 | Framework |
-| SMP-NPC Crash Fix | 91616 | 1 | Framework |
-| VRIK Player Avatar | 23416 | 0.8.5 | VR Core |
-| HIGGS | 43930 | 1.10.10 | VR Core |
-| PLANCK | 66025 | 0.7.1 | VR Core |
-| SkyUI (VR) | — | 1.2.2 | UI |
-| Unofficial Skyrim SE Patch | 266 | 4.3.6c | Patch |
-| SMIM SE | 659 | 2.08 | Visuals |
-| Skyrim Flora Overhaul | 2154 | 2.74a | Visuals |
-| CBBE | 198 | 2.0.3 | Body |
-| BodySlide and Outfit Studio | 201 | 5.7.1 | Body |
-| Serana Dialogue Add-On | 32161 | 4.3.0 | NPC / Dialogue |
-| SDA Patch Hub SE | 70782 | 2.9.6 | NPC / Dialogue |
-| Ashe - Crystal Heart SE | 135085 | 1.3.0 | NPC / Follower |
-| Ashe and Serana Banter Patch | 167123 | 1.0.4 | NPC / Follower |
-| Fabulous Followers SE | 57284 | 1.05 | NPC / Follower |
-| Bandolier Bags and Pouches | 2417 | 1.2 | Equipment |
-| All in one (Address Library) | 32444 | 2 | Library |
-| RaceMenuMorphsCBBE | — | — | Body |
+> The VR mod catalog has grown significantly. Refer to `vr-baseline.detail.instructions.md` for the
+> authoritative, categorized list of all 33 deployed mods (31 data + 2 root).
+
+**Key categories**:
+- Engine/Root: SKSEVR, VR ESL Support
+- Frameworks (9): VR Address Library, VRTools, Engine Fixes VR, CrashLogger + PDB, JContainers VR 4.2.11, PapyrusUtil VR 3.6b, po3 Tweaks, Fuz Ro D'oh 1.7
+- VR Core: VRIK, HIGGS, PLANCK
+- Body/Character: CBBE, BodySlide, RaceMenu VR 0.4.14, XPMSSE
+- Animation: FNIS, Nemesis
+- Performance: eFPS, Grass FPS Booster
+- Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow
+- Graphics: Screen Space GI (first CS shader add-on in VR)
+- NPC/Followers: SDA, Ashe 1.3.3, Fabulous Followers
+- Gameplay: Alternate Perspective, Bandolier
+
+**Removed since previous snapshot**: USSEP (CC deps), Address Library SE (dead weight), SMP-NPC Crash Fix (undeployed)
 
 ## Installed Mods — Skyrim SE (AE)
 
