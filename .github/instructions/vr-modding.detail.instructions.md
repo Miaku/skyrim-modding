@@ -19,6 +19,7 @@ Skyrim VR is based on **SE runtime 1.4.15** — an older SE build. This means:
 |-----|---------|-------|
 | SKSEVR | Script extender for VR | Required for most script-heavy mods |
 | VR Address Library | Address mappings for VR runtime | Equivalent of Address Library for SE |
+| Community Shaders | Graphics injection (CPM, parallax, grass shaders) | VR build on Nexus 86492 — same page as SE/AE |
 | SkyUI VR | UI framework + MCM | Forked from SkyUI for VR |
 | VRIK | Visible player body, gestures, holsters | Core VR experience mod |
 | HIGGS | Hand interaction, gravity gloves, physics grabbing | Transforms object interaction |
@@ -31,7 +32,7 @@ Skyrim VR is based on **SE runtime 1.4.15** — an older SE build. This means:
 | Tier | Description | Examples |
 |------|-------------|---------|
 | **Native VR** | Built specifically for VR | VRIK, HIGGS, Planck |
-| **Works as-is** | SE mods that just work in VR | Most texture/mesh replacers, many ESPs |
+| **Works as-is** | SE mods that just work in VR | Most texture/mesh replacers, many ESPs, Community Shaders |
 | **Needs patching** | Requires minor edits or VR-specific patch | Some UI mods, some SKSE plugins |
 | **Incompatible** | Cannot work in VR without major rework | SE SKSE DLLs, mods using AE-only features |
 
@@ -113,7 +114,7 @@ fDirectMovementMaxMovementSpeedThreshold=0.25
 | Problem | Likely Cause | Fix |
 |---------|-------------|-----|
 | Crash at logo | SKSE DLL compiled for SE, not VR | Use SKSEVR-compatible version |
-| Black screen on load | ENB incompatibility | Use VR-compatible ENB preset or disable |
+| Black screen on load | Graphics injector incompatibility | Use Community Shaders (VR build) or VR-compatible ENB preset |
 | Controllers not tracked | SteamVR/OpenXR conflict | Use opencomposite for OpenXR headsets |
 | Menus not visible | UI mod not VR-aware | Use VR-specific UI mods (SkyUI VR) |
 | Low FPS | Double-render overhead | Follow performance optimization section |

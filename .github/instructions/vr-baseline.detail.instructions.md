@@ -112,9 +112,8 @@ This is the **known-good VR foundation** with:
 - **14 additional** are directly portable (ESP/mesh/texture only)
 - **3 more** have known VR builds available
 - **7** need VR build verification on Nexus
-- **3** cannot be ported (CS-exclusive: CM/CPM, grass shaders, PBR)
-- **3** are not applicable to VR
-- **With ENB VR**: 3 additional mods become functional (PGPatcher parallax, Terrain Helper, partial Vanaheimr), recovering **~10% additional parity**
+- **0** cannot be ported — **Community Shaders supports VR**, eliminating all previous CS-exclusive blockers
+- **3** are not applicable to VR (widescreen fix, NVIDIA Reflex, SrtCrashFix AE)
 
 ### Known Issues in Current VR Baseline
 
@@ -135,14 +134,21 @@ These mods are ESP/texture/mesh only and can be installed directly into VR:
 | Faithful Faces | 114342 | NPC visuals | Face texture overhaul |
 | Cathedral 3D Landscapes | 80687 | Landscape | Base landscape mesh/texture layer (replaces Skyrim Flora Overhaul's landscape role) |
 | DrJacopo's 3D Grass | 80687 | Grass | Companion to Cathedral |
+| Vanaheimr Landscapes CPM | 145439 | Landscape 4K | Full CPM landscape textures — works with CS in VR |
+| Freak's Floral Fields | 125349 | Grass/flora | Region-specific grass — works with CS grass shader in VR |
 | ERM | 121336 | Rock textures | Direct install |
 | Better Dynamic Snow SE | 9121 | Snow visuals | ESP + meshes |
+| Grass Lighting | 86502 | Grass lighting | CS plugin — works in VR with CS |
+| Terrain Helper | 143149 | Terrain blending | CS terrain blending — works in VR with CS |
 | eFPS | 54907 | Performance | Occlusion culling — significant FPS boost in VR |
 | Grass FPS Booster | 20082 | Performance | Grass optimization — critical for VR perf |
+| PGPatcher | 120946 | Mesh patching | Run offline to patch mesh shader flags for CS |
+| FonixData | 40971 | Lip-sync | Lip-sync data files |
 
 #### Tier 2 — Known VR Builds
 | Mod | Nexus ID | Impact | Notes |
 |-----|----------|--------|-------|
+| Community Shaders (VR) | 86492 | **Graphics engine** | VR build on same Nexus page — enables CPM, parallax, grass shaders, PBR. **High priority — unlocks Tier 1 landscape/grass mods.** |
 | RaceMenu VR | 19080 | Character creation | Main file + VR DLL (file_id=154909) |
 | po3 Tweaks VR | 51073 | Engine tweaks | Main file + VR optional DLL |
 | HDT-SMP VR | 30872 | Hair/cloth physics | VR SMP engine (different mod from Faster HDT-SMP) |
@@ -161,38 +167,25 @@ These mods are ESP/texture/mesh only and can be installed directly into VR:
 
 ### Permanent AE/VR Divergence
 
-These AE features **cannot** be replicated in VR even with ENB VR installed:
+These AE features **cannot** be replicated in VR:
 
 | AE Feature | Why | VR Alternative |
 |-----------|-----|----------------|
-| Complex Material / CPM rendering (`_m.dds`) | CS-exclusive shader format; ENB doesn't speak it | Accept flat textures — Vanaheimr still provides color/normal upgrade, just no metallic/roughness depth |
-| CS Grass Shader (Freak's Floral Fields) | CS-exclusive rendering plugin | Keep Skyrim Flora Overhaul (current VR grass) |
-| PBR rendering | CS-exclusive shader pipeline | No alternative — affects future PBR texture mods |
-| Grass Lighting plugin | CS sub-plugin | ENB AO provides partial indirect lighting (not grass-specific) |
+| SrtCrashFix AE | AE-specific stack trace fix | No VR equivalent needed (different crash patterns) |
 | NVIDIA Reflex | AE-specific DLL | Not applicable to VR render pipeline |
+| Complete Widescreen Fix | Flat-screen UI | Not applicable to VR headset display |
 | Creation Club content (74 plugins) | VR has no CC support | Skip — do NOT copy from AE install |
 
-### Features Recoverable With ENB VR
-
-Installing ENB VR (from `enbdev.com/download_mod_tesskyrimvr.htm`) enables:
-
-| Feature | Impact | Notes |
-|---------|--------|-------|
-| Post-processing (AO, DOF, bloom, color) | **Major visual upgrade** | Use lightweight VR preset; disable DOF (VR sickness) |
-| Parallax rendering (`_p.dds`) | **Surface depth on landscapes/rocks** | Enable `FixParallaxBugs=true` in `enblocal.ini` |
-| PGPatcher parallax patching | **Enables parallax for all texture mods** | Run PGPatcher offline, copy output to VR Data folder |
-| Terrain Helper blending | **Better terrain transitions** | ENB uses terrain blending data from Terrain Helper |
-| Vanaheimr parallax textures | **Landscape depth** | Parallax works; CM effects remain flat |
-
-**ENB VR Performance Warning**: VR double-renders both eyes — expect 15-25% GPU overhead. Target 90 FPS. Prefer lightweight presets (Pi-CHO, Cabbage-style). Disable depth of field, reduce AO quality first if below target.
+> **Note**: Community Shaders **supports VR**. All CS-dependent features (CPM, parallax, grass
+> shaders, PBR, terrain blending) work in VR via the CS VR build on Nexus 86492.
 
 ### Target State Comparison
 
 | Scenario | Parity with AE | Mods |
 |----------|---------------|------|
 | Current VR baseline | ~35% | 24 mods |
-| + Tier 1 & 2 additions (no ENB) | ~68% | ~38 mods |
-| + Tier 1 & 2 + ENB VR + PGPatcher | **~78%** | ~40 mods (ENB + PGPatcher + Terrain Helper) |
+| + Tier 1 & 2 additions + Community Shaders | **~81%** | ~42 mods |
+| + Tier 3 verified | **~94%** | ~49 mods |
 
 The VR equivalent of the AE SMP hair physics chain:
 
@@ -208,11 +201,12 @@ SKSEVR (30457)
 
 ### Target State (After Tier 1 + Tier 2 Additions)
 
-If all Tier 1 and Tier 2 mods are installed, VR baseline would grow from **24 → ~38 mods** with:
-- **~68% parity** with AE baseline (up from 35%)
+If all Tier 1 and Tier 2 mods are installed (including Community Shaders VR), VR baseline would grow from **24 → ~42 mods** with:
+- **~81% parity** with AE baseline (up from 35%)
+- **Full CPM landscape overhaul** (Vanaheimr + Cathedral 3D + PGPatcher + Community Shaders)
+- **Full grass/flora overhaul** (Freak's Floral Fields + Grass Lighting via CS)
 - Working SMP hair physics (VR equivalent chain)
 - Character creation overhaul (RaceMenu VR)
-- Full landscape visual upgrade (Cathedral 3D — without CPM depth effects)
 - Significant VR performance improvements (eFPS + Grass FPS Booster)
 - Proper bug fixes (USSEP 4.2.5b loading correctly)
 

@@ -139,7 +139,7 @@ VR variants of mods are often several versions behind SE/AE. This is expected be
 |-----|-------|------------|
 | **USSEP (≥4.2.6)** | Requires 5 CC masters not present in VR: `ccbgssse001-fish.esm`, `ccqdrsse001-survivalmode.esl`, `ccbgssse037-curios.esl`, `ccbgssse025-advdsgs.esm`, `_ResourcePack.esl` | Use USSEP **4.2.5b** (last version without CC deps) or skip entirely. **Do NOT copy CC files from AE** — see Install Isolation rule. |
 | RaceMenu | Dual-file install, VR DLL lags behind | See install pattern above |
-| ENB | VR-specific binary required; **not needed for SE/AE if using Community Shaders** | Use VR ENB build from enbdev.com. For SE/AE, prefer Community Shaders (86492) instead |
+| ENB | VR-specific binary required; ENB and Community Shaders are **mutually exclusive** | Community Shaders (86492) is preferred for both SE/AE and VR. ENB only if you want a specific preset look. |
 | .NET Script Framework | No VR build exists | Use CrashLogger VR (59818) instead |
 | SSE Engine Fixes | Separate VR build | Use Engine Fixes VR (62089) |
 | powerofthree's Tweaks | Separate VR DLL in optional files | Check optional files section |
@@ -342,20 +342,20 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | Faithful Faces 1.3.5 | 114342 | Faithful Faces | 114342 | **PORTABLE** | ESP + NPC face textures; no DLL |
 | Cathedral 3D Landscapes 16.41 | 80687 | Cathedral 3D Landscapes | 80687 | **PORTABLE** | Meshes + textures; base landscape layer works without CS |
 | DrJacopo's 3D Grass Library 16.53 | 80687 | DrJacopo's 3D Grass Library | 80687 | **PORTABLE** | 3D grass mesh library; companion to Cathedral |
-| Vanaheimr Landscapes CPM 5.5 | 145439 | Vanaheimr Landscapes | 145439 | **PORTABLE** (partial with ENB VR) | **With ENB VR**: parallax `_p.dds` textures render correctly (ENB `FixParallaxBugs=true`). Run PGPatcher to set parallax flags on meshes. **Without ENB VR or CS**: textures still install as a flat color/normal upgrade over vanilla. **CM/CPM `_m.dds` effects** (metallic, roughness, depth) remain CS-only — ENB VR cannot render these. Install parallax variant if available, or accept partial effects. |
-| Freak's Floral Fields 3.1 | 125349 | — | — | **NO VR PORT** | **Hard requires Community Shaders grass shader** for rendering. ENB VR does not include a grass shader equivalent. Without CS, grass will not display correctly. Skip for VR — keep Skyrim Flora Overhaul or other VR-compatible grass. |
-| ERM 1.1.1 | 121336 | ERM | 121336 | **PORTABLE** | Rock/mountain textures; no DLL, no CS dependency. If ERM ships `_p.dds` parallax textures, ENB VR + PGPatcher can enable parallax rendering. |
+| Vanaheimr Landscapes CPM 5.5 | 145439 | Vanaheimr Landscapes CPM | 145439 | **PORTABLE** | Textures + ESP, no DLL. **With Community Shaders in VR**: full CPM/parallax effects render correctly — same as AE. Run PGPatcher to set shader flags on meshes. Requires CS + Terrain Helper. |
+| Freak's Floral Fields 3.1 | 125349 | Freak's Floral Fields | 125349 | **PORTABLE** | Requires Community Shaders grass shader — **which now works in VR**. Install directly; same region ESPs as AE. Requires Cathedral 3D Landscapes + DrJacopo's 3D Grass Library. |
+| ERM 1.1.1 | 121336 | ERM | 121336 | **PORTABLE** | Rock/mountain textures; no DLL, no CS dependency. If ERM ships `_p.dds` parallax textures, CS + PGPatcher enables parallax rendering in VR. |
 | Better Dynamic Snow SE 3.6.0 | 9121 | Better Dynamic Snow SE | 9121 | **PORTABLE** | ESP + snow meshes; cross-edition |
-| Grass Lighting 2.0.0 | 86502 | — | — | **NO VR PORT** | CS-only grass shader plugin. ENB VR's ambient occlusion and lighting improvements provide a *partial* alternative (indirect light on all objects, not grass-specific). |
+| Grass Lighting 2.0.0 | 86502 | Grass Lighting | 86502 | **PORTABLE** | Community Shaders plugin — **works in VR with CS**. Install directly via mod manager. |
 | Icy Mesh Remaster 3.35 | 73381 | Icy Mesh Remaster | 73381 | **PORTABLE** (partial) | Mesh fixes work directly; `IcyFixes.esp` (Base Object Swapper config) needs BOS VR DLL. Install meshes only if BOS unavailable. |
-| Terrain Helper 1.0.0 | 143149 | Terrain Helper + ENB VR | 143149 | **PORTABLE** (with ENB VR) | Terrain Helper works with both CS *and* ENB for terrain blending. **With ENB VR installed, Terrain Helper becomes functional** — provides terrain blending data that ENB's terrain fix uses. |
+| Terrain Helper 1.0.0 | 143149 | Terrain Helper | 143149 | **PORTABLE** | Terrain blending helper for CS. **Works in VR with Community Shaders**. Install directly. |
 | Falskaar Landscape Fix 1.0 | 139242 | Falskaar Landscape Fix | 139242 | **PORTABLE** | ESL plugin; cross-edition (only relevant if Falskaar is installed) |
 
 ### Graphics Post-Processing
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Community Shaders 1.4.11 | 86492 | **ENB VR** | enbdev.com | **VR BUILD EXISTS** (partial equivalent) | ENB VR from `enbdev.com/download_mod_tesskyrimvr.htm` is a **partial replacement** for CS. See "ENB VR Parity Recovery" section below for feature-by-feature comparison. **Recovers**: post-processing (AO, DOF, bloom, color), parallax rendering, terrain fixes. **Does NOT recover**: CM/CPM, PBR, grass shaders. Performance cost is higher than CS (~15-25% GPU overhead in VR's double-render pipeline) — choose a lightweight preset. |
+| Community Shaders 1.4.11 | 86492 | Community Shaders (VR build) | 86492 | **PORTABLE** | Same Nexus page — VR build available in files tab. Install via mod manager. Provides same CPM, parallax, grass shader, and post-processing features as AE. Check VR build version may lag slightly behind AE build. |
 
 ### NPC / Followers / Dialogue
 
@@ -373,7 +373,7 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 |--------|----------|-----------|-------------|--------|-------|
 | Alternate Perspective 4.1.0 | 50307 | Alternate Perspective | 50307 | **VR BUILD UNKNOWN** | Has SKSE DLL component; check if VR build exists in optional files. ESP/scripts may work alone. |
 | FonixData (Mantella) 1.0 | 40971 | FonixData | 40971 | **PORTABLE** | Lip-sync data files; no DLL |
-| PGPatcher 0.9.9 | 120946 | PGPatcher | 120946 | **PORTABLE** (with ENB VR) | PGPatcher is an **offline tool** (not an SKSE plugin) — it patches NIF mesh shader flags at rest. It runs outside the game and its output works in any edition. **With ENB VR**: PGPatcher parallax flag patching is fully useful — ENB renders parallax. **Without ENB VR**: parallax flags are set but no renderer honors them. **CM/PBR flags** remain CS-only regardless of ENB. Run PGPatcher after installing texture mods, copy output to VR Data folder. |
+| PGPatcher 0.9.9 | 120946 | PGPatcher | 120946 | **PORTABLE** | PGPatcher is an **offline tool** (not an SKSE plugin) — it patches NIF mesh shader flags at rest. Runs outside the game; output works in any edition. **With Community Shaders in VR**: all PGPatcher output is fully functional — parallax, CM/CPM, and PBR flags are all rendered by CS. Run PGPatcher after installing texture mods, copy output to VR Data folder. |
 
 ### VR-Exclusive Mods (no AE counterpart needed)
 
@@ -385,64 +385,27 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 | SkyrimVRTools 2.3 BETA | 27782 | VR controller API framework | N/A — no controllers in flat-screen |
 | Bandolier 1.2 | 2417 | Bags/pouches (extra carry) | Not in AE baseline but could be added |
 
-### Parity Summary (Without ENB VR)
+### Parity Summary
 
 | Status | Count | Percentage |
 |--------|-------|------------|
 | **MATCHED** | 18 | 35% |
-| **PORTABLE** (install directly) | 14 | 27% |
+| **PORTABLE** (install directly) | 21 | 40% |
 | **VR BUILD EXISTS** (known) | 3 | 6% |
 | **VR BUILD UNKNOWN** (needs check) | 7 | 13% |
-| **NO VR PORT** | 7 | 13% |
 | **N/A IN VR** | 3 | 6% |
 | **Total AE mods** | **52** | 100% |
 
-### Parity Summary (With ENB VR Installed)
+> **Key insight**: With Community Shaders supporting VR, there are **zero "NO VR PORT" mods** in the
+> AE baseline. Every AE mod either works directly, has a known VR build, or is N/A in VR.
+> The previous blockers (CS-dependent mods like Freak's Floral Fields, Grass Lighting, Terrain
+> Helper, PGPatcher, Vanaheimr CPM) are all now **PORTABLE** since CS works in VR.
 
-| Status | Count | Percentage | Change |
-|--------|-------|------------|--------|
-| **MATCHED** | 18 | 35% | — |
-| **PORTABLE** (install directly) | 14 | 27% | — |
-| **VR BUILD EXISTS** (known) | 4 | 8% | +1 (CS → ENB VR) |
-| **VR BUILD UNKNOWN** (needs check) | 7 | 13% | — |
-| **NO VR PORT** | 4 | 8% | -3 (PGPatcher, Terrain Helper, Vanaheimr parallax recovered) |
-| **N/A IN VR** | 3 | 6% | — |
-| **Partially recovered** | 2 | 4% | Vanaheimr parallax (not CM), Grass Lighting (ENB AO partial) |
-| **Total AE mods** | **52** | 100% | |
+### Critical Parity Blockers (Remaining)
 
-### ENB VR Parity Recovery
-
-Installing ENB VR recovers or partially recovers these previously-blocked features:
-
-| Feature | Without ENB VR | With ENB VR | Recovery Level |
-|---------|----------------|-------------|----------------|
-| Post-processing (AO, DOF, bloom, color) | None | Full | **Full** |
-| Parallax rendering (`_p.dds`) | Not rendered | Rendered via `FixParallaxBugs=true` | **Full** |
-| PGPatcher parallax patching | Useless (no renderer) | Functional (ENB renders parallax flags) | **Full** |
-| Terrain Helper blending | Non-functional | Functional (ENB uses terrain data) | **Full** |
-| Vanaheimr parallax textures | Flat only | Parallax depth on surfaces | **Partial** (parallax yes, CM no) |
-| Vanaheimr CM/CPM effects (`_m.dds`) | Not rendered | Not rendered | **None** — CS-only |
-| Freak's Floral Fields grass | Non-functional | Non-functional | **None** — CS grass shader only |
-| Grass Lighting (CS plugin) | No grass lighting | ENB AO/indirect lighting on all geometry | **Partial** (not grass-specific) |
-| PBR rendering | Not possible | Not possible | **None** — CS-only |
-
-### ENB VR Performance Considerations
-
-- VR renders **two viewports** — ENB cost is roughly doubled vs flat SE
-- Expect **15-25% GPU overhead** depending on preset
-- **Disable depth of field** — causes motion sickness in VR
-- **Reduce ambient occlusion quality** — biggest single ENB perf hit
-- Use a **lightweight VR-tested preset** (Pi-CHO, Cabbage-style)
-- Set `FPSLimit=90.0` (or your headset's refresh rate) in `enblocal.ini`
-- VR target is 90 FPS minimum; if ENB drops below, disable heaviest effects first
-
-### Critical Parity Blockers (Remaining After ENB VR)
-
-1. **Complex Material / CPM rendering** — CS-exclusive; ENB cannot render `_m.dds` metallic/roughness maps. Vanaheimr's advanced depth effects remain flat. No workaround.
-2. **CS Grass Shader** — CS-exclusive; blocks Freak's Floral Fields entirely. Keep Skyrim Flora Overhaul for VR grass. No workaround.
-3. **PBR rendering** — CS-exclusive; no ENB equivalent. Affects future PBR texture mods.
-4. **USSEP version mismatch** — VR needs downgrade from 4.3.6c to 4.2.5b. Not ENB-related.
-5. **SMP physics engine** — Faster HDT-SMP has no VR build; must use older HDT-SMP VR (30872). Not ENB-related.
+1. **USSEP version mismatch** — VR needs downgrade from 4.3.6c to 4.2.5b (CC master dependency).
+2. **SMP physics engine** — Faster HDT-SMP has no VR build; must use older HDT-SMP VR (30872).
+3. **7 mods need VR build verification** — SKSE DLL mods where VR optional files haven't been confirmed yet.
 
 ### Recommended VR Additions (Priority Order)
 
@@ -457,15 +420,21 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 | Faithful Faces | 114342 | Install directly — ESP + textures |
 | Cathedral 3D Landscapes | 80687 | Install directly — meshes + textures |
 | DrJacopo's 3D Grass Library | 80687 | Install directly — companion to Cathedral |
+| Vanaheimr Landscapes CPM | 145439 | Install directly — 4K CPM landscape textures (requires CS) |
+| Freak's Floral Fields | 125349 | Install directly — region grass ESPs (requires CS grass shader) |
 | ERM | 121336 | Install directly — rock/mountain textures |
 | Better Dynamic Snow SE | 9121 | Install directly — ESP + meshes |
+| Grass Lighting | 86502 | Install directly — CS grass shader plugin |
+| Terrain Helper | 143149 | Install directly — CS terrain blending |
 | eFPS | 54907 | Install directly — occlusion ESP + meshes |
 | Grass FPS Booster | 20082 | Install directly — ESP + grass config |
+| PGPatcher | 120946 | Run offline — patch mesh shader flags for CS |
 | FonixData | 40971 | Install directly — lip-sync data |
 
 #### Tier 2 — Known VR Builds, Moderate Complexity
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
+| Community Shaders (VR) | 86492 | Install VR build from Nexus files tab — **high priority**, enables Tier 1 landscape/grass mods |
 | RaceMenu (VR) | 19080 | Dual-file install: main + VR DLL (file_id=154909) |
 | po3 Tweaks (VR) | 51073 | Install main + VR optional DLL |
 | HDT-SMP VR | 30872 | Install VR SMP engine (replaces Faster HDT-SMP) |
@@ -485,22 +454,9 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 #### Tier 4 — Cannot Port (Accept Divergence)
 | AE Mod | Reason | VR Workaround |
 |--------|--------|---------------|
-| Freak's Floral Fields | Requires CS grass shader (ENB has no equivalent) | Use Skyrim Flora Overhaul (already installed) or other VR-compatible grass |
-| Grass Lighting | CS plugin (ENB AO is partial substitute) | ENB ambient occlusion covers general indirect lighting |
-| Vanaheimr CM effects | CS renders CPM `_m.dds`; ENB cannot | Install textures — parallax works with ENB, CM stays flat |
-| SrtCrashFix AE | AE-specific | No VR equivalent needed (different crash patterns) |
+| SrtCrashFix AE | AE-specific stack trace fix | No VR equivalent needed (different crash patterns) |
 | NVIDIA Reflex | AE SKSE DLL | Not applicable to VR rendering |
 | Complete Widescreen Fix | Flat-screen UI | Not applicable to VR headset display |
-
-#### Tier 5 — Recoverable with ENB VR
-These were previously "NO VR PORT" but become functional when ENB VR is installed:
-
-| Mod | Nexus ID | What ENB VR Enables |
-|-----|----------|---------------------|
-| PGPatcher (parallax patching) | 120946 | Run offline, output parallax-flagged NIFs → ENB renders them via `FixParallaxBugs=true` |
-| Terrain Helper | 143149 | ENB uses terrain blending data for biome transitions |
-| Vanaheimr Landscapes (parallax) | 145439 | `_p.dds` parallax textures render correctly under ENB VR |
-| Community Shaders → ENB VR | enbdev.com | Post-processing: AO, DOF, bloom, color grading, weather presets |
 
 ### Version Update Opportunities
 

@@ -18,7 +18,7 @@ description: "ENB installation, configuration, and preset management for Skyrim\
 | Preset system | INI + shader files | JSON configs + modular shader plugins |
 | Open source | No | Yes |
 | SE/AE support | Yes | Yes |
-| VR support | Separate binary (lags behind) | **No** — SE/AE only |
+| VR support | Separate binary (lags behind) | **Yes** — VR build available on same Nexus page |
 | Performance | Heavier (full pipeline hook) | Generally lighter |
 | Ecosystem | Mature, huge preset library | Growing, modular features |
 | Feature plugins | All-in-one | Separate Nexus mods (LightLimitFix, etc.) |
@@ -26,23 +26,23 @@ description: "ENB installation, configuration, and preset management for Skyrim\
 
 ### When to Choose Which
 
-- **Community Shaders** (recommended for SE/AE): Modern, open-source, lighter, integrates with
-  mod manager, actively maintained by community. Best for new setups.
+- **Community Shaders** (recommended for SE/AE/VR): Modern, open-source, lighter, integrates with
+  mod manager, actively maintained by community. Best for new setups. **Supports VR.**
 - **ENB**: Mature ecosystem with massive preset library. Choose if you want a specific ENB preset
   look that Community Shaders can't replicate yet.
-- **VR**: ENB is the only option (Community Shaders has no VR support).
 
 ### Our Setup
 
-- **AE**: Using **Community Shaders v1.4.11** (Nexus 86492). ENB was installed and removed.
-- **VR**: ENB is the only graphics injection option if desired.
+- **AE**: Using **Community Shaders v1.4.11** (Nexus 86492).
+- **VR**: Use **Community Shaders** (same Nexus page, VR build in files tab). ENB is not needed.
 
 ---
 
-## Community Shaders (SE/AE)
+## Community Shaders (SE/AE/VR)
 
-Community Shaders is an **SKSE plugin** that replaces ENB for SE/AE. It installs through your mod
-manager like any other mod — no manual file copying required.
+Community Shaders is an **SKSE plugin** that replaces ENB for SE/AE/VR. It installs through your mod
+manager like any other mod — no manual file copying required. VR build is available on the same
+Nexus page (86492) under the files tab.
 
 ### Installation
 
@@ -168,23 +168,9 @@ that configures the shaders for a specific look.
 - Disable or reduce depth of field (causes discomfort in VR)
 - Ambient occlusion is the biggest VR performance hit
 
-### VR Parity Recovery via ENB
-
-ENB VR is the **only way to recover** several AE landscape features blocked by the lack of Community Shaders in VR:
-
-| Recovered Feature | ENB Setting | Impact |
-|-------------------|-------------|--------|
-| Parallax rendering | `FixParallaxBugs=true` | Landscape/rock depth from `_p.dds` textures |
-| PGPatcher parallax output | N/A (mesh flags) | PGPatcher-patched NIFs render parallax under ENB |
-| Terrain Helper blending | ENB terrain fixes | Better biome transitions |
-| Post-processing stack | Preset-dependent | AO, bloom, color, weather-based effects |
-
-**Still NOT recovered** (CS-exclusive, no ENB equivalent):
-- Complex Material / CPM (`_m.dds`) — metallic, roughness, subsurface
-- CS Grass Shader — blocks Freak's Floral Fields
-- PBR rendering pipeline
-
-See `mod-dependencies.detail.instructions.md` → "ENB VR Parity Recovery" for the full mapping.
+> **Note**: Community Shaders now supports VR. For VR setups, **prefer Community Shaders over ENB**
+> as it's lighter, integrates with mod manager, and supports CPM/parallax/grass shaders that
+> many landscape mods depend on. ENB is only needed if you want a specific ENB preset look.
 
 ## ENB Helper SE
 
