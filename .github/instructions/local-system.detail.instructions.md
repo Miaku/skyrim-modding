@@ -65,7 +65,7 @@ Vortex writes JSON manifests to each game's install directory listing every depl
 | Game | Manifest Path | File Count |
 |------|--------------|------------|
 | VR (root) | `D:\SteamLibrary\steamapps\common\SkyrimVR\vortex.deployment.dinput.json` | 571 files |
-| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 14,929 files |
+| VR (Data) | `D:\SteamLibrary\steamapps\common\SkyrimVR\Data\vortex.deployment.json` | 15,523 files |
 | SE (root) | `...\Skyrim Special Edition\vortex.deployment.dinput.json` | 536 files |
 | SE (Data) | `...\\Skyrim Special Edition\\Data\\vortex.deployment.json` | 16,690 files |
 
@@ -106,16 +106,17 @@ higgs_vr.esp
 FabulousFollowersAIO.esp
 ```
 
-### Mod Catalog (33 mods — see vr-baseline.detail.instructions.md for full list)
+### Mod Catalog (39 mods — see vr-baseline.detail.instructions.md for full list)
 
 > The VR mod catalog has grown significantly. Refer to `vr-baseline.detail.instructions.md` for the
-> authoritative, categorized list of all 33 deployed mods (31 data + 2 root).
+> authoritative, categorized list of all 39 deployed mods (37 data + 2 root).
 
 **Key categories**:
 - Engine/Root: SKSEVR, VR ESL Support
-- Frameworks (9): VR Address Library, VRTools, Engine Fixes VR, CrashLogger + PDB, JContainers VR 4.2.11, PapyrusUtil VR 3.6b, po3 Tweaks, Fuz Ro D'oh 1.7
+- Frameworks (10): VR Address Library, VRTools, Engine Fixes VR, CrashLogger + PDB, ConsoleUtilSSE NG, JContainers VR 4.2.11, PapyrusUtil VR 3.6b, po3 Tweaks, Fuz Ro D'oh 1.7
 - VR Core: VRIK, HIGGS, PLANCK
 - Body/Character: CBBE, BodySlide, RaceMenu VR 0.4.14, XPMSSE
+- Physics/SMP: Faster HDT-SMP, Vanilla hair remake SMP, Vanilla hair remake SMP - NPCs
 - Animation: FNIS, Nemesis
 - Performance: eFPS, Grass FPS Booster
 - Visuals: SMIM, Skyrim Flora Overhaul, Better Dynamic Snow
@@ -123,7 +124,7 @@ FabulousFollowersAIO.esp
 - NPC/Followers: SDA, Ashe 1.3.3, Fabulous Followers
 - Gameplay: Alternate Perspective, Bandolier
 
-**Removed since previous snapshot**: USSEP (CC deps), Address Library SE (dead weight), SMP-NPC Crash Fix (undeployed)
+**Added since previous snapshot**: ConsoleUtilSSE NG (76649), Faster HDT-SMP (57339), Vanilla hair remake SMP (63979) + NPCs — SMP hair physics now working
 
 ## Installed Mods — Skyrim SE (AE)
 

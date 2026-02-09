@@ -199,9 +199,10 @@ SKSE64 (30379)                              ← engine hooks for all SKSE plugin
 | SkyUI | FSMP MCM menu won't load (non-fatal but you lose physics tuning) |
 | SMP content mod | Nothing to simulate — you need at least one SMP-rigged mesh |
 
-**VR Note:** Faster HDT-SMP has no VR build. For VR SMP physics, use the original
-[HDT-SMP for Skyrim VR](https://www.nexusmods.com/skyrimspecialedition/mods/30872)
-or check if a VR-compiled fork exists. The same chain structure applies but with VR equivalents.
+**VR Note:** Faster HDT-SMP (57339) v2.5.1 is **confirmed working in VR** as of Feb 2026.
+The same chain applies in VR with VR equivalents (SKSEVR, VR Address Library).
+The older [HDT-SMP for Skyrim VR](https://www.nexusmods.com/skyrimspecialedition/mods/30872)
+is no longer required — Faster HDT-SMP is a drop-in replacement.
 
 ### Body / Character Customization (SE/AE)
 
@@ -342,8 +343,8 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | AE Mod | Nexus ID | VR Analog | VR Nexus ID | Status | Notes |
 |--------|----------|-----------|-------------|--------|-------|
-| Faster HDT-SMP 2.5.1 | 57339 | HDT-SMP for Skyrim VR | 30872 | **VR BUILD EXISTS** (different mod) | Faster HDT-SMP has NO VR port. Use the original HDT-SMP VR build (Nexus 30872) instead. Fewer features but functional SMP physics in VR. |
-| Vanilla Hair Remake SMP 1.0.3 | 63979 | Vanilla Hair Remake SMP | 63979 | **PORTABLE** (with SMP engine) | SMP hair meshes are cross-edition; but need a VR SMP engine (HDT-SMP VR 30872) + XPMSSE skeleton to function. Without SMP engine, hair renders but won't animate. |
+| Faster HDT-SMP 2.5.1 | 57339 | Faster HDT-SMP 2.5.1 | 57339 | **MATCHED** | **Confirmed working in VR** (Feb 2026). Same mod, same version — no separate VR build needed. Previously thought AE-only; HDT-SMP VR (30872) is no longer required. |
+| Vanilla Hair Remake SMP 1.0.3 | 63979 | Vanilla Hair Remake SMP 1.0.3 | 63979 | **MATCHED** | SMP hair meshes are cross-edition; installed in VR with Faster HDT-SMP + XPMSSE. NPC addon (v1.0.1) also installed. |
 
 ### Animation
 
@@ -407,28 +408,28 @@ USSEP (266)                                 ← SDA references USSEP-fixed recor
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| **MATCHED** | 28 | 44% |
-| **PORTABLE** (install directly) | 14 | 22% |
-| **VR BUILD EXISTS** (known) | 3 | 5% |
-| **VR BUILD UNKNOWN** (needs check) | 3 | 5% |
+| **MATCHED** | 32 | 50% |
+| **PORTABLE** (install directly) | 12 | 19% |
+| **VR BUILD EXISTS** (known) | 2 | 3% |
+| **VR BUILD UNKNOWN** (needs check) | 2 | 3% |
 | **REMOVED** (needs replacement) | 1 | 2% |
 | **N/A IN VR** | 3 | 5% |
-| **NO VR PORT** | 1 | 2% |
+| **NO VR PORT** | 0 | 0% |
 | **CS shader add-ons** (untested in VR) | 11 | 17% |
-| **Total AE mods** | **64** | 100% |
+| **Total AE mods** | **64** | 100% (rounding) |
 
-> **Key insight**: With the parity push, 28 of 64 AE mods are now confirmed in VR (up from 18/52).
-> JContainers VR, PapyrusUtil VR, Fuz Ro D'oh, RaceMenu VR, po3 Tweaks, and Alternate Perspective
-> are all now confirmed working. Screen Space GI is the first CS shader add-on confirmed in VR.
+> **Key insight**: With SMP hair physics working, 32 of 64 AE mods are now confirmed in VR (50%, up from 28/64).
+> Faster HDT-SMP, Vanilla Hair Remake SMP (+ NPCs), and ConsoleUtilSSE NG are all confirmed working.
+> Screen Space GI remains the only CS shader add-on confirmed in VR.
 > 11 CS shader add-ons remain untested.
 
 ### Critical Parity Blockers (Remaining)
 
 1. **No USSEP in VR** — v4.3.6c was removed (CC deps). Need to find and install **4.2.5b** from old files.
-2. **SMP physics engine** — Faster HDT-SMP has no VR port; must use older HDT-SMP VR (30872).
+2. ~~**SMP physics engine**~~ — **RESOLVED**: Faster HDT-SMP (57339) works directly in VR. HDT-SMP VR (30872) is no longer needed.
 3. **Community Shaders base** — Screen Space GI is working, but CS itself may not be explicitly installed. Need to verify.
 4. **11 CS shader add-ons** — Need VR build testing (Skylighting, SSS, Wetness, Cloud Shadows, Terrain Blending/Variation, Grass Collision, Hair Specular, Hair Flow Maps, Sky Sync, Upscaling).
-5. **3 mods need VR build verification** — Base Object Swapper, ConsoleUtilSSE NG, Animation Queue Fix.
+5. **2 mods need VR build verification** — Base Object Swapper, Animation Queue Fix.
 
 ### Recommended VR Additions (Priority Order)
 
@@ -458,16 +459,16 @@ Mods that can be added to VR baseline to close the parity gap, ordered by impact
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
 | Community Shaders (VR) | 86492 | Install VR build from Nexus files tab — **high priority**, enables Tier 1 landscape/grass mods |
-| RaceMenu (VR) | 19080 | Dual-file install: main + VR DLL (file_id=154909) |
-| po3 Tweaks (VR) | 51073 | Install main + VR optional DLL |
-| HDT-SMP VR | 30872 | Install VR SMP engine (replaces Faster HDT-SMP) |
-| Vanilla Hair Remake SMP | 63979 | Install after HDT-SMP VR + XPMSSE are in place |
+| ~~RaceMenu (VR)~~ | ~~19080~~ | **INSTALLED** — dual-file install complete |
+| ~~po3 Tweaks (VR)~~ | ~~51073~~ | **INSTALLED** |
+| ~~Faster HDT-SMP~~ | ~~57339~~ | **INSTALLED** — works in VR directly (no need for HDT-SMP VR 30872) |
+| ~~Vanilla Hair Remake SMP~~ | ~~63979~~ | **INSTALLED** — base + NPC addon |
 
 #### Tier 3 — Needs VR Build Verification
 | Mod | Nexus ID | Action |
 |-----|----------|--------|
 | Base Object Swapper | 60805 | Check Nexus optional files for VR DLL |
-| ConsoleUtilSSE NG | 76649 | Check Nexus optional files for VR DLL |
+| ~~ConsoleUtilSSE NG~~ | ~~76649~~ | **INSTALLED** — v1.5.1 confirmed working in VR |
 | JContainers SE | 16495 | Check Nexus optional files for VR DLL |
 | PapyrusUtil | 13048 | Check Nexus optional files for VR DLL |
 | Fuz Ro D'oh | 15109 | Check Nexus optional files for VR DLL |
